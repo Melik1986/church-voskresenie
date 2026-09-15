@@ -1,0 +1,58 @@
+<canvas data-hero-canvas width="1920" height="1080"></canvas>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const PAD = 3;
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+  if (canvas) {
+    void init(canvas);
+  }
+
+  /** Scrubs `/sequence/frame_000.webp` … if those files exist. */
+  async function init(el: HTMLCanvasElement): Promise<void> {
+    const ctx = el.getContext('2d');
+    if (!ctx) return;
+    const frames = await loadFrames();
+    if (frames.length === 0) return;
+    const playhead = { frame: 0 };
+    const draw = (): void => {
+      ctx.clearRect(0, 0, el.width, el.height);
+      ctx.drawImage(frames[Math.round(playhead.frame)], 0, 0, el.width, el.height);
+    };
+    gsap.to(playhead, {
+      frame: frames.length - 1,
+      snap: 'frame',
+      ease: 'none',
+      onUpdate: draw,
+      scrollTrigger: { trigger: el, scrub: true },
+    });
+    draw();
+  }
+
+  async function loadFrames(): Promise<HTMLImageElement[]> {
+    const first = await load(0);
+    if (!first) return [];
+    const rest: HTMLImageElement[] = [];
+    for (let i = 1; i < 10_000; i += 1) {
+      const img = await load(i);
+      if (!img) break;
+      rest.push(img);
+    }
+    return [first, ...rest];
+  }
+
+  async function load(index: number): Promise<HTMLImageElement | null> {
+    const img = new Image();
+    img.src = `/sequence/frame_${String(index).padStart(PAD, '0')}.webp`;
+    try {
+      await img.decode();
+      return img;
+    } catch {
+      return null;
+    }
+  }
+</script>
