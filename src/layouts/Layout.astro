@@ -1,11 +1,8 @@
 ---
 import '../styles/global.css';
+import { resolveLocale } from '../i18n/utils';
 
-interface Props {
-  lang: 'ru' | 'de';
-}
-
-const { lang } = Astro.props;
+const lang = resolveLocale(Astro.currentLocale);
 ---
 
 <!doctype html>

@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: pre-commit
+      run: pre-commit run --show-diff-on-failure --color=always --files {staged_files}
+    - name: lint
+      glob: "*.{js,ts,astro,mjs}"
+      run: npx eslint --max-warnings=0 {staged_files}
+    - name: check-types
+      glob: "*.{js,ts,astro,mjs}"
+      run: npm run check-types
+    - name: aikido-local-scanner
+      glob: "*"
+      run: sh -c 'if command -v aikido-local-scanner >/dev/null 2>&1; then aikido-local-scanner pre-commit-scan "$(git rev-parse --show-toplevel)"; fi'

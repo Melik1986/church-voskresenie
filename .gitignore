@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local leftover overrides
+lefthook-local.yml
+.lefthook-local.yml
+
+# SkillDB local cache (stubs / API downloads)
+.skilldb/

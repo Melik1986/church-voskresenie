@@ -1,0 +1,30 @@
+---
+description: Fetch current docs for the project stack. Prefer Astro Docs MCP for Astro; Context7 for Tailwind/GSAP/Lenis/TS/ESLint. Use when editing those deps.
+alwaysApply: true
+---
+
+# Stack docs
+
+These npm packages do **not** ship TanStack Intent skills (except transitive `get-tsconfig`).
+
+## Astro (priority)
+
+Use **Astro Docs MCP** (`Astro docs` → `https://mcp.docs.astro.build/mcp`) for routing, i18n, components, `astro check`, integrations.
+
+Fallback: Context7 `/withastro/docs` only if Astro Docs MCP is unavailable.
+
+## Rest of stack → Context7
+
+| Package | Focus |
+|---|---|
+| `@tailwindcss/vite` / `tailwindcss` | Tailwind v4 Vite plugin, `@import "tailwindcss"` |
+| `gsap` | ScrollTrigger, ticker, scrub |
+| `lenis` | `autoRaf: false`, sync with GSAP |
+| `typescript` | TS 6.x / `tsc` |
+| `eslint` / `eslint-plugin-astro` / `typescript-eslint` | flat config |
+| `@astrojs/check` | `astro check` CLI |
+| `lefthook` | git hooks YAML |
+
+`tsconfig`: `npx @tanstack/intent@latest load get-tsconfig#get-tsconfig`.
+
+Prefer `.cursor/rules/astro.mdc` + `.cursor/skills/*` over inventing structure. No invented church copy.

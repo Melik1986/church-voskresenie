@@ -1,0 +1,17 @@
+---
+description: Astro 7 project conventions for church-voskresenie (i18n, layouts, static build, no invented content).
+globs: "**/*.{astro,mjs,css}"
+alwaysApply: false
+---
+
+# Astro conventions (this repo)
+
+- Astro **7**, static output. Tailwind via `@tailwindcss/vite` in `astro.config.mjs` — not `@astrojs/tailwind`.
+- i18n: `defaultLocale: 'ru'`, locales `ru`/`de`, `prefixDefaultLocale: false` → `/` and `/de/`.
+- Locale helpers: `src/i18n/ui.ts`, `src/i18n/utils.ts`. Layout uses `Astro.currentLocale` via `resolveLocale`.
+- UI catalogs in `ui.ts` stay empty until real copy exists — **do not invent** church text, fonts, palette, address, Impressum.
+- Typecheck: `npm run check-types` → `astro check` (not bare `tsc` for `.astro`).
+- Lint: `npm run lint` (eslint + typescript-eslint + eslint-plugin-astro).
+- Scroll: Lenis `autoRaf: false` synced to GSAP ticker in `Layout.astro`; Hero canvas uses ScrollTrigger scrub.
+- Components live under `src/components/`; pages under `src/pages/` (+ `de/`).
+- Keep shells empty until the engineer supplies content.
