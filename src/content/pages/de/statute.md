@@ -24,9 +24,9 @@ order: 1
 
 7. Jedes Kirchenmitglied beteiligt sich durch freiwillige Spenden an der materiellen Unterstützung der Gemeinde. **(2. Korinther 9:6-7, Lukas 8:3, Hebräer 7:8-9)**
 
-**Pastoren, Diakone und Leiter übernehmen folgende Verantwortung:**
+**Pastoren, Diakone und Leiter – übernehmen folgende Verantwortung:**
 
-- Predigt der reinen, unbeschädigten biblischen Lehre.
+- Predigten der reinen, unbeschädigten biblischen Lehre.
 - Schutz der Gemeinde vor falschen Lehren.
 - Die Sorge um jedes Mitglied der Gemeinde.
-- Die Sorge um Frieden und Einheit. **(Römer 14:19, 1. Petrus 5:1-3)**
+- Die Sorge um Frieden und Einheit **(Römer 14:19, 1. Petrus 5:1-3)**
