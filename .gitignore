@@ -30,3 +30,6 @@ lefthook-local.yml
 # SkillDB local cache (stubs / API downloads)
 .skilldb/
 .vercel
+
+# Cursor agent hook runtime state (audit / findings)
+.cursor/hooks/state/

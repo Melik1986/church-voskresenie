@@ -28,7 +28,8 @@ Editing pages/components/layout, Tailwind styles, GSAP/Lenis scroll, i18n, or to
 | Translators | `src/i18n/utils.ts` |
 | RU / DE pages | `src/pages/index.astro`, `src/pages/de/index.astro` |
 | Global CSS | `src/styles/global.css` |
-| Hooks | `lefthook.yml` |
+| Git hooks (lefthook) | `lefthook.yml` |
+| Cursor agent hooks | `.cursor/hooks.json` (see skill `agent-hooks`) |
 
 ## Patterns to keep
 

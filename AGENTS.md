@@ -10,6 +10,7 @@ tanstackIntent:
 
 - Cursor project rules: `.cursor/rules/`
 - Cursor project skills: `.cursor/skills/`
+- Cursor agent hooks: `.cursor/hooks.json` (security / secrets / observability — skill `agent-hooks`)
 - Astro docs: **Astro Docs MCP** (`.cursor/mcp.json` → `https://mcp.docs.astro.build/mcp`)
 - Other stack (Tailwind / GSAP / Lenis / TS / ESLint): Context7 MCP
 - Only Intent skill from deps: `get-tsconfig`

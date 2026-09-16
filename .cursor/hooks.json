@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "node .cursor/hooks/gate-shell.mjs",
+        "timeout": 15,
+        "failClosed": true
+      }
+    ],
+    "afterShellExecution": [
+      {
+        "command": "node .cursor/hooks/audit-shell.mjs",
+        "timeout": 10
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "command": "node .cursor/hooks/gate-read.mjs",
+        "timeout": 10,
+        "failClosed": true
+      }
+    ],
+    "beforeTabFileRead": [
+      {
+        "command": "node .cursor/hooks/gate-read.mjs",
+        "timeout": 10,
+        "failClosed": true
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "node .cursor/hooks/scan-edit.mjs",
+        "timeout": 60
+      }
+    ],
+    "afterTabFileEdit": [
+      {
+        "command": "node .cursor/hooks/scan-edit.mjs",
+        "timeout": 60
+      }
+    ],
+    "stop": [
+      {
+        "command": "node .cursor/hooks/audit-stop.mjs",
+        "timeout": 20,
+        "loop_limit": 3
+      }
+    ]
+  }
+}
