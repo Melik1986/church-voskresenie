@@ -36,5 +36,3 @@ lefthook-local.yml
 
 # Playwright MCP local dumps
 .playwright-mcp/
-
-.playwright-mcp/
