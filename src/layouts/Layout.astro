@@ -1,8 +1,21 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 import { resolveLocale } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
+import SeoHead from '../components/seo/SeoHead.astro';
+import Header from '../components/chrome/Header.astro';
+import Footer from '../components/chrome/Footer.astro';
 
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, jsonLd } = Astro.props;
 const lang = resolveLocale(Astro.currentLocale);
+const path = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -12,10 +25,21 @@ const lang = resolveLocale(Astro.currentLocale);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title></title>
+    <SeoHead
+      title={title}
+      description={description}
+      locale={lang as Locale}
+      path={path}
+      jsonLd={jsonLd}
+    />
   </head>
   <body>
-    <slot />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <Analytics />
     <script>
       import Lenis from 'lenis';
       import 'lenis/dist/lenis.css';

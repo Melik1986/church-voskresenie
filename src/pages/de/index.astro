@@ -1,16 +1,55 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import HeroCanvas from '../../components/HeroCanvas.astro';
-import AboutSection from '../../components/AboutSection.astro';
-import Services from '../../components/Services.astro';
-import Scripture from '../../components/Scripture.astro';
-import Footer from '../../components/Footer.astro';
+import Hero from '../../components/hero/Hero';
+import Scripture from '../../components/home/Scripture.astro';
+import AboutSection from '../../components/home/AboutSection.astro';
+import Services from '../../components/home/Services.astro';
+import PrayerSteps from '../../components/home/PrayerSteps';
+import ContactTeaser from '../../components/home/ContactTeaser.astro';
+import { resolveLocale, useTranslations } from '../../i18n/utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { buildChurchJsonLd } from '../../data/jsonld';
+import { PRAYER_BODY_DE } from '../../data/prayer';
+import { SERVICE_TIME } from '../../data/site';
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
-<Layout>
-  <HeroCanvas />
-  <AboutSection />
-  <Services />
-  <Scripture />
-  <Footer />
+<Layout title={t('seo.homeTitle')} description={t('seo.homeDesc')} jsonLd={buildChurchJsonLd(locale)}>
+  <Hero
+    client:load
+    brand={t('brand.name')}
+    tagline={t('brand.tagline')}
+    welcome={t('hero.welcome')}
+    ctaLabel={t('hero.cta')}
+    ctaHref={getRelativeLocaleUrl(locale, 'contact')}
+  />
+  <Scripture title={t('scripture.ref')} text={t('scripture.text')} refLabel={t('scripture.ref')} />
+  <AboutSection
+    teaser={t('about.teaser')}
+    moreLabel={t('about.more')}
+    href={getRelativeLocaleUrl(locale, 'about')}
+  />
+  <Services
+    teaser={t('services.teaser')}
+    moreLabel={t('services.more')}
+    href={getRelativeLocaleUrl(locale, 'services')}
+  />
+  <PrayerSteps
+    client:visible
+    title={t('prayer.title')}
+    lead={t('prayer.lead')}
+    openLabel={t('prayer.open')}
+    closeLabel={t('prayer.close')}
+    body={PRAYER_BODY_DE}
+  />
+  <ContactTeaser
+    teaser={t('contact.teaser')}
+    moreLabel={t('contact.more')}
+    href={getRelativeLocaleUrl(locale, 'contact')}
+    scheduleLabel={SERVICE_TIME.labelDe}
+    mapsOpen={t('maps.open')}
+    mapsNotice={t('maps.notice')}
+  />
 </Layout>

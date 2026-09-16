@@ -1,0 +1,69 @@
+{
+  "redirects": [
+    {
+      "source": "/cerkov-voskresenie-duisburg",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/cerkov-voskreseniya",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/uznat-bolshe",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/internacionalnaya-cerkov-v-duisburge",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/de/uber-uns-de",
+      "destination": "/de/about",
+      "permanent": true
+    },
+    {
+      "source": "/sluzheniya",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/ispovedanie-very",
+      "destination": "/faith",
+      "permanent": true
+    },
+    {
+      "source": "/nasha-missiya",
+      "destination": "/faith#mission",
+      "permanent": true
+    },
+    {
+      "source": "/duhovnyj-ustav-cerkvi",
+      "destination": "/faith#statute",
+      "permanent": true
+    },
+    {
+      "source": "/molitva-pokayaniya",
+      "destination": "/#prayer",
+      "permanent": true
+    },
+    {
+      "source": "/newBlogPost-zCEESd",
+      "destination": "/410.html",
+      "statusCode": 410
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    }
+  ]
+}

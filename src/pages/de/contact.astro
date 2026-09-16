@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TwoClickMap from '../../components/embeds/TwoClickMap';
+import { resolveLocale, useTranslations } from '../../i18n/utils';
+import {
+  formatAddressLine,
+  MAPS_EXTERNAL_URL,
+  SERVICE_TIME,
+  SOCIAL,
+} from '../../data/site';
+import SocialIcon from '../../components/icons/SocialIcon.astro';
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const schedule = locale === 'de' ? SERVICE_TIME.labelDe : SERVICE_TIME.labelRu;
+---
+
+<Layout title={t('seo.contactTitle')} description={formatAddressLine()}>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h1 class="font-heading text-5xl">{t('nav.contact')}</h1>
+    <p class="mt-4 text-lg text-[var(--color-muted)]">{schedule}</p>
+    <div class="mt-10">
+      <TwoClickMap
+        client:visible
+        addressLine={formatAddressLine()}
+        openLabel={t('maps.open')}
+        notice={t('maps.notice')}
+        mapsUrl={MAPS_EXTERNAL_URL}
+      />
+    </div>
+    <div class="mt-10 flex gap-4">
+      <SocialIcon brand="youtube" href={SOCIAL.youtube} label="YouTube" />
+      <SocialIcon brand="instagram" href={SOCIAL.instagram} label="Instagram" />
+      <SocialIcon brand="facebook" href={SOCIAL.facebook} label="Facebook" />
+    </div>
+  </section>
+</Layout>

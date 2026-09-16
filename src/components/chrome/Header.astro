@@ -1,0 +1,40 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { resolveLocale, useTranslations } from '../../i18n/utils';
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const home = getRelativeLocaleUrl(locale, '/');
+const links = [
+  { href: getRelativeLocaleUrl(locale, 'about'), label: t('nav.about') },
+  { href: getRelativeLocaleUrl(locale, 'faith'), label: t('nav.faith') },
+  { href: getRelativeLocaleUrl(locale, 'services'), label: t('nav.services') },
+  { href: getRelativeLocaleUrl(locale, 'media'), label: t('nav.media') },
+  { href: getRelativeLocaleUrl(locale, 'contact'), label: t('nav.contact') },
+];
+const other = locale === 'ru' ? 'de' : 'ru';
+const switchHref =
+  locale === 'ru'
+    ? `/de${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`
+    : Astro.url.pathname.replace(/^\/de/, '') || '/';
+---
+
+<header class="sticky top-0 z-40 border-b border-white/10 bg-[var(--color-bg)]/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href={home} class="font-display text-lg tracking-wide text-[var(--color-fg)]">
+      {t('brand.name')}
+    </a>
+    <nav class="hidden items-center gap-4 text-sm text-[var(--color-muted)] md:flex" aria-label="Main">
+      {links.map((item) => (
+        <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <a
+      class="rounded border border-white/20 px-2 py-1 text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+      href={switchHref}
+      hreflang={other}
+    >
+      {other}
+    </a>
+  </div>
+</header>

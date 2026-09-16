@@ -4,8 +4,102 @@ export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = 'ru';
 
-/** UI string catalogs — fill later; no invented copy. */
+/** UI chrome + migrated approved strings from cerkov.live Contest dumps. */
 export const ui: Record<Locale, Record<string, string>> = {
-  ru: {},
-  de: {},
+  ru: {
+    'nav.home': 'Главная',
+    'nav.about': 'О нас',
+    'nav.faith': 'Исповедание веры',
+    'nav.services': 'Служения',
+    'nav.media': 'Медиа',
+    'nav.contact': 'Контакты',
+    'nav.impressum': 'Impressum',
+    'nav.datenschutz': 'Datenschutz',
+    'brand.name': 'Воскресение',
+    'brand.tagline': 'Церковь в Дуйсбурге',
+    'hero.cta': 'Воскресенье 15:00',
+    'hero.welcome':
+      'Рады приветствовать вас на официальном сайте церкви «Воскресение» города Дуйсбурга.',
+    'scripture.ref': 'Евангелие от Иоанна 3:16',
+    'scripture.text':
+      'Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного, дабы всякий, верующий в Него, не погиб, но имел жизнь вечную.',
+    'about.teaser':
+      '«Воскресение» — интернациональная поместная церковь в Дуйсбурге.',
+    'about.more': 'Узнать больше',
+    'services.teaser': 'Основные служения в церкви',
+    'services.more': 'Служения',
+    'prayer.title': 'Молитва покаяния',
+    'prayer.lead': 'Вы можете помолиться этой простой молитвой.',
+    'prayer.open': 'Открыть молитву',
+    'prayer.close': 'Закрыть',
+    'contact.teaser': 'Наш адрес',
+    'contact.more': 'Как добраться',
+    'maps.open': 'Открыть в Google Maps',
+    'maps.notice':
+      'Внешняя ссылка на Google Maps. Данные передаются Google только после перехода.',
+    'yt.load': 'Загрузить видео',
+    'yt.notice':
+      'При загрузке YouTube данные передаются Google. Нажмите, чтобы согласиться.',
+    'media.title': 'Проповеди',
+    'media.lead': 'Смотрите проповеди на нашем YouTube-канале.',
+    'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
+    'seo.homeTitle': 'Церковь Воскресение — Duisburg Süd',
+    'seo.homeDesc':
+      'Интернациональная христианская община в Дуйсбурге. Богослужение каждое воскресенье в 15:00.',
+    'seo.aboutTitle': 'О нас — Церковь Воскресение',
+    'seo.faithTitle': 'Исповедание веры — Церковь Воскресение',
+    'seo.servicesTitle': 'Служения — Церковь Воскресение',
+    'seo.contactTitle': 'Контакты — Церковь Воскресение',
+    'seo.mediaTitle': 'Медиа — Церковь Воскресение',
+    'seo.impressumTitle': 'Impressum',
+    'seo.datenschutzTitle': 'Datenschutzerklärung',
+  },
+  de: {
+    'nav.home': 'Start',
+    'nav.about': 'Über uns',
+    'nav.faith': 'Glaubensbekenntnis',
+    'nav.services': 'Gemeindeleben',
+    'nav.media': 'Medien',
+    'nav.contact': 'Kontakt',
+    'nav.impressum': 'Impressum',
+    'nav.datenschutz': 'Datenschutz',
+    'brand.name': 'Auferstehungsgemeinde',
+    'brand.tagline': 'Gemeinde in Duisburg',
+    'hero.cta': 'Sonntag 15:00',
+    'hero.welcome':
+      'Wir heißen Sie willkommen auf der Internetseite der Auferstehungsgemeinde in Duisburg.',
+    'scripture.ref': 'Johannes Evangelium 3:16',
+    'scripture.text':
+      'Denn Gott hat die Menschen so sehr geliebt, dass er seinen einzigen Sohn für sie hergab. Jeder, der an ihn glaubt, wird nicht zugrunde gehen, sondern das ewige Leben haben.',
+    'about.teaser':
+      'Auferstehungsgemeinde — wir sind eine internationale Gemeinde.',
+    'about.more': 'Mehr erfahren',
+    'services.teaser': 'Gemeindeleben und Dienste',
+    'services.more': 'Dienste',
+    'prayer.title': 'Bekehrungsgebet',
+    'prayer.lead': 'Sie können dieses einfache Gebet beten.',
+    'prayer.open': 'Gebet öffnen',
+    'prayer.close': 'Schließen',
+    'contact.teaser': 'Unsere Adresse',
+    'contact.more': 'Anfahrt',
+    'maps.open': 'In Google Maps öffnen',
+    'maps.notice':
+      'Externer Link zu Google Maps. Daten werden erst nach dem Klick an Google übermittelt.',
+    'yt.load': 'Video laden',
+    'yt.notice':
+      'Beim Laden von YouTube werden Daten an Google übermittelt. Klicken Sie zur Zustimmung.',
+    'media.title': 'Predigten',
+    'media.lead': 'Predigten auf unserem YouTube-Kanal.',
+    'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
+    'seo.homeTitle': 'Auferstehungsgemeinde — Duisburg Süd',
+    'seo.homeDesc':
+      'Internationale christliche Gemeinde in Duisburg. Gottesdienst jeden Sonntag um 15:00 Uhr.',
+    'seo.aboutTitle': 'Über uns — Auferstehungsgemeinde',
+    'seo.faithTitle': 'Glaubensbekenntnis — Auferstehungsgemeinde',
+    'seo.servicesTitle': 'Gemeindeleben — Auferstehungsgemeinde',
+    'seo.contactTitle': 'Kontakt — Auferstehungsgemeinde',
+    'seo.mediaTitle': 'Medien — Auferstehungsgemeinde',
+    'seo.impressumTitle': 'Impressum',
+    'seo.datenschutzTitle': 'Datenschutzerklärung',
+  },
 };

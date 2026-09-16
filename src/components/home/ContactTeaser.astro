@@ -1,0 +1,31 @@
+---
+import TwoClickMap from '../embeds/TwoClickMap';
+import { formatAddressLine, MAPS_EXTERNAL_URL } from '../../data/site';
+
+interface Props {
+  teaser: string;
+  moreLabel: string;
+  href: string;
+  scheduleLabel: string;
+  mapsOpen: string;
+  mapsNotice: string;
+}
+const { teaser, moreLabel, href, scheduleLabel, mapsOpen, mapsNotice } = Astro.props;
+---
+
+<section id="contact" class="mx-auto max-w-3xl px-4 py-24">
+  <h2 class="font-heading text-4xl">{teaser}</h2>
+  <p class="mt-4 text-[var(--color-muted)]">{scheduleLabel}</p>
+  <div class="mt-8">
+    <TwoClickMap
+      client:visible
+      addressLine={formatAddressLine()}
+      openLabel={mapsOpen}
+      notice={mapsNotice}
+      mapsUrl={MAPS_EXTERNAL_URL}
+    />
+  </div>
+  <a class="mt-8 inline-block text-sm uppercase tracking-widest text-[var(--color-accent)]" href={href}>
+    {moreLabel}
+  </a>
+</section>

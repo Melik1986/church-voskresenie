@@ -1,0 +1,34 @@
+---
+import type { Locale } from '../../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  path: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, locale, path, jsonLd } = Astro.props;
+const site = Astro.site ?? new URL('https://www.cerkov.live');
+const canonical = new URL(path, site).href;
+const altRu = new URL(path.replace(/^\/de/, '') || '/', site).href;
+const altDe = new URL(path.startsWith('/de') ? path : `/de${path === '/' ? '/' : path}`, site).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="ru" href={altRu} />
+<link rel="alternate" hreflang="de" href={altDe} />
+<link rel="alternate" hreflang="x-default" href={altRu} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={locale === 'de' ? 'de_DE' : 'ru_RU'} />
+{
+  jsonLd && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )
+}

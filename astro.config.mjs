@@ -1,10 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
+import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// https://astro.build/config
 export default defineConfig({
+  site: 'https://www.cerkov.live',
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'de'],
@@ -12,6 +13,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

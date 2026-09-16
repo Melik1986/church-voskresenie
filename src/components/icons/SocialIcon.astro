@@ -1,0 +1,25 @@
+---
+import youtube from 'thesvg/youtube';
+import instagram from 'thesvg/instagram';
+import facebook from 'thesvg/facebook';
+
+interface Props {
+  brand: 'youtube' | 'instagram' | 'facebook';
+  href: string;
+  label: string;
+}
+
+const { brand, href, label } = Astro.props;
+const icons = { youtube, instagram, facebook };
+const icon = icons[brand];
+---
+
+<a
+  class="inline-flex h-8 w-8 items-center justify-center text-[var(--color-fg)] opacity-80 hover:opacity-100"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+>
+  <span class="block h-5 w-5 [&>svg]:h-full [&>svg]:w-full" set:html={icon.svg} />
+</a>
