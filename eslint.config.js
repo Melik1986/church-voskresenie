@@ -32,4 +32,12 @@ export default [
       'sonarjs/cognitive-complexity': ['error', 15],
     },
   },
+  {
+    files: ['src/components/ui/**'],
+    rules: {
+      'max-lines-per-function': 'off',
+      complexity: 'off',
+      'max-depth': 'off',
+    },
+  },
 ];

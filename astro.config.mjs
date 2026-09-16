@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { execSync } from 'node:child_process';
 import { existsSync, statSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 /** @param {string} relPath */
 function gitLastmod(relPath) {
@@ -97,5 +98,10 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new globalThis.URL('./src', import.meta.url)),
+      },
+    },
   },
 });
