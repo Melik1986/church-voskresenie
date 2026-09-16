@@ -31,7 +31,7 @@ function NavLinks({ links, onEnter }: { links: NavLink[]; onEnter: () => void })
           href={link.href}
           onMouseEnter={onEnter}
           onFocus={onEnter}
-          className="text-sm text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+          className="text-sm tracking-wide text-[var(--color-muted)] transition-opacity hover:text-[var(--color-fg)] hover:opacity-70"
         >
           {link.label}
         </a>

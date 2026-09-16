@@ -26,12 +26,15 @@ const switchHref =
     : Astro.url.pathname.replace(/^\/de/, '') || '/';
 ---
 
-<header class="sticky top-0 z-40 overflow-visible border-b border-white/10 bg-[var(--color-bg)]/90 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-    <a href={home} class="font-display text-lg tracking-wide text-[var(--color-fg)]">
+<header data-site-header class="site-header sticky top-0 z-50 overflow-visible">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-8 md:py-5">
+    <a
+      href={home}
+      class="animate-fade-down stagger-1 font-display text-lg tracking-wide text-[var(--color-fg)]"
+    >
       {t('brand.name')}
     </a>
-    <div class="hidden lg:block">
+    <div class="nav-pill animate-fade-down stagger-2 hidden lg:flex">
       <DesktopNav
         client:load
         primary={primary}
@@ -39,15 +42,13 @@ const switchHref =
         learnLinks={learnLinks}
       />
     </div>
-    <div class="flex items-center gap-3">
+    <div class="animate-fade-down stagger-3 flex items-center gap-3">
       <details class="relative lg:hidden">
-        <summary
-          class="cursor-pointer list-none rounded border border-white/20 px-2 py-1 text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-fg)]"
-        >
+        <summary class="btn-ghost cursor-pointer list-none">
           {t('nav.menu')}
         </summary>
         <nav
-          class="absolute right-0 mt-2 flex w-64 flex-col gap-2 border border-white/10 bg-[var(--color-bg)] p-4 text-sm text-[var(--color-muted)] shadow-lg"
+          class="surface-card absolute right-0 mt-2 flex w-64 flex-col gap-2 p-4 text-sm text-[var(--color-muted)] shadow-lg"
           aria-label="Mobile"
         >
           {mobileLinks.map((item) => (
@@ -55,13 +56,18 @@ const switchHref =
           ))}
         </nav>
       </details>
-      <a
-        class="rounded border border-white/20 px-2 py-1 text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-fg)]"
-        href={switchHref}
-        hreflang={other}
-      >
+      <a class="btn-ghost" href={switchHref} hreflang={other}>
         {other}
       </a>
     </div>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector('[data-site-header]');
+  const onScroll = () => {
+    header?.classList.toggle('is-scrolled', window.scrollY > 20);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

@@ -91,7 +91,7 @@ function Trigger({ label, open }: { label: string; open: boolean }) {
       aria-expanded={open}
       aria-haspopup="menu"
       transition={{ duration: 0.3 }}
-      className="cursor-pointer text-sm text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+      className="cursor-pointer text-sm tracking-wide text-[var(--color-muted)] transition-opacity hover:text-[var(--color-fg)] hover:opacity-70"
     >
       {label}
     </motion.button>
@@ -116,7 +116,7 @@ function DropdownPanel({ children }: { children: ReactNode }) {
       <motion.div
         layoutId="active"
         transition={transition}
-        className="overflow-hidden rounded-2xl border border-white/20 bg-[var(--color-bg)] shadow-xl backdrop-blur-sm"
+        className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white/95 shadow-xl backdrop-blur-sm"
       >
         <motion.div layout className="h-full w-max p-4">
           {children}

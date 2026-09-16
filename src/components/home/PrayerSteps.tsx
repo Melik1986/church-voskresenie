@@ -40,7 +40,7 @@ function PrayerToggle(props: ToggleProps) {
   return (
     <button
       type="button"
-      className="mt-8 border border-white/20 px-4 py-2 text-sm"
+      className="btn-ghost mt-8"
       aria-expanded={props.open}
       aria-controls={props.panelId}
       onClick={props.onToggle}

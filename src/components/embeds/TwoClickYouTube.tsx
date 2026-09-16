@@ -55,7 +55,7 @@ interface FacadeProps extends Props {
 
 function Facade(props: FacadeProps) {
   return (
-    <div className="flex aspect-video flex-col items-center justify-center gap-4 border border-white/10 bg-black/50 p-6 text-center">
+    <div className="surface-card flex aspect-video flex-col items-center justify-center gap-4 p-6 text-center">
       <p className="max-w-md text-sm text-[var(--color-muted)]">{props.notice}</p>
       <FacadeActions {...props} />
     </div>
@@ -76,7 +76,7 @@ function LoadButton(props: FacadeProps) {
   return (
     <button
       type="button"
-      className="border border-[var(--color-accent)] px-4 py-2 text-sm text-[var(--color-accent)]"
+      className="btn-pill"
       onClick={props.onLoad}
     >
       {props.loadLabel}
