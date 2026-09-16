@@ -12,12 +12,20 @@ import {
 
 type Locale = 'ru' | 'de';
 type Fact = { q: string; a: string };
+type JsonNode = Record<string, unknown>;
 
-/** JSON-LD graph: WebSite + Organization + Place(Church) + weekly Event/Schedule. */
+const UPCOMING_SUNDAYS = 8;
+
+/** JSON-LD graph: WebSite + Organization + Place(Church) + dated Events. */
 export function buildChurchJsonLd(locale: Locale) {
   return {
     '@context': 'https://schema.org',
-    '@graph': [websiteNode(locale), orgNode(locale), placeNode(locale), eventNode(locale)],
+    '@graph': [
+      websiteNode(locale),
+      orgNode(locale),
+      placeNode(locale),
+      ...datedEventNodes(locale),
+    ],
   };
 }
 
@@ -26,7 +34,7 @@ export function buildAnswerFacts(locale: Locale): Fact[] {
   return locale === 'de' ? factsDe() : factsRu();
 }
 
-function websiteNode(locale: Locale) {
+function websiteNode(locale: Locale): JsonNode {
   return {
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
@@ -37,7 +45,7 @@ function websiteNode(locale: Locale) {
   };
 }
 
-function orgNode(locale: Locale) {
+function orgNode(locale: Locale): JsonNode {
   return {
     '@type': 'Organization',
     '@id': `${SITE_URL}/#organization`,
@@ -50,7 +58,7 @@ function orgNode(locale: Locale) {
   };
 }
 
-function placeNode(locale: Locale) {
+function placeNode(locale: Locale): JsonNode {
   const rented =
     locale === 'de'
       ? 'Gemietetes Gottesdienstgebäude der Auferstehungsgemeinde.'
@@ -66,30 +74,79 @@ function placeNode(locale: Locale) {
   };
 }
 
-function eventNode(locale: Locale) {
+/** Concrete Sunday occurrences — Google Event rich results need startDate + URL. */
+function datedEventNodes(locale: Locale): JsonNode[] {
+  return nextSundayYmds(UPCOMING_SUNDAYS).map((ymd) => eventOnDate(locale, ymd));
+}
+
+function eventOnDate(locale: Locale, ymd: string): JsonNode {
+  const home = locale === 'de' ? `${SITE_URL}/de/` : `${SITE_URL}/`;
   return {
     '@type': 'Event',
-    '@id': `${SITE_URL}/#sunday-service`,
+    '@id': `${SITE_URL}/#sunday-service-${ymd}`,
     name: locale === 'de' ? 'Gottesdienst — Auferstehungsgemeinde' : 'Богослужение — Церковь Воскресение',
     description: locale === 'de' ? SERVICE_TIME.labelDe : SERVICE_TIME.labelRu,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
+    startDate: berlinWallIso(ymd, SERVICE_TIME.time),
+    endDate: berlinWallIso(ymd, SERVICE_TIME.endTime),
     location: { '@id': `${SITE_URL}/#place` },
     organizer: { '@id': `${SITE_URL}/#organization` },
-    url: locale === 'de' ? `${SITE_URL}/de/` : `${SITE_URL}/`,
-    eventSchedule: weeklySchedule(),
+    url: home,
   };
 }
 
-function weeklySchedule() {
-  return {
-    '@type': 'Schedule',
-    repeatFrequency: 'P1W',
-    byDay: 'https://schema.org/Sunday',
-    startTime: SERVICE_TIME.time,
-    endTime: SERVICE_TIME.endTime,
-    scheduleTimezone: SERVICE_TIME.timezone,
-  };
+/** Next N Sundays as YYYY-MM-DD in Europe/Berlin calendar. */
+function nextSundayYmds(count: number): string[] {
+  const out: string[] = [];
+  let cursor = startOfBerlinToday();
+  while (out.length < count) {
+    if (cursor.getUTCDay() === 0) out.push(ymdUtc(cursor));
+    cursor = addUtcDays(cursor, 1);
+  }
+  return out;
+}
+
+function startOfBerlinToday(): Date {
+  const now = new Date();
+  const ymd = berlinYmd(now);
+  return new Date(`${ymd}T00:00:00Z`);
+}
+
+function berlinYmd(date: Date): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: SERVICE_TIME.timezone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+  return `${get('year')}-${get('month')}-${get('day')}`;
+}
+
+function berlinWallIso(ymd: string, hm: string): string {
+  const noon = new Date(`${ymd}T12:00:00Z`);
+  const offset = berlinOffsetAt(noon);
+  return `${ymd}T${hm}:00${offset}`;
+}
+
+function berlinOffsetAt(date: Date): string {
+  const name = new Intl.DateTimeFormat('en-US', {
+    timeZone: SERVICE_TIME.timezone,
+    timeZoneName: 'longOffset',
+  })
+    .formatToParts(date)
+    .find((p) => p.type === 'timeZoneName')?.value;
+  if (!name) return '+01:00';
+  return name.replace(/^GMT/, '') || '+00:00';
+}
+
+function addUtcDays(date: Date, days: number): Date {
+  return new Date(date.getTime() + days * 86_400_000);
+}
+
+function ymdUtc(date: Date): string {
+  return date.toISOString().slice(0, 10);
 }
 
 function factsRu(): Fact[] {
@@ -102,6 +159,10 @@ function factsRu(): Fact[] {
     ),
     fact('Есть ли служение для детей?', 'Да — воскресная школа для детей 6–10 лет во время проповеди.'),
     fact('Кто пасторы?', 'Пастор церкви: Алексей Бедаш. Старший пастор: Ernst Schmidt.'),
+    fact(
+      'Как добраться?',
+      `Откройте Google Maps по адресу ${formatAddressLine()} (здание арендуется общиной).`,
+    ),
     fact('Что исповедует церковь?', 'См. исповедание веры и духовный устав на этом сайте.'),
   ];
 }
@@ -116,6 +177,10 @@ function factsDe(): Fact[] {
     ),
     fact('Gibt es etwas für Kinder?', 'Ja — Sonntagsschule für Kinder von 6–10 Jahren während der Predigt.'),
     fact('Wer leitet die Gemeinde?', 'Pastor: Алексей Бедаш. Seniorpastor: Ernst Schmidt.'),
+    fact(
+      'Wie kommt man hin?',
+      `Öffnen Sie Google Maps unter ${formatAddressLine()} (gemietetes Gebäude).`,
+    ),
     fact('Woran glaubt die Gemeinde?', 'Siehe Glaubensbekenntnis und Gemeindeordnung auf dieser Website.'),
   ];
 }
