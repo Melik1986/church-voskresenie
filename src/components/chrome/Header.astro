@@ -7,7 +7,10 @@ const t = useTranslations(locale);
 const home = getRelativeLocaleUrl(locale, '/');
 const links = [
   { href: getRelativeLocaleUrl(locale, 'about'), label: t('nav.about') },
-  { href: getRelativeLocaleUrl(locale, 'learn'), label: t('nav.learn') },
+  { href: getRelativeLocaleUrl(locale, 'faith'), label: t('nav.faith') },
+  { href: getRelativeLocaleUrl(locale, 'mission'), label: t('nav.mission') },
+  { href: getRelativeLocaleUrl(locale, 'statute'), label: t('nav.statute') },
+  { href: getRelativeLocaleUrl(locale, 'prayer'), label: t('nav.prayer') },
   { href: getRelativeLocaleUrl(locale, 'services'), label: t('nav.services') },
   { href: getRelativeLocaleUrl(locale, 'media'), label: t('nav.media') },
   { href: getRelativeLocaleUrl(locale, 'contact'), label: t('nav.contact') },
@@ -24,17 +27,37 @@ const switchHref =
     <a href={home} class="font-display text-lg tracking-wide text-[var(--color-fg)]">
       {t('brand.name')}
     </a>
-    <nav class="hidden items-center gap-4 text-sm text-[var(--color-muted)] md:flex" aria-label="Main">
+    <nav
+      class="hidden max-w-[70%] flex-wrap items-center justify-end gap-x-3 gap-y-1 text-sm text-[var(--color-muted)] lg:flex"
+      aria-label="Main"
+    >
       {links.map((item) => (
         <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
       ))}
     </nav>
-    <a
-      class="rounded border border-white/20 px-2 py-1 text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-fg)]"
-      href={switchHref}
-      hreflang={other}
-    >
-      {other}
-    </a>
+    <div class="flex items-center gap-3">
+      <details class="relative lg:hidden">
+        <summary
+          class="cursor-pointer list-none rounded border border-white/20 px-2 py-1 text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+        >
+          {t('nav.menu')}
+        </summary>
+        <nav
+          class="absolute right-0 mt-2 flex w-64 flex-col gap-2 border border-white/10 bg-[var(--color-bg)] p-4 text-sm text-[var(--color-muted)] shadow-lg"
+          aria-label="Mobile"
+        >
+          {links.map((item) => (
+            <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
+          ))}
+        </nav>
+      </details>
+      <a
+        class="rounded border border-white/20 px-2 py-1 text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-fg)]"
+        href={switchHref}
+        hreflang={other}
+      >
+        {other}
+      </a>
+    </div>
   </div>
 </header>

@@ -6,24 +6,41 @@ import SocialIcon from '../icons/SocialIcon.astro';
 
 const locale = resolveLocale(Astro.currentLocale);
 const t = useTranslations(locale);
-const impressum = getRelativeLocaleUrl(locale, 'impressum');
-const datenschutz = getRelativeLocaleUrl(locale, 'datenschutz');
+const contentLinks = [
+  { href: getRelativeLocaleUrl(locale, 'faith'), label: t('nav.faith') },
+  { href: getRelativeLocaleUrl(locale, 'mission'), label: t('nav.mission') },
+  { href: getRelativeLocaleUrl(locale, 'statute'), label: t('nav.statute') },
+  { href: getRelativeLocaleUrl(locale, 'prayer'), label: t('nav.prayer') },
+  { href: getRelativeLocaleUrl(locale, 'learn'), label: t('nav.learn') },
+];
+const legalLinks = [
+  { href: getRelativeLocaleUrl(locale, 'impressum'), label: t('nav.impressum') },
+  { href: getRelativeLocaleUrl(locale, 'datenschutz'), label: t('nav.datenschutz') },
+];
 ---
 
 <footer class="mt-24 border-t border-white/10 bg-black/40">
-  <div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-[var(--color-muted)] md:flex-row md:justify-between">
-    <div>
-      <p class="font-display text-[var(--color-fg)]">{t('footer.rights')}</p>
-      <p class="mt-2">{formatAddressLine()}</p>
+  <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 text-sm text-[var(--color-muted)]">
+    <div class="flex flex-col gap-6 md:flex-row md:justify-between">
+      <div>
+        <p class="font-display text-[var(--color-fg)]">{t('footer.rights')}</p>
+        <p class="mt-2">{formatAddressLine()}</p>
+      </div>
+      <div class="flex gap-4" aria-label="Social">
+        <SocialIcon brand="youtube" href={SOCIAL.youtube} label="YouTube" />
+        <SocialIcon brand="instagram" href={SOCIAL.instagram} label="Instagram" />
+        <SocialIcon brand="facebook" href={SOCIAL.facebook} label="Facebook" />
+      </div>
     </div>
-    <div class="flex gap-4" aria-label="Social">
-      <SocialIcon brand="youtube" href={SOCIAL.youtube} label="YouTube" />
-      <SocialIcon brand="instagram" href={SOCIAL.instagram} label="Instagram" />
-      <SocialIcon brand="facebook" href={SOCIAL.facebook} label="Facebook" />
-    </div>
+    <nav class="flex flex-wrap gap-x-4 gap-y-2" aria-label="Content">
+      {contentLinks.map((item) => (
+        <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
+      ))}
+    </nav>
     <div class="flex gap-4">
-      <a class="hover:text-[var(--color-fg)]" href={impressum}>{t('nav.impressum')}</a>
-      <a class="hover:text-[var(--color-fg)]" href={datenschutz}>{t('nav.datenschutz')}</a>
+      {legalLinks.map((item) => (
+        <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
+      ))}
     </div>
   </div>
 </footer>

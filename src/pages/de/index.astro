@@ -44,15 +44,12 @@ const t = useTranslations(locale);
     closeLabel={t('prayer.close')}
     body={PRAYER_BODY_DE}
   />
-  <p class="mx-auto max-w-3xl px-4 pb-8">
-    <a class="text-sm uppercase tracking-widest text-[var(--color-accent)]" href={getRelativeLocaleUrl(locale, 'prayer')}>
-      {t('prayer.fullPage')}
-    </a>
-    {' · '}
-    <a class="text-sm uppercase tracking-widest text-[var(--color-accent)]" href={getRelativeLocaleUrl(locale, 'learn')}>
-      {t('nav.learn')}
-    </a>
-  </p>
+  <nav class="mx-auto flex max-w-3xl flex-wrap gap-x-4 gap-y-2 px-4 pb-8 text-sm uppercase tracking-widest text-[var(--color-accent)]" aria-label="Glaube">
+    <a href={getRelativeLocaleUrl(locale, 'faith')}>{t('nav.faith')}</a>
+    <a href={getRelativeLocaleUrl(locale, 'mission')}>{t('nav.mission')}</a>
+    <a href={getRelativeLocaleUrl(locale, 'statute')}>{t('nav.statute')}</a>
+    <a href={getRelativeLocaleUrl(locale, 'prayer')}>{t('nav.prayer')}</a>
+  </nav>
   <ContactTeaser
     teaser={t('contact.teaser')}
     moreLabel={t('contact.more')}
