@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  items: { q: string; a: string }[];
+}
+const { title, items } = Astro.props;
+---
+
+<section class="mx-auto max-w-3xl px-4 py-16" aria-labelledby="answer-facts-title">
+  <h2 id="answer-facts-title" class="font-heading text-3xl text-[var(--color-fg)] md:text-4xl">
+    {title}
+  </h2>
+  <dl class="mt-8 space-y-6">
+    {
+      items.map((item) => (
+        <div>
+          <dt class="font-display text-lg text-[var(--color-accent)]">{item.q}</dt>
+          <dd class="mt-2 text-[var(--color-muted)]">{item.a}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

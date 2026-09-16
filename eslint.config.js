@@ -11,6 +11,7 @@ export default [
       '.astro/**',
       '.vercel/**',
       '.cursor/Contest/**',
+      '.cursor/hooks/**',
       'public/fonts/**',
     ],
   },

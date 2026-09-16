@@ -1,13 +1,10 @@
 ---
 title: Gemeindeordnung
-description: Gemeindeordnung der Auferstehungsgemeinde Duisburg
+description: "Gemeindeordnung der Auferstehungsgemeinde Duisburg — geistliche Grundsätze."
 locale: de
 section: statute
 order: 1
 ---
-
-## Gemeindeordnung
-
 1. Mitglied der Gemeinde kann jede Person sein, die Buße getan hat, durch den Glauben an Jesus Christus Vergebung der Sünden erhalten hat und durch den Glauben mit Wasser getauft wurde. (**Apostelgeschichte 2:38;41, Markus 1:15, Römer 5:1**)
 
 2. Jedes Mitglied der Gemeinde nimmt entsprechend seinen Fähigkeiten und Fertigkeiten am Leben der Gemeinde teil, geleitet vom Wort Gottes und den Entscheidungen der Gemeinde. **(1. Petrus 4:10, Epheser 4:11-16)**

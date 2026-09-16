@@ -2,16 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import TwoClickYouTube from '../components/embeds/TwoClickYouTube';
 import { resolveLocale, useTranslations } from '../i18n/utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { SOCIAL } from '../data/site';
 
 const locale = resolveLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 ---
 
-<Layout title={t('seo.mediaTitle')} description={t('media.lead')}>
+<Layout title={t('seo.mediaTitle')} description={t('seo.mediaDesc')}>
   <section class="mx-auto max-w-3xl px-4 py-16">
     <h1 class="font-heading text-5xl">{t('media.title')}</h1>
     <p class="mt-4 text-[var(--color-muted)]">{t('media.lead')}</p>
+    <div class="mt-8 space-y-4 text-[var(--color-muted)]">
+      <p>{t('media.how')}</p>
+      <p>{t('media.where')}</p>
+    </div>
     <div class="mt-10">
       <TwoClickYouTube
         client:visible
@@ -21,5 +26,10 @@ const t = useTranslations(locale);
         channelLabel="YouTube"
       />
     </div>
+    <nav class="mt-10 flex flex-wrap gap-4 text-sm uppercase tracking-widest text-[var(--color-accent)]" aria-label="Related">
+      <a href={getRelativeLocaleUrl(locale, 'services')}>{t('nav.services')}</a>
+      <a href={getRelativeLocaleUrl(locale, 'contact')}>{t('nav.contact')}</a>
+      <a href={getRelativeLocaleUrl(locale, 'about')}>{t('nav.about')}</a>
+    </nav>
   </section>
 </Layout>

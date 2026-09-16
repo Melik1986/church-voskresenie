@@ -6,14 +6,16 @@ import AboutSection from '../components/home/AboutSection.astro';
 import Services from '../components/home/Services.astro';
 import PrayerSteps from '../components/home/PrayerSteps';
 import ContactTeaser from '../components/home/ContactTeaser.astro';
+import AnswerFacts from '../components/seo/AnswerFacts.astro';
 import { resolveLocale, useTranslations } from '../i18n/utils';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { buildChurchJsonLd } from '../data/jsonld';
+import { buildAnswerFacts, buildChurchJsonLd } from '../data/jsonld';
 import { PRAYER_BODY_RU } from '../data/prayer';
 import { SERVICE_TIME } from '../data/site';
 
 const locale = resolveLocale(Astro.currentLocale);
 const t = useTranslations(locale);
+const facts = buildAnswerFacts(locale);
 ---
 
 <Layout title={t('seo.homeTitle')} description={t('seo.homeDesc')} jsonLd={buildChurchJsonLd(locale)}>
@@ -36,6 +38,7 @@ const t = useTranslations(locale);
     moreLabel={t('services.more')}
     href={getRelativeLocaleUrl(locale, 'services')}
   />
+  <AnswerFacts title={t('facts.title')} items={facts} />
   <PrayerSteps
     client:visible
     title={t('prayer.title')}
@@ -49,6 +52,8 @@ const t = useTranslations(locale);
     <a href={getRelativeLocaleUrl(locale, 'mission')}>{t('nav.mission')}</a>
     <a href={getRelativeLocaleUrl(locale, 'statute')}>{t('nav.statute')}</a>
     <a href={getRelativeLocaleUrl(locale, 'prayer')}>{t('nav.prayer')}</a>
+    <a href={getRelativeLocaleUrl(locale, 'learn')}>{t('nav.learn')}</a>
+    <a href={getRelativeLocaleUrl(locale, 'media')}>{t('nav.media')}</a>
   </nav>
   <ContactTeaser
     teaser={t('contact.teaser')}

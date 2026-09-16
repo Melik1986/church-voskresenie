@@ -1,17 +1,18 @@
 ---
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import ContentArticle from '../components/content/ContentArticle.astro';
 import { resolveLocale, useTranslations } from '../i18n/utils';
 
 const locale = resolveLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 const entry = await getEntry('pages', `${locale}/faith`);
-if (!entry) throw new Error(`Missing faith content for ${locale}`);
+if (!entry) throw new Error(`Missing faith for ${locale}`);
 const { Content } = await render(entry);
 ---
 
 <Layout title={t('seo.faithTitle')} description={entry.data.description}>
-  <article class="prose-invert mx-auto max-w-3xl px-4 py-16 leading-relaxed [&_h2]:font-heading [&_h2]:text-4xl [&_h2]:mt-10">
+  <ContentArticle heading={entry.data.title}>
     <Content />
-  </article>
+  </ContentArticle>
 </Layout>

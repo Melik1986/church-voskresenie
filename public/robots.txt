@@ -1,3 +1,5 @@
+# Crawlable while developing; legal shells use meta noindex.
+# After DNS cutover to Vercel, keep Sitemap pointing at sitemap-index.xml.
 User-agent: *
 Allow: /
 

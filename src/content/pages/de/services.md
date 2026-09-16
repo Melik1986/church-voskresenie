@@ -1,13 +1,10 @@
 ---
 title: Gemeindeleben
-description: Dienste der Auferstehungsgemeinde
+description: "Gemeindeleben der Auferstehungsgemeinde: Verkündigung, Hauskreise, Jugend, Kindersonntagsschule."
 locale: de
 section: services
 order: 1
 ---
-
-## Gemeindeleben
-
 ### Wortverkündigung
 
 Also kommt der Glaube aus der Predigt, das Predigen aber durch das Wort Christi. (Römer 10:17)

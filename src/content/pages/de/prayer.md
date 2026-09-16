@@ -1,13 +1,10 @@
 ---
 title: Bekehrungsgebet
-description: Bekehrungsgebet der Auferstehungsgemeinde Duisburg
+description: "Bekehrungsgebet der Auferstehungsgemeinde Duisburg — Gebetstext und nächste Schritte."
 locale: de
 section: prayer
 order: 1
 ---
-
-## Das Bekehrungsgebet
-
 Jesus kam, um uns zu retten. Die Erlösung und Rettung ist möglich, wenn wir unsere Sünden zugeben und sie aus tiefstem Herzen aufrichtig bereuen. Die Bekehrung stand im Mittelpunkt der Verkündigung Jesu Christi, der Apostel und Johannes des Täufers; davon erzählt uns das Evangelium. Markus 1:14-15; Matthäusevangelium 4:17; und Apostelgeschichte 2:37-38.
 
 „Denn Gott hat die Welt so sehr geliebt, dass er seinen eingeborenen Sohn gab, damit jeder, der an ihn glaubt, nicht verloren geht, sondern ewiges Leben hat. Denn Gott hat seinen Sohn nicht in die Welt gesandt, um die Welt zu verurteilen, sondern damit die Welt durch ihn gerettet werde.“ Johannesevangelium 3:16-18

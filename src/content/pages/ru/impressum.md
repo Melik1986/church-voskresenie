@@ -1,6 +1,6 @@
 ---
 title: Impressum
-description: Impressum (§ 5 DDG / § 18 MStV) — deutscher Rechtstext
+description: "Impressum (§ 5 DDG / § 18 MStV) — deutscher Rechtstext"
 locale: ru
 section: legal
 order: 1

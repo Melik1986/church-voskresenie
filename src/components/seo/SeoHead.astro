@@ -1,5 +1,6 @@
 ---
 import type { Locale } from '../../i18n/ui';
+import { OG_IMAGE_PATH, SITE_URL, orgName } from '../../data/site';
 
 interface Props {
   title: string;
@@ -7,26 +8,40 @@ interface Props {
   locale: Locale;
   path: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
-const { title, description, locale, path, jsonLd } = Astro.props;
-const site = Astro.site ?? new URL('https://www.cerkov.live');
+const { title, description, locale, path, jsonLd, noindex = false } = Astro.props;
+const site = Astro.site ?? new URL(SITE_URL);
 const canonical = new URL(path, site).href;
 const altRu = new URL(path.replace(/^\/de/, '') || '/', site).href;
 const altDe = new URL(path.startsWith('/de') ? path : `/de${path === '/' ? '/' : path}`, site).href;
+const ogImage = new URL(OG_IMAGE_PATH, site).href;
+const siteName = orgName(locale);
+const ogLocale = locale === 'de' ? 'de_DE' : 'ru_RU';
+const ogLocaleAlt = locale === 'de' ? 'ru_RU' : 'de_DE';
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, follow" />}
 <link rel="canonical" href={canonical} />
 <link rel="alternate" hreflang="ru" href={altRu} />
 <link rel="alternate" hreflang="de" href={altDe} />
 <link rel="alternate" hreflang="x-default" href={altRu} />
+<meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="website" />
-<meta property="og:locale" content={locale === 'de' ? 'de_DE' : 'ru_RU'} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={ogLocaleAlt} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={siteName} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
 {
   jsonLd && (
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

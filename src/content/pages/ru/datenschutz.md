@@ -1,6 +1,6 @@
 ---
 title: Datenschutzerklärung
-description: Политика конфиденциальности — немецкий юридический текст
+description: "Политика конфиденциальности — немецкий юридический текст"
 locale: ru
 section: legal
 order: 2

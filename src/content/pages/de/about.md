@@ -1,14 +1,11 @@
 ---
 title: Über uns
-description: Internationale Auferstehungsgemeinde in Duisburg
+description: "Internationale Auferstehungsgemeinde in Duisburg — Gottesdienst sonntags 15:00, Angerhauser Str. 91."
 locale: de
 section: about
 order: 1
 ---
-
-## Auferstehungsgemeinde — wir sind eine internationale Gemeinde
-
-Unsere internationale Gemeinde versammelt sich jeden Sonntag um 15 Uhr zum Gottesdienst und in der Ungelsheimer Gemeindehaus der Evangelischen Versöhnungsgemeinde Duisburg Süd.
+Unsere internationale Gemeinde versammelt sich jeden Sonntag um 15 Uhr zum Gottesdienst in der Evangelischen Kirche Huckingen (Angerhauser Str. 91, 47259 Duisburg). Das Gebäude wird von der Gemeinde zur Miete genutzt.
 
 Bei uns treffen sich meist russischsprachige protestantische Christinnen und Christen. Wenn wir als Gemeinde zusammenkommen und Gottesdienst feiern, dann treffen unterschiedliche kirchliche Traditionen aus der Ukraine, aus Kasachstan und aus Russland aufeinander. Wir versammeln uns, um uns gegenseitig im Glauben zu unterstützen, nach dem Evangelium zu leben, gemeinsam Gott zu preisen, zu beten und wir bemühen uns, unseren Nächsten zu helfen. Wir teilen miteinander Freude und Leid und feiern das Heilige Abendmahl.
 

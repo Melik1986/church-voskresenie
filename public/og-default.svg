@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Auferstehungsgemeinde Duisburg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0c10"/>
+      <stop offset="55%" stop-color="#161821"/>
+      <stop offset="100%" stop-color="#1a1c24"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="72" y="72" width="2" height="486" fill="#c4a35a" opacity="0.7"/>
+  <text x="110" y="250" fill="#c4a35a" font-family="Georgia, serif" font-size="28" letter-spacing="8">DUISBURG SÜD</text>
+  <text x="110" y="340" fill="#f4f1ea" font-family="Georgia, serif" font-size="72">>A:@5A5=85</text>
+  <text x="110" y="410" fill="#d8d2c4" font-family="Georgia, serif" font-size="36">Auferstehungsgemeinde</text>
+  <text x="110" y="490" fill="#9a9488" font-family="Georgia, serif" font-size="26">Angerhauser Str. 91 · Sonntag 15:00</text>
+</svg>

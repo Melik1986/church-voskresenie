@@ -48,10 +48,15 @@ export const ui: Record<Locale, Record<string, string>> = {
       'При загрузке YouTube данные передаются Google. Нажмите, чтобы согласиться.',
     'media.title': 'Проповеди',
     'media.lead': 'Смотрите проповеди на нашем YouTube-канале.',
+    'media.how':
+      'На канале публикуются записи проповедей и служений общины. Отдельные видео на сайте появятся позже — пока открывайте канал YouTube.',
+    'media.where':
+      'Канал: @auferstehungsgemeinde_ua. Видео загружается только после вашего согласия (2-Click).',
+    'facts.title': 'Краткие ответы',
     'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
     'seo.homeTitle': 'Церковь Воскресение — Duisburg Süd',
     'seo.homeDesc':
-      'Интернациональная христианская община в Дуйсбурге. Богослужение каждое воскресенье в 15:00.',
+      'Интернациональная церковь «Воскресение» в Дуйсбурге. Богослужение каждое воскресенье в 15:00, Angerhauser Str. 91.',
     'seo.aboutTitle': 'О нас — Церковь Воскресение',
     'seo.faithTitle': 'Исповедание веры — Церковь Воскресение',
     'seo.missionTitle': 'Наша миссия — Церковь Воскресение',
@@ -60,7 +65,9 @@ export const ui: Record<Locale, Record<string, string>> = {
     'seo.learnTitle': 'Узнать больше — Церковь Воскресение',
     'seo.servicesTitle': 'Служения — Церковь Воскресение',
     'seo.contactTitle': 'Контакты — Церковь Воскресение',
-    'seo.mediaTitle': 'Медиа — Церковь Воскресение',
+    'seo.mediaTitle': 'Проповеди — Церковь Воскресение',
+    'seo.mediaDesc':
+      'Проповеди церкви «Воскресение» в Дуйсбурге на YouTube-канале @auferstehungsgemeinde_ua.',
     'seo.impressumTitle': 'Impressum',
     'seo.datenschutzTitle': 'Datenschutzerklärung',
   },
@@ -106,10 +113,15 @@ export const ui: Record<Locale, Record<string, string>> = {
       'Beim Laden von YouTube werden Daten an Google übermittelt. Klicken Sie zur Zustimmung.',
     'media.title': 'Predigten',
     'media.lead': 'Predigten auf unserem YouTube-Kanal.',
+    'media.how':
+      'Auf dem Kanal erscheinen Predigt- und Gottesdienstaufzeichnungen. Einzelne Videos auf der Website folgen später — öffnen Sie vorerst den YouTube-Kanal.',
+    'media.where':
+      'Kanal: @auferstehungsgemeinde_ua. Videos laden erst nach Ihrer Zustimmung (2-Klick).',
+    'facts.title': 'Kurzantworten',
     'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
     'seo.homeTitle': 'Auferstehungsgemeinde — Duisburg Süd',
     'seo.homeDesc':
-      'Internationale christliche Gemeinde in Duisburg. Gottesdienst jeden Sonntag um 15:00 Uhr.',
+      'Internationale Auferstehungsgemeinde in Duisburg. Gottesdienst jeden Sonntag um 15:00 Uhr, Angerhauser Str. 91.',
     'seo.aboutTitle': 'Über uns — Auferstehungsgemeinde',
     'seo.faithTitle': 'Glaubensbekenntnis — Auferstehungsgemeinde',
     'seo.missionTitle': 'Unsere Mission — Auferstehungsgemeinde',
@@ -118,7 +130,9 @@ export const ui: Record<Locale, Record<string, string>> = {
     'seo.learnTitle': 'Mehr erfahren — Auferstehungsgemeinde',
     'seo.servicesTitle': 'Gemeindeleben — Auferstehungsgemeinde',
     'seo.contactTitle': 'Kontakt — Auferstehungsgemeinde',
-    'seo.mediaTitle': 'Medien — Auferstehungsgemeinde',
+    'seo.mediaTitle': 'Predigten — Auferstehungsgemeinde',
+    'seo.mediaDesc':
+      'Predigten der Auferstehungsgemeinde Duisburg auf dem YouTube-Kanal @auferstehungsgemeinde_ua.',
     'seo.impressumTitle': 'Impressum',
     'seo.datenschutzTitle': 'Datenschutzerklärung',
   },

@@ -1,13 +1,10 @@
 ---
 title: Unsere Mission
-description: Mission der Auferstehungsgemeinde Duisburg
+description: "Mission der Auferstehungsgemeinde Duisburg — Auftrag und Ziele der Gemeinde."
 locale: de
 section: mission
 order: 1
 ---
-
-## Unsere Mission
-
 **DAS GEISTLICHE WACHSTUM DER GLÄUBIGEN ZU FÖRDERN**
 
 „Und was Sie im Beisein vieler Zeugen von mir gehört haben, vertrauen Sie gläubigen Menschen an, die andere lehren können.“

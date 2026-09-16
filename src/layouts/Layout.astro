@@ -11,9 +11,10 @@ interface Props {
   title: string;
   description: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
-const { title, description, jsonLd } = Astro.props;
+const { title, description, jsonLd, noindex = false } = Astro.props;
 const lang = resolveLocale(Astro.currentLocale);
 const path = Astro.url.pathname;
 ---
@@ -31,6 +32,7 @@ const path = Astro.url.pathname;
       locale={lang as Locale}
       path={path}
       jsonLd={jsonLd}
+      noindex={noindex}
     />
   </head>
   <body>
