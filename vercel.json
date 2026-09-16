@@ -12,7 +12,7 @@
     },
     {
       "source": "/uznat-bolshe",
-      "destination": "/about",
+      "destination": "/learn",
       "permanent": true
     },
     {
@@ -37,17 +37,37 @@
     },
     {
       "source": "/nasha-missiya",
-      "destination": "/faith#mission",
+      "destination": "/mission",
       "permanent": true
     },
     {
       "source": "/duhovnyj-ustav-cerkvi",
-      "destination": "/faith#statute",
+      "destination": "/statute",
       "permanent": true
     },
     {
       "source": "/molitva-pokayaniya",
-      "destination": "/#prayer",
+      "destination": "/prayer",
+      "permanent": true
+    },
+    {
+      "source": "/de/glaubensbekenntnis-de",
+      "destination": "/de/faith",
+      "permanent": true
+    },
+    {
+      "source": "/de/unsere-mission-de",
+      "destination": "/de/mission",
+      "permanent": true
+    },
+    {
+      "source": "/de/gemeindeordnung-de",
+      "destination": "/de/statute",
+      "permanent": true
+    },
+    {
+      "source": "/de/bekehrungsgebet-de",
+      "destination": "/de/prayer",
       "permanent": true
     },
     {

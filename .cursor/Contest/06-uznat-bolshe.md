@@ -2,6 +2,8 @@ Title: Христиане в Duisburg: Церковь в Дуйсбурге | ц
 
 URL Source: https://www.cerkov.live/uznat-bolshe
 
+Published Time: Sat, 27 Jun 2026 09:48:18 GMT
+
 Markdown Content:
 ![Image 1](https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/dWxw5jE0zair8pXz/218d81e5-0bfa-4c74-bd6a-111c033c82da-dOq7O87XJGsxpVpj.JPG)
 

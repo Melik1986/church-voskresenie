@@ -44,6 +44,15 @@ const t = useTranslations(locale);
     closeLabel={t('prayer.close')}
     body={PRAYER_BODY_RU}
   />
+  <p class="mx-auto max-w-3xl px-4 pb-8">
+    <a class="text-sm uppercase tracking-widest text-[var(--color-accent)]" href={getRelativeLocaleUrl(locale, 'prayer')}>
+      {t('prayer.fullPage')}
+    </a>
+    {' · '}
+    <a class="text-sm uppercase tracking-widest text-[var(--color-accent)]" href={getRelativeLocaleUrl(locale, 'learn')}>
+      {t('nav.learn')}
+    </a>
+  </p>
   <ContactTeaser
     teaser={t('contact.teaser')}
     moreLabel={t('contact.more')}
