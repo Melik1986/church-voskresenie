@@ -29,3 +29,4 @@ lefthook-local.yml
 
 # SkillDB local cache (stubs / API downloads)
 .skilldb/
+.vercel
