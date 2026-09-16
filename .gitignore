@@ -33,3 +33,8 @@ lefthook-local.yml
 
 # Cursor agent hook runtime state (audit / findings)
 .cursor/hooks/state/
+
+# Playwright MCP local dumps
+.playwright-mcp/
+
+.playwright-mcp/
