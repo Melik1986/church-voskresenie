@@ -1,11 +1,23 @@
 ---
-description: Fetch current docs for the project stack. Prefer Astro Docs MCP for Astro; Context7 for Tailwind/GSAP/Lenis/TS/ESLint. Use when editing those deps.
+description: Fetch current docs for the project stack. Prefer Astro Docs MCP for Astro; Context7 for Tailwind/GSAP/Lenis/TS/ESLint. Always check Astro integrations catalog before adding deps.
 alwaysApply: true
 ---
 
 # Stack docs
 
 These npm packages do **not** ship TanStack Intent skills (except transitive `get-tsconfig`).
+
+## Before adding dependencies or new modules
+
+**Mandatory:** check [Astro Integrations](https://astro.build/integrations/) first.
+
+1. Search the catalog for an official / maintained Astro integration that covers the need.
+2. Prefer Official integrations and ones already in this repo (`@astrojs/react`, `@astrojs/sitemap`, `@astrojs/vercel`, `@astrojs/check`) over random npm packages.
+3. If a catalog option exists, use it (or explain why the existing custom solution is better — e.g. `SeoHead` vs `astro-seo`, self-hosted fonts vs `unplugin-fonts`).
+4. Only then add a non-catalog dependency — with a short justification.
+5. Confirm API/version via **Astro Docs MCP** (or Context7 for non-Astro stack).
+
+Do not propose or install Astro-related packages without this check.
 
 ## Astro (priority)
 

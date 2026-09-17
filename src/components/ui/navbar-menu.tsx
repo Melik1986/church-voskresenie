@@ -112,7 +112,7 @@ function AnimatedPanel({ children }: { children: ReactNode }) {
 
 function DropdownPanel({ children }: { children: ReactNode }) {
   return (
-    <div className="absolute left-1/2 top-[calc(100%_+_0.5rem)] z-50 -translate-x-1/2 pt-3">
+    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3">
       <motion.div
         layoutId="active"
         transition={transition}

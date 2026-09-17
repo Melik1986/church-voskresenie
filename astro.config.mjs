@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import { execSync } from 'node:child_process';
 import { existsSync, statSync } from 'node:fs';
@@ -77,6 +78,10 @@ function lastmodForPath(pathname) {
 
 export default defineConfig({
   site: 'https://www.cerkov.live',
+  output: 'static',
+  adapter: vercel({
+    imageService: true,
+  }),
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'de'],

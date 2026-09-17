@@ -15,5 +15,6 @@ alwaysApply: false
 - Embeds: 2-Click YouTube / external Maps only (`src/components/embeds/`).
 - Typecheck: `npm run check-types` → `astro check`.
 - Lint: Sonar-style limits (depth≤3, fn≤20, complexity, no-`any`).
-- Host: Vercel + `@vercel/analytics`.
+- Host: Vercel + `@vercel/analytics` + `@astrojs/vercel` (`imageService: true`).
 - Scroll: Lenis `autoRaf: false` synced to GSAP ticker in `Layout.astro`.
+- **Deps / new modules:** always check [astro.build/integrations](https://astro.build/integrations/) before adding packages; prefer Official / existing repo solutions over duplicates.

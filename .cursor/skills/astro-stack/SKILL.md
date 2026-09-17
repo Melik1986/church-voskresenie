@@ -12,10 +12,11 @@ Editing pages/components/layout, Tailwind styles, GSAP/Lenis scroll, i18n, or to
 ## Required steps
 
 1. Read `.cursor/rules/astro.mdc` and `.cursor/rules/stack-docs.mdc`.
-2. For Astro API/docs: use **Astro Docs MCP**. For Tailwind/GSAP/Lenis/TS/ESLint: **Context7**.
-3. For `tsconfig` questions: `npx @tanstack/intent@latest load get-tsconfig#get-tsconfig`.
-4. Do **not** invent site copy, design system, pastor/address, WebP frames, or legal pages.
-5. After code changes: `npm run lint`, `npm run check-types`, Aikido scan on touched first-party files.
+2. Before adding deps/modules: check [Astro Integrations](https://astro.build/integrations/); prefer Official / existing custom solutions over duplicates.
+3. For Astro API/docs: use **Astro Docs MCP**. For Tailwind/GSAP/Lenis/TS/ESLint: **Context7**.
+4. For `tsconfig` questions: `npx @tanstack/intent@latest load get-tsconfig#get-tsconfig`.
+5. Do **not** invent site copy, design system, pastor/address, WebP frames, or legal pages.
+6. After code changes: `npm run lint`, `npm run check-types`, Aikido scan on touched first-party files.
 
 ## Repo anchors
 
