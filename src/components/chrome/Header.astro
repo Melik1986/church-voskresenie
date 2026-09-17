@@ -30,9 +30,17 @@ const switchHref =
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-8 md:py-5">
     <a
       href={home}
-      class="animate-fade-down stagger-1 font-display text-lg tracking-wide text-[var(--color-fg)]"
+      class="animate-fade-down stagger-1 inline-flex shrink-0"
+      aria-label={t('brand.name')}
     >
-      {t('brand.name')}
+      <img
+        src="/logo.svg"
+        alt={t('brand.name')}
+        width="375"
+        height="384"
+        class="h-10 w-auto md:h-12"
+        decoding="async"
+      />
     </a>
     <div class="nav-pill animate-fade-down stagger-2 hidden lg:flex">
       <DesktopNav
