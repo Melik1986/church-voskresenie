@@ -25,7 +25,7 @@ Editing pages/components/layout, Tailwind styles, GSAP/Lenis scroll, i18n, or to
 | Config + i18n routing | `astro.config.mjs` |
 | Layout + Lenis/GSAP | `src/layouts/Layout.astro` |
 | Canvas sequence | `src/components/HeroCanvas.astro` |
-| Dictionaries | `src/i18n/ui.ts` |
+| Dictionaries | `src/i18n/ru.ts`, `src/i18n/de.ts` (barrel: `ui.ts`) |
 | Translators | `src/i18n/utils.ts` |
 | RU / DE pages | `src/pages/index.astro`, `src/pages/de/index.astro` |
 | Global CSS | `src/styles/global.css` |

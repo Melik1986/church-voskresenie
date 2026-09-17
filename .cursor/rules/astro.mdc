@@ -8,7 +8,7 @@ alwaysApply: false
 
 - Astro **7**, static output. Tailwind via `@tailwindcss/vite` in `astro.config.mjs` — not `@astrojs/tailwind`.
 - i18n: `defaultLocale: 'ru'`, locales `ru`/`de`, `prefixDefaultLocale: false` → `/` and `/de/`.
-- Locale helpers: `src/i18n/ui.ts`, `src/i18n/utils.ts`. Layout uses `Astro.currentLocale` via `resolveLocale`.
+- Locale helpers: `src/i18n/ui.ts` (locales + barrel), `src/i18n/ru.ts` / `src/i18n/de.ts` (strings), `src/i18n/utils.ts`. Layout uses `Astro.currentLocale` via `resolveLocale`.
 - **Approved facts:** Angerhauser Str. 91, 47259 Duisburg Süd; Sunday 15:00; fonts Marck Script / Yeseva One / Cormorant Garamond in `public/fonts/` (no Google Fonts CDN).
 - **Do not invent** Impressum PII (name e.V., Vertretung, email, phone, VR) or finalize Datenschutz legal claims — placeholders only.
 - Hero: React 19.3 island (`src/components/hero/Hero.tsx`); sequence/video later via `HeroCanvas` optional.

@@ -1,4 +1,4 @@
-import { defaultLocale, locales, ui, type Locale } from './ui';
+import { defaultLocale, locales, ui, type Locale, type UiKey } from './ui';
 
 /**
  * Narrows a locale string to a supported project locale.
@@ -18,7 +18,7 @@ export function resolveLocale(value: string | undefined): Locale {
  * Returns a translator for the given locale.
  */
 export function useTranslations(locale: Locale) {
-  return function t(key: string): string {
+  return function t(key: UiKey): string {
     return ui[locale][key] ?? ui[defaultLocale][key] ?? key;
   };
 }

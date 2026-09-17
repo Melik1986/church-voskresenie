@@ -3,6 +3,7 @@ import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import ContentArticle from '../components/content/ContentArticle.astro';
 import { resolveLocale, useTranslations } from '../i18n/utils';
+import { pageMedia } from '../data/page-photos';
 
 const locale = resolveLocale(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -12,7 +13,7 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={t('seo.servicesTitle')} description={entry.data.description}>
-  <ContentArticle heading={entry.data.title}>
+  <ContentArticle heading={entry.data.title} media={pageMedia('services', locale)}>
     <Content />
   </ContentArticle>
 </Layout>
