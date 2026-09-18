@@ -13,7 +13,7 @@ interface Props {
 const { teaser, moreLabel, href, scheduleLabel, mapsOpen, mapsNotice } = Astro.props;
 ---
 
-<section id="contact" class="mx-auto max-w-3xl px-4 py-24">
+<section id="contact" class="section-pad mx-auto max-w-3xl px-4">
   <h2 class="reveal font-heading text-4xl">{teaser}</h2>
   <p class="reveal-late mt-4 text-[var(--color-muted)]">{scheduleLabel}</p>
   <div class="reveal-slow mt-8">
@@ -25,10 +25,7 @@ const { teaser, moreLabel, href, scheduleLabel, mapsOpen, mapsNotice } = Astro.p
       mapsUrl={MAPS_EXTERNAL_URL}
     />
   </div>
-  <a
-    class="reveal-late mt-8 inline-block text-sm uppercase tracking-widest text-[var(--color-accent)] transition-opacity hover:opacity-70"
-    href={href}
-  >
+  <a class="btn-ghost reveal-late mt-8" href={href}>
     {moreLabel}
   </a>
 </section>

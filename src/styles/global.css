@@ -125,6 +125,11 @@ body.is-home main {
   padding-top: 0;
 }
 
+/* Fluid section padding-block — scales with viewport (not fixed py-24) */
+.section-pad {
+  padding-block: clamp(3.5rem, 2rem + 5vw, 7rem);
+}
+
 /* Hero scrub track: vh on fine pointer; svh on touch (stable vs URL-bar) */
 .hero-scrub-track {
   height: calc(var(--hero-track, 320) * 1vh);
@@ -324,10 +329,32 @@ h1 {
   animation-range-end: entry 90%;
 }
 
+/* Same reveal pattern, enter from the right */
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(80px) scale(0.9);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.reveal-right {
+  animation: reveal-right linear both;
+  animation-timeline: view();
+  animation-range-start: entry 20%;
+  animation-range-end: entry 80%;
+}
+
 @supports not (animation-timeline: view()) {
   .reveal,
   .reveal-slow,
-  .reveal-late {
+  .reveal-late,
+  .reveal-right {
     animation: none;
     opacity: 1;
     transform: none;
@@ -338,7 +365,8 @@ h1 {
 /* GSAP owns transforms — kill CSS timeline to avoid double drivers */
 html.reveal-gsap .reveal,
 html.reveal-gsap .reveal-slow,
-html.reveal-gsap .reveal-late {
+html.reveal-gsap .reveal-late,
+html.reveal-gsap .reveal-right {
   animation: none;
   opacity: 1;
   transform: none;
@@ -352,7 +380,8 @@ html.reveal-gsap .reveal-late {
   .footer-fade,
   .reveal,
   .reveal-slow,
-  .reveal-late {
+  .reveal-late,
+  .reveal-right {
     animation: none;
     transition: none;
     opacity: 1;

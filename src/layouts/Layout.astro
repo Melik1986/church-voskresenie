@@ -109,27 +109,45 @@ const heroPoster = '/animation/0001.webp';
           reveal: { start: 'top bottom', end: 'top 72%' },
           'reveal-slow': { start: 'top bottom+=48', end: 'top 80%' },
           'reveal-late': { start: 'top bottom', end: 'top 68%' },
+          'reveal-right': { start: 'top bottom', end: 'top 72%' },
         };
         for (const [cls, range] of Object.entries(ranges)) {
           document.querySelectorAll(`.${cls}`).forEach((node) => {
-            scrubReveal(node as HTMLElement, range.start, range.end);
+            const fromRight = cls === 'reveal-right';
+            scrubReveal(node as HTMLElement, range.start, range.end, fromRight);
           });
         }
       }
 
-      function scrubReveal(el: HTMLElement, start: string, end: string): void {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 80, scale: 0.9, filter: 'blur(12px)' },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            filter: 'blur(0px)',
-            ease: 'none',
-            scrollTrigger: { trigger: el, start, end, scrub: true },
-          },
-        );
+      function scrubReveal(
+        el: HTMLElement,
+        start: string,
+        end: string,
+        fromRight = false,
+      ): void {
+        gsap.fromTo(el, revealFrom(fromRight), {
+          ...revealTo(fromRight),
+          ease: 'none',
+          scrollTrigger: { trigger: el, start, end, scrub: true },
+        });
+      }
+
+      function revealFrom(fromRight: boolean) {
+        return {
+          opacity: 0,
+          scale: 0.9,
+          filter: 'blur(12px)',
+          ...(fromRight ? { x: 80 } : { y: 80 }),
+        };
+      }
+
+      function revealTo(fromRight: boolean) {
+        return {
+          opacity: 1,
+          scale: 1,
+          filter: 'blur(0px)',
+          ...(fromRight ? { x: 0 } : { y: 0 }),
+        };
       }
     </script>
   </body>

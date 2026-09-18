@@ -7,12 +7,25 @@ interface Props {
 const { teaser, moreLabel, href } = Astro.props;
 ---
 
-<section id="services" class="mx-auto max-w-3xl px-4 py-24">
-  <h2 class="reveal font-heading text-4xl">{teaser}</h2>
-  <a
-    class="reveal-late mt-8 inline-block text-sm uppercase tracking-widest text-[var(--color-accent)] transition-opacity hover:opacity-70"
-    href={href}
+<section id="services" class="section-pad mx-auto max-w-3xl px-4">
+  <div
+    class="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-10"
   >
-    {moreLabel}
-  </a>
+    <div class="w-full min-w-0 text-center md:flex-1 md:text-left">
+      <h2 class="reveal font-heading text-4xl">{teaser}</h2>
+      <a class="btn-ghost reveal-late mt-8" href={href}>
+        {moreLabel}
+      </a>
+    </div>
+    <img
+      src="/Praye-to-God.svg"
+      alt=""
+      width="234"
+      height="354"
+      class="reveal-right h-auto w-28 shrink-0 object-contain sm:w-32 md:w-36 lg:w-40"
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+    />
+  </div>
 </section>

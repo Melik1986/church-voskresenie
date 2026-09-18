@@ -13,18 +13,56 @@ export default function PrayerSteps(props: Props) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   return (
-    <section id="prayer" className="mx-auto max-w-3xl px-4 py-24">
+    <section id="prayer" className="section-pad mx-auto max-w-3xl px-4">
+      <PrayerRow {...props} open={open} panelId={panelId} onToggle={() => setOpen((v) => !v)} />
+      {open ? <PrayerBody panelId={panelId} body={props.body} /> : null}
+    </section>
+  );
+}
+
+interface RowProps extends Props {
+  open: boolean;
+  panelId: string;
+  onToggle: () => void;
+}
+
+function PrayerRow(props: RowProps) {
+  return (
+    <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
+      <PrayerCopy {...props} />
+      <PrayerIcon />
+    </div>
+  );
+}
+
+function PrayerCopy(props: RowProps) {
+  return (
+    <div className="w-full min-w-0 text-center md:flex-1 md:text-left">
       <h2 className="reveal font-heading text-4xl">{props.title}</h2>
       <p className="reveal-late mt-4 text-[var(--color-muted)]">{props.lead}</p>
       <PrayerToggle
-        open={open}
-        panelId={panelId}
+        open={props.open}
+        panelId={props.panelId}
         openLabel={props.openLabel}
         closeLabel={props.closeLabel}
-        onToggle={() => setOpen((value) => !value)}
+        onToggle={props.onToggle}
       />
-      {open ? <PrayerBody panelId={panelId} body={props.body} /> : null}
-    </section>
+    </div>
+  );
+}
+
+function PrayerIcon() {
+  return (
+    <img
+      src="/Service-to-God.svg"
+      alt=""
+      width={234}
+      height={354}
+      className="reveal-right h-auto w-28 shrink-0 object-contain sm:w-32 md:w-36 lg:w-40"
+      loading="lazy"
+      decoding="async"
+      aria-hidden
+    />
   );
 }
 

@@ -7,7 +7,16 @@ interface Props {
 const { title, text, refLabel } = Astro.props;
 ---
 
-<section class="bg-[var(--color-bg-soft)] px-4 py-28 text-center">
+<section class="section-pad bg-[var(--color-bg-soft)] px-4 text-center">
+  <img
+    src="/weaving.svg"
+    alt=""
+    width="62"
+    height="22"
+    class="reveal mx-auto mb-10 h-5 w-auto md:h-6"
+    decoding="async"
+    aria-hidden="true"
+  />
   <p class="reveal font-script text-3xl text-[var(--color-sage)] md:text-4xl">{text}</p>
   <p class="reveal-late mt-8 text-sm uppercase tracking-widest text-[var(--color-muted)]">{refLabel}</p>
   <h2 class="sr-only">{title}</h2>

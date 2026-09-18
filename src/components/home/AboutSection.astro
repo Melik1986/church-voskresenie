@@ -1,18 +1,35 @@
 ---
+import { resolveLocale } from '../../i18n/utils';
+import { orgName } from '../../data/site';
+
 interface Props {
   teaser: string;
   moreLabel: string;
   href: string;
 }
 const { teaser, moreLabel, href } = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
+const photoAlt = orgName(locale);
 ---
 
-<section id="about" class="mx-auto max-w-3xl px-4 py-24">
-  <p class="reveal font-heading text-3xl leading-snug md:text-4xl">{teaser}</p>
-  <a
-    class="reveal-late mt-8 inline-block text-sm uppercase tracking-widest text-[var(--color-accent)] transition-opacity hover:opacity-70"
-    href={href}
+<section id="about" class="section-pad mx-auto max-w-3xl px-4">
+  <div
+    class="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-10"
   >
-    {moreLabel}
-  </a>
+    <div class="w-full min-w-0 text-center md:flex-1 md:text-left">
+      <p class="reveal font-heading text-3xl leading-snug md:text-4xl">{teaser}</p>
+      <a class="btn-ghost reveal-late mt-8" href={href}>
+        {moreLabel}
+      </a>
+    </div>
+    <img
+      src="/Church.svg"
+      alt={photoAlt}
+      width="500"
+      height="500"
+      class="reveal-right h-auto w-36 shrink-0 object-contain sm:w-40 md:w-44 lg:w-48"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
 </section>
