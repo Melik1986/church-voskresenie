@@ -1,9 +1,9 @@
 {
-  "count": 120,
+  "count": 109,
   "pad": 4,
   "ext": "webp",
   "width": 1920,
   "height": 1080,
   "fps": 12,
-  "source": "/video/0918.mp4"
+  "source": "/video/hero.mp4"
 }
