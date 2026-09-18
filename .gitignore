@@ -36,3 +36,6 @@ lefthook-local.yml
 
 # Playwright MCP local dumps
 .playwright-mcp/
+
+# Local toolchain binaries (static ffmpeg etc.)
+.tools/

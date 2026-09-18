@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HeroScrub from '../../components/hero/HeroScrub.astro';
 import Hero from '../../components/hero/Hero';
 import Scripture from '../../components/home/Scripture.astro';
 import AboutSection from '../../components/home/AboutSection.astro';
@@ -19,14 +20,16 @@ const facts = buildAnswerFacts(locale);
 ---
 
 <Layout title={t('seo.homeTitle')} description={t('seo.homeDesc')} jsonLd={buildChurchJsonLd(locale)}>
-  <Hero
-    client:load
-    brand={t('brand.name')}
-    tagline={t('brand.tagline')}
-    welcome={t('hero.welcome')}
-    ctaLabel={t('hero.cta')}
-    ctaHref={getRelativeLocaleUrl(locale, 'contact')}
-  />
+  <HeroScrub>
+    <Hero
+      client:load
+      brand={t('brand.name')}
+      tagline={t('brand.tagline')}
+      welcome={t('hero.welcome')}
+      ctaLabel={t('hero.cta')}
+      ctaHref={getRelativeLocaleUrl(locale, 'contact')}
+    />
+  </HeroScrub>
   <Scripture title={t('scripture.ref')} text={t('scripture.text')} refLabel={t('scripture.ref')} />
   <AboutSection
     teaser={t('about.teaser')}

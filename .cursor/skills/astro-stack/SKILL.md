@@ -1,6 +1,6 @@
 ---
 name: astro-stack
-description: Guides Astro 7 + Tailwind 4 + GSAP/Lenis + RU/DE i18n work in church-voskresenie. Use when editing .astro files, astro.config, global.css, HeroCanvas scroll, i18n, lint/check scripts, or stack dependencies.
+description: Guides Astro 7 + Tailwind 4 + GSAP/Lenis + RU/DE i18n work in church-voskresenie. Use when editing .astro files, astro.config, global.css, HeroScrub scroll sequence, i18n, lint/check scripts, or stack dependencies.
 ---
 
 # Astro stack (church-voskresenie)
@@ -21,10 +21,10 @@ Editing pages/components/layout, Tailwind styles, GSAP/Lenis scroll, i18n, or to
 ## Repo anchors
 
 | Concern | Path |
-|---|---|
+| --- | --- |
 | Config + i18n routing | `astro.config.mjs` |
 | Layout + Lenis/GSAP | `src/layouts/Layout.astro` |
-| Canvas sequence | `src/components/HeroCanvas.astro` |
+| Canvas sequence | `src/components/hero/HeroScrub.astro` + `public/animation/` |
 | Dictionaries | `src/i18n/ru.ts`, `src/i18n/de.ts` (barrel: `ui.ts`) |
 | Translators | `src/i18n/utils.ts` |
 | RU / DE pages | `src/pages/index.astro`, `src/pages/de/index.astro` |

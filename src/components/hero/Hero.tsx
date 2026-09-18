@@ -6,28 +6,18 @@ interface HeroProps {
   ctaHref: string;
 }
 
-/** Light editorial hero — church copy and local fonts unchanged. */
+/** Overlay copy for the scroll-scrub hero (canvas lives in HeroScrub.astro). */
 export default function Hero(props: HeroProps) {
   return (
-    <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-[var(--color-bg)] md:items-start">
-      <HeroBackdrop />
+    <div className="relative z-10 flex h-full min-h-[100svh] items-end md:items-start">
       <HeroCopy {...props} />
-    </section>
-  );
-}
-
-function HeroBackdrop() {
-  return (
-    <div aria-hidden="true" className="absolute inset-0">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#ffffff_0%,_#faf8f5_55%,_#f5f3ef_100%)]" />
-      <div className="absolute left-1/2 top-1/4 h-64 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[var(--color-sage)] to-transparent opacity-50" />
     </div>
   );
 }
 
 function HeroCopy(props: HeroProps) {
   return (
-    <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-20 pt-32 md:pt-36">
+    <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-32 md:pt-36">
       <p className="animate-fade-up stagger-3 font-display text-sm uppercase tracking-[0.3em] text-[var(--color-accent)]">
         {props.tagline}
       </p>

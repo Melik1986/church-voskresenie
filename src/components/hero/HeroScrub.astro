@@ -1,0 +1,180 @@
+---
+/**
+ * First-screen hero: sticky viewport + canvas image-sequence scrub (GSAP ScrollTrigger).
+ * Scroll height gives room to play through all frames; Lenis sync lives in Layout.
+ */
+interface Props {
+  /** Total section height in vh — more = slower scrub. */
+  scrollVh?: number;
+}
+
+const { scrollVh = 320 } = Astro.props;
+/** First sequence frame — SSR poster until canvas paints. */
+const posterSrc = '/animation/0001.webp';
+---
+
+<section
+  data-hero-scrub
+  class="relative"
+  style={`height: ${scrollVh}vh`}
+>
+  <div
+    data-hero-scrub-pin
+    class="sticky top-0 h-svh w-full overflow-hidden bg-[var(--color-bg)] bg-cover bg-center bg-no-repeat"
+    style={`background-image: url('${posterSrc}')`}
+  >
+    <img
+      data-hero-poster
+      src={posterSrc}
+      alt=""
+      width="1920"
+      height="1080"
+      class="absolute inset-0 h-full w-full object-cover"
+      fetchpriority="high"
+      decoding="async"
+      aria-hidden="true"
+    />
+    <canvas
+      data-hero-canvas
+      class="absolute inset-0 h-full w-full"
+      width="1920"
+      height="1080"
+      aria-hidden="true"
+    ></canvas>
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/85 via-[var(--color-bg)]/25 to-[var(--color-bg)]/50"
+      aria-hidden="true"
+    ></div>
+    <div class="relative z-10 h-full">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  type FrameMeta = {
+    count: number;
+    pad: number;
+    ext: string;
+    width: number;
+    height: number;
+  };
+
+  const section = document.querySelector<HTMLElement>('[data-hero-scrub]');
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+  if (section && canvas) {
+    void boot(section, canvas);
+  }
+
+  async function boot(root: HTMLElement, el: HTMLCanvasElement): Promise<void> {
+    const ctx = el.getContext('2d');
+    if (!ctx) return;
+    const meta = await loadMeta();
+    const frames = await loadFrames(meta);
+    if (frames.length === 0) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    resizeCanvas(el);
+    drawCover(ctx, frames[0], el.width, el.height);
+    if (reduced) return;
+    bindScrub(root, el, ctx, frames);
+    ScrollTrigger.refresh();
+    window.addEventListener('resize', () => {
+      resizeCanvas(el);
+      const i = Number(el.dataset.frame ?? 0);
+      drawCover(ctx, frames[i] ?? frames[0], el.width, el.height);
+    });
+  }
+
+  async function loadMeta(): Promise<FrameMeta> {
+    const res = await fetch('/animation/meta.json');
+    return (await res.json()) as FrameMeta;
+  }
+
+  function frameSrc(index: number, meta: FrameMeta): string {
+    const n = String(index + 1).padStart(meta.pad, '0');
+    return `/animation/${n}.${meta.ext}`;
+  }
+
+  async function loadFrames(meta: FrameMeta): Promise<HTMLImageElement[]> {
+    const jobs = Array.from({ length: meta.count }, (_, i) => decodeFrame(frameSrc(i, meta)));
+    const loaded = await Promise.all(jobs);
+    return loaded.filter((img): img is HTMLImageElement => img !== null);
+  }
+
+  async function decodeFrame(src: string): Promise<HTMLImageElement | null> {
+    const img = new Image();
+    img.src = src;
+    try {
+      await img.decode();
+      return img;
+    } catch {
+      return null;
+    }
+  }
+
+  function bindScrub(
+    root: HTMLElement,
+    el: HTMLCanvasElement,
+    ctx: CanvasRenderingContext2D,
+    frames: HTMLImageElement[],
+  ): void {
+    const playhead = { frame: 0 };
+    const last = frames.length - 1;
+    gsap.to(playhead, {
+      frame: last,
+      snap: 'frame',
+      ease: 'none',
+      onUpdate: () => {
+        const i = Math.round(playhead.frame);
+        el.dataset.frame = String(i);
+        drawCover(ctx, frames[i], el.width, el.height);
+      },
+      scrollTrigger: {
+        trigger: root,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+      },
+    });
+  }
+
+  function resizeCanvas(el: HTMLCanvasElement): void {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+    el.width = Math.round(w * dpr);
+    el.height = Math.round(h * dpr);
+  }
+
+  function drawCover(
+    ctx: CanvasRenderingContext2D,
+    img: HTMLImageElement,
+    cw: number,
+    ch: number,
+  ): void {
+    const ir = img.naturalWidth / img.naturalHeight;
+    const cr = cw / ch;
+    let dw: number;
+    let dh: number;
+    let dx: number;
+    let dy: number;
+    if (ir > cr) {
+      dh = ch;
+      dw = ch * ir;
+      dx = (cw - dw) / 2;
+      dy = 0;
+    } else {
+      dw = cw;
+      dh = cw / ir;
+      dx = 0;
+      dy = (ch - dh) / 2;
+    }
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+</script>
