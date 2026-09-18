@@ -10,7 +10,7 @@ const { section } = Astro.props;
 const multi = section.photos.length > 1;
 ---
 
-<section class="page-photos__section mt-10">
+<section class="page-photos__section mt-10 mb-8">
   {
     section.label && (
       <h2 class="font-heading text-3xl text-[var(--color-fg)] md:text-4xl">{section.label}</h2>

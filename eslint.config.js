@@ -32,11 +32,16 @@ export default [
     },
   },
   {
-    files: ['src/components/ui/**'],
+    files: ['src/components/ui/**', 'src/components/motion-ui/**'],
     rules: {
       'max-lines-per-function': 'off',
       complexity: 'off',
       'max-depth': 'off',
+      'sonarjs/cognitive-complexity': 'off',
+      'max-nested-callbacks': 'off',
+      'max-params': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      'no-useless-assignment': 'off',
     },
   },
 ];

@@ -12,7 +12,12 @@ export type Photo = {
   rounded?: boolean;
 };
 export type PhotoSection = { label?: string; photos: Photo[] };
-export type PageMedia = { hero?: Photo; sections?: PhotoSection[] };
+export type PageMedia = {
+  hero?: Photo;
+  sections?: PhotoSection[];
+  /** Flat photo list for interactive galleries (e.g. HaloReel) */
+  gallery?: Photo[];
+};
 
 type PageKey =
   | 'about'
@@ -21,29 +26,29 @@ type PageKey =
   | 'statute'
   | 'prayer'
   | 'services'
-  | 'contact';
+  | 'contact'
+  | 'media';
 
 const ROOT = '/photos';
 
 /** Photos renamed from RU filenames; keyed by page slug. */
 export function pageMedia(page: PageKey, locale: Locale): PageMedia {
   const brand = orgName(locale);
-  switch (page) {
-    case 'about':
-      return aboutMedia(brand, locale);
-    case 'faith':
-      return singleHero(`${ROOT}/faith.png`, brand);
-    case 'mission':
-      return singleHero(`${ROOT}/mission.png`, brand);
-    case 'statute':
-      return singleHero(`${ROOT}/statute.png`, brand);
-    case 'prayer':
-      return singleHero(`${ROOT}/prayer.png`, brand);
-    case 'contact':
-      return singleHero(`${ROOT}/address.png`, brand);
-    case 'services':
-      return servicesMedia(locale);
-  }
+  if (page === 'about') return aboutMedia(brand, locale);
+  if (page === 'services') return servicesMedia(locale);
+  if (page === 'media') return { gallery: mediaGalleryPhotos(locale) };
+  return heroFor(page, brand);
+}
+
+function heroFor(page: Exclude<PageKey, 'about' | 'services' | 'media'>, brand: string): PageMedia {
+  const map = {
+    faith: 'faith.png',
+    mission: 'mission.png',
+    statute: 'statute.png',
+    prayer: 'prayer.png',
+    contact: 'address.png',
+  } as const;
+  return singleHero(`${ROOT}/${map[page]}`, brand);
 }
 
 function singleHero(src: string, alt: string): PageMedia {
@@ -54,7 +59,29 @@ function aboutMedia(brand: string, locale: Locale): PageMedia {
   return {
     hero: { src: `${ROOT}/about.webp`, alt: brand },
     sections: [{ photos: aboutPastors(locale) }],
+    gallery: aboutLifePhotos(locale),
   };
+}
+
+/** Gemeindeleben photos under the pastor block (coverflow). */
+function aboutLifePhotos(locale: Locale): Photo[] {
+  const label = locale === 'de' ? 'Gemeindeleben' : 'Жизнь общины';
+  return numberedPhotos(
+    [
+      'services',
+      'service-1',
+      'service-2',
+      'service-3',
+      'services-1',
+      'services-2',
+      'services-3',
+      'services-4',
+      'children',
+      'children-1',
+      'children-2',
+    ],
+    label,
+  );
 }
 
 function aboutPastors(locale: Locale): Photo[] {
@@ -88,8 +115,30 @@ function servicesMedia(locale: Locale): PageMedia {
   const worship = locale === 'de' ? 'Gottesdienst' : 'Богослужение';
   return {
     hero: { src: `${ROOT}/services.png`, alt: brand },
-    sections: [worshipSection(worship), kidsSection(kids)],
+    gallery: [...worshipSection(worship).photos, ...kidsSection(kids).photos],
   };
+}
+
+/** Depth gallery under the YouTube card on /media. */
+function mediaGalleryPhotos(locale: Locale): Photo[] {
+  const label = locale === 'de' ? 'Gemeindeleben' : 'Жизнь общины';
+  return numberedPhotos(
+    [
+      'service',
+      'service-1',
+      'service-2',
+      'service-3',
+      'services',
+      'services-1',
+      'services-2',
+      'services-3',
+      'services-4',
+      'children',
+      'children-1',
+      'children-2',
+    ],
+    label,
+  );
 }
 
 function worshipSection(worship: string): PhotoSection {
