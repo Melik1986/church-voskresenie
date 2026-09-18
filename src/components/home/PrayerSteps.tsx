@@ -14,8 +14,8 @@ export default function PrayerSteps(props: Props) {
   const panelId = useId();
   return (
     <section id="prayer" className="mx-auto max-w-3xl px-4 py-24">
-      <h2 className="font-heading text-4xl">{props.title}</h2>
-      <p className="mt-4 text-[var(--color-muted)]">{props.lead}</p>
+      <h2 className="reveal font-heading text-4xl">{props.title}</h2>
+      <p className="reveal-late mt-4 text-[var(--color-muted)]">{props.lead}</p>
       <PrayerToggle
         open={open}
         panelId={panelId}
@@ -40,7 +40,7 @@ function PrayerToggle(props: ToggleProps) {
   return (
     <button
       type="button"
-      className="btn-ghost mt-8"
+      className="btn-ghost reveal-late mt-8"
       aria-expanded={props.open}
       aria-controls={props.panelId}
       onClick={props.onToggle}

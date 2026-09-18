@@ -255,9 +255,61 @@ h1 {
   border-radius: 1.25rem;
 }
 
+/* Scroll-driven reveal — 0 JS (animation-timeline: view) */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.reveal {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range-start: entry 20%;
+  animation-range-end: entry 80%;
+}
+
+.reveal-slow {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range-start: entry 10%;
+  animation-range-end: entry 70%;
+}
+
+.reveal-late {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range-start: entry 35%;
+  animation-range-end: entry 90%;
+}
+
+@supports not (animation-timeline: view()) {
+  .reveal,
+  .reveal-slow,
+  .reveal-late {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .animate-fade-down {
+  .animate-fade-down,
+  .reveal,
+  .reveal-slow,
+  .reveal-late {
     animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
