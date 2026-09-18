@@ -104,7 +104,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   color-scheme: light;
 }
 
@@ -114,6 +114,15 @@ body {
   color: var(--color-fg);
   font-family: Georgia, "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Fixed header: reserve space on inner pages; home hero is full-bleed under it */
+main {
+  padding-top: var(--site-header-h);
+}
+
+body.is-home main {
+  padding-top: 0;
 }
 
 :focus-visible {
@@ -255,50 +264,68 @@ h1 {
   border-radius: 1.25rem;
 }
 
-/* Scroll-driven reveal — 0 JS (animation-timeline: view) */
+/* Scroll reveal: CSS view() on desktop; IO fallback on touch / weak support */
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(80px) scale(0.9);
-    filter: blur(12px);
+    transform: translateY(48px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
-.reveal {
-  animation: reveal linear both;
-  animation-timeline: view();
-  animation-range-start: entry 20%;
-  animation-range-end: entry 80%;
-}
-
-.reveal-slow {
-  animation: reveal linear both;
-  animation-timeline: view();
-  animation-range-start: entry 10%;
-  animation-range-end: entry 70%;
-}
-
+.reveal,
+.reveal-slow,
 .reveal-late {
-  animation: reveal linear both;
-  animation-timeline: view();
-  animation-range-start: entry 35%;
-  animation-range-end: entry 90%;
+  opacity: 1;
+  transform: none;
 }
 
-@supports not (animation-timeline: view()) {
-  .reveal,
-  .reveal-slow,
-  .reveal-late {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    filter: none;
+/* Desktop fine-pointer: native CSS scroll-driven animations */
+@media (hover: hover) and (pointer: fine) {
+  @supports (animation-timeline: view()) {
+    html:not(.reveal-io) .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range-start: entry 20%;
+      animation-range-end: entry 80%;
+    }
+
+    html:not(.reveal-io) .reveal-slow {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range-start: entry 10%;
+      animation-range-end: entry 70%;
+    }
+
+    html:not(.reveal-io) .reveal-late {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range-start: entry 35%;
+      animation-range-end: entry 90%;
+    }
   }
+}
+
+/* Touch / no SDA: IntersectionObserver toggles .is-inview */
+html.reveal-io .reveal,
+html.reveal-io .reveal-slow,
+html.reveal-io .reveal-late {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: none;
+}
+
+html.reveal-io .reveal.is-inview,
+html.reveal-io .reveal-slow.is-inview,
+html.reveal-io .reveal-late.is-inview {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -306,8 +333,12 @@ h1 {
   .animate-fade-down,
   .reveal,
   .reveal-slow,
-  .reveal-late {
+  .reveal-late,
+  html.reveal-io .reveal,
+  html.reveal-io .reveal-slow,
+  html.reveal-io .reveal-late {
     animation: none;
+    transition: none;
     opacity: 1;
     transform: none;
     filter: none;

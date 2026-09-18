@@ -15,7 +15,7 @@ const posterSrc = '/animation/0001.webp';
 
 <section
   data-hero-scrub
-  class="relative -mt-[var(--site-header-h)]"
+  class="relative"
   style={`height: ${scrollVh}vh`}
 >
   <div
@@ -74,7 +74,6 @@ const posterSrc = '/animation/0001.webp';
   async function boot(root: HTMLElement, el: HTMLCanvasElement): Promise<void> {
     const ctx = el.getContext('2d');
     if (!ctx) return;
-    syncHeaderOffset();
     const meta = await loadMeta();
     const frames = await loadFrames(meta);
     if (frames.length === 0) return;
@@ -85,19 +84,11 @@ const posterSrc = '/animation/0001.webp';
     bindScrub(root, el, ctx, frames);
     ScrollTrigger.refresh();
     window.addEventListener('resize', () => {
-      syncHeaderOffset();
       resizeCanvas(el);
       const i = Number(el.dataset.frame ?? 0);
       drawCover(ctx, frames[i] ?? frames[0], el.width, el.height);
       ScrollTrigger.refresh();
     });
-  }
-
-  /** Pull hero under sticky header so pin is already at top:0 (no dead scroll). */
-  function syncHeaderOffset(): void {
-    const header = document.querySelector<HTMLElement>('[data-site-header]');
-    if (!header) return;
-    document.documentElement.style.setProperty('--site-header-h', `${header.offsetHeight}px`);
   }
 
   async function loadMeta(): Promise<FrameMeta> {
