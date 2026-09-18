@@ -1,0 +1,25 @@
+---
+import type { Photo } from '../../data/page-photos';
+
+/**
+ * Full-bleed page hero image (inner pages: sits under fixed header).
+ */
+interface Props {
+  photo: Photo;
+}
+
+const { photo } = Astro.props;
+---
+
+<section class="page-hero w-full overflow-hidden bg-[var(--color-bg-soft)]">
+  <img
+    src={photo.src}
+    alt={photo.alt}
+    width="1200"
+    height="800"
+    class="aspect-[4/3] h-auto max-h-[min(70svh,32rem)] w-full object-cover sm:aspect-[16/9] sm:max-h-[min(56svh,28rem)]"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+  />
+</section>

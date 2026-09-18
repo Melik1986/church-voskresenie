@@ -1,7 +1,16 @@
 import type { Locale } from '../i18n/ui';
 import { orgName } from './site';
 
-export type Photo = { src: string; alt: string };
+export type Photo = {
+  src: string;
+  alt: string;
+  /** Visible name under the image */
+  caption?: string;
+  /** Role / title under the name */
+  role?: string;
+  /** Soft corner radius on the image */
+  rounded?: boolean;
+};
 export type PhotoSection = { label?: string; photos: Photo[] };
 export type PageMedia = { hero?: Photo; sections?: PhotoSection[] };
 
@@ -42,18 +51,34 @@ function singleHero(src: string, alt: string): PageMedia {
 }
 
 function aboutMedia(brand: string, locale: Locale): PageMedia {
-  const pastor = locale === 'de' ? 'Pastor' : 'Пастор';
-  const senior = locale === 'de' ? 'Seniorpastor' : 'Старший пастор';
   return {
     hero: { src: `${ROOT}/about.webp`, alt: brand },
-    sections: [
-      {
-        photos: [
-          { src: `${ROOT}/pastor.png`, alt: pastor },
-          { src: `${ROOT}/senior-pastor.png`, alt: senior },
-        ],
-      },
-    ],
+    sections: [{ photos: aboutPastors(locale) }],
+  };
+}
+
+function aboutPastors(locale: Locale): Photo[] {
+  const pastor =
+    locale === 'de'
+      ? { name: 'Alexej Bedasch', role: 'Pastor der Gemeinde' }
+      : { name: 'Алексей Бедаш', role: 'Пастор церкви' };
+  const senior =
+    locale === 'de'
+      ? { name: 'Ernst Schmidt', role: 'Seniorpastor' }
+      : { name: 'Ernst Schmidt', role: 'Старший пастор' };
+  return [
+    pastorCard('pastor.png', pastor.name, pastor.role),
+    pastorCard('senior-pastor.png', senior.name, senior.role),
+  ];
+}
+
+function pastorCard(file: string, name: string, role: string): Photo {
+  return {
+    src: `${ROOT}/${file}`,
+    alt: `${name} — ${role}`,
+    caption: name,
+    role,
+    rounded: true,
   };
 }
 

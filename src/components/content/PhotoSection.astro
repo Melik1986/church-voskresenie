@@ -1,8 +1,9 @@
 ---
-import type { PhotoSection } from '../../data/page-photos';
+import type { PhotoSection as PhotoSectionData } from '../../data/page-photos';
+import PhotoCard from './PhotoCard.astro';
 
 interface Props {
-  section: PhotoSection;
+  section: PhotoSectionData;
 }
 
 const { section } = Astro.props;
@@ -15,21 +16,7 @@ const multi = section.photos.length > 1;
       <h2 class="font-heading text-3xl text-[var(--color-fg)] md:text-4xl">{section.label}</h2>
     )
   }
-  <ul class:list={['mt-6 grid gap-4', multi ? 'sm:grid-cols-2' : '']}>
-    {
-      section.photos.map((photo) => (
-        <li class="overflow-hidden">
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            width="800"
-            height="600"
-            class="h-auto w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </li>
-      ))
-    }
+  <ul class:list={['mt-6 grid gap-6', multi ? 'sm:grid-cols-2' : '']}>
+    {section.photos.map((photo) => <PhotoCard photo={photo} />)}
   </ul>
 </section>

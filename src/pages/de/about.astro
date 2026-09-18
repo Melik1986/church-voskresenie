@@ -2,6 +2,7 @@
 import { getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ContentArticle from '../../components/content/ContentArticle.astro';
+import PageHero from '../../components/content/PageHero.astro';
 import { resolveLocale, useTranslations } from '../../i18n/utils';
 import { pageMedia } from '../../data/page-photos';
 
@@ -10,10 +11,12 @@ const t = useTranslations(locale);
 const entry = await getEntry('pages', `${locale}/about`);
 if (!entry) throw new Error(`Missing about content for ${locale}`);
 const { Content } = await render(entry);
+const media = pageMedia('about', locale);
 ---
 
 <Layout title={t('seo.aboutTitle')} description={entry.data.description}>
-  <ContentArticle heading={entry.data.title} media={pageMedia('about', locale)}>
+  {media.hero ? <PageHero photo={media.hero} /> : null}
+  <ContentArticle heading={entry.data.title} media={{ sections: media.sections }}>
     <Content />
   </ContentArticle>
 </Layout>

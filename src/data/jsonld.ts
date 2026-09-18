@@ -115,7 +115,7 @@ function factsDe(): Fact[] {
       'Lieder auf Russisch und Deutsch; Predigten auf Russisch oder Ukrainisch mit Übersetzung ins Deutsche.',
     ),
     fact('Gibt es etwas für Kinder?', 'Ja — Sonntagsschule für Kinder von 6–10 Jahren während der Predigt.'),
-    fact('Wer leitet die Gemeinde?', 'Pastor: Алексей Бедаш. Seniorpastor: Ernst Schmidt.'),
+    fact('Wer leitet die Gemeinde?', 'Pastor: Alexej Bedasch. Seniorpastor: Ernst Schmidt.'),
     fact('Woran glaubt die Gemeinde?', 'Siehe Glaubensbekenntnis und Gemeindeordnung auf dieser Website.'),
   ];
 }
