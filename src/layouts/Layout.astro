@@ -87,7 +87,7 @@ const heroPoster = '/animation/0001.webp';
         bootScroll();
       }
 
-      /** Lenis + reveal: CSS view() when real; else GSAP scrub (same blur/scale/opacity). */
+      /** Lenis + reveal. GSAP scrub everywhere; CSS view() = no-JS fallback in global.css. */
       function bootScroll(): void {
         const lenis = new Lenis({ autoRaf: false });
         lenis.on('scroll', ScrollTrigger.update);
@@ -95,21 +95,10 @@ const heroPoster = '/animation/0001.webp';
           lenis.raf(time * 1000);
         });
         gsap.ticker.lagSmoothing(0);
-        initReveal(lenisSmoothOnThisDevice());
+        initReveal();
       }
 
-      /**
-       * Lenis docs: syncTouch default false → touch is native.
-       * Wheel path is smoothed — that can starve CSS view() timelines.
-       * Force GSAP scrub when Lenis is actually smoothing, or when CSS SDA missing.
-       */
-      function lenisSmoothOnThisDevice(): boolean {
-        return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-      }
-
-      function initReveal(lenisSmoothing: boolean): void {
-        const cssOk = CSS.supports('animation-timeline', 'view()');
-        if (cssOk && !lenisSmoothing) return;
+      function initReveal(): void {
         document.documentElement.classList.add('reveal-gsap');
         bindGsapReveals();
       }

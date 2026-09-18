@@ -1,7 +1,7 @@
 ---
 /**
- * First-screen hero: sticky viewport + canvas image-sequence scrub (GSAP ScrollTrigger).
- * Scroll height gives room to play through all frames; Lenis sync lives in Layout.
+ * First-screen hero: ScrollTrigger-pinned viewport + canvas image-sequence scrub.
+ * Section height (vh) = scroll room; Lenis sync lives in Layout.
  */
 interface Props {
   /** Total section height in vh — more = slower scrub. */
@@ -20,7 +20,7 @@ const posterSrc = '/animation/0001.webp';
 >
   <div
     data-hero-scrub-pin
-    class="sticky top-0 h-svh w-full overflow-hidden bg-[var(--color-bg)] bg-cover bg-center bg-no-repeat"
+    class="relative h-svh w-full overflow-hidden bg-[var(--color-bg)] bg-cover bg-center bg-no-repeat"
     style={`background-image: url('${posterSrc}')`}
   >
     <img
@@ -51,11 +51,21 @@ const posterSrc = '/animation/0001.webp';
   </div>
 </section>
 
+{/* Sync lock before deferred modules — kills first-paint svh→px jump on mobile */}
+<script is:inline>
+  (() => {
+    const pin = document.querySelector('[data-hero-scrub-pin]');
+    if (!pin || !matchMedia('(pointer: coarse)').matches) return;
+    pin.style.height = `${window.innerHeight}px`;
+  })();
+</script>
+
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   type FrameMeta = {
     count: number;
@@ -67,51 +77,53 @@ const posterSrc = '/animation/0001.webp';
 
   const section = document.querySelector<HTMLElement>('[data-hero-scrub]');
   const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
-  if (section && canvas) {
-    void boot(section, canvas);
+  const pin = section?.querySelector<HTMLElement>('[data-hero-scrub-pin]') ?? null;
+  if (section && canvas && pin) {
+    lockPinHeight(pin);
+    void boot(section, canvas, pin);
   }
 
-  async function boot(root: HTMLElement, el: HTMLCanvasElement): Promise<void> {
+  async function boot(
+    root: HTMLElement,
+    el: HTMLCanvasElement,
+    pinEl: HTMLElement,
+  ): Promise<void> {
     const ctx = el.getContext('2d');
     if (!ctx) return;
     const meta = await loadMeta();
     const frames = await loadFrames(meta);
     if (frames.length === 0) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const pin = root.querySelector<HTMLElement>('[data-hero-scrub-pin]');
-    lockPinHeight(pin);
     resizeCanvas(el);
     drawCover(ctx, frames[0], el.width, el.height);
     if (reduced) return;
-    ScrollTrigger.config({ ignoreMobileResize: true });
-    bindScrub(root, el, ctx, frames);
+    bindScrub(root, el, ctx, frames, pinEl);
     ScrollTrigger.refresh();
-    bindHeroResize(el, ctx, frames, pin);
+    bindHeroResize(el, ctx, frames, pinEl);
   }
 
   /** Lock pin to load-time innerHeight — stops mobile URL-bar svh jump. */
-  function lockPinHeight(pin: HTMLElement | null): void {
-    if (!pin) return;
+  function lockPinHeight(pinEl: HTMLElement | null): void {
+    if (!pinEl) return;
     if (!window.matchMedia('(pointer: coarse)').matches) return;
-    pin.style.height = `${window.innerHeight}px`;
+    pinEl.style.height = `${window.innerHeight}px`;
   }
 
   function bindHeroResize(
     el: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D,
     frames: HTMLImageElement[],
-    pin: HTMLElement | null,
+    pinEl: HTMLElement,
   ): void {
     const redraw = () => {
       resizeCanvas(el);
       const i = Number(el.dataset.frame ?? 0);
       drawCover(ctx, frames[i] ?? frames[0], el.width, el.height);
     };
-    window.addEventListener('resize', redraw, { passive: true });
     window.addEventListener(
       'orientationchange',
       () => {
-        lockPinHeight(pin);
+        lockPinHeight(pinEl);
         redraw();
         ScrollTrigger.refresh();
       },
@@ -151,6 +163,7 @@ const posterSrc = '/animation/0001.webp';
     el: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D,
     frames: HTMLImageElement[],
+    pinEl: HTMLElement,
   ): void {
     const playhead = { frame: 0 };
     const last = frames.length - 1;
@@ -168,6 +181,9 @@ const posterSrc = '/animation/0001.webp';
         start: 'top top',
         end: 'bottom bottom',
         scrub: true,
+        pin: pinEl,
+        pinSpacing: false,
+        anticipatePin: 1,
       },
     });
   }

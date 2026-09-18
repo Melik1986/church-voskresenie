@@ -278,7 +278,7 @@ h1 {
   border-radius: 1.25rem;
 }
 
-/* Scroll-driven reveal — CSS view() (user pattern); GSAP scrub when unsupported */
+/* Scroll-driven reveal — CSS view() = no-JS fallback; JS sets html.reveal-gsap → GSAP */
 @keyframes reveal {
   from {
     opacity: 0;

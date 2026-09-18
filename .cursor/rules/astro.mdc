@@ -11,9 +11,9 @@ alwaysApply: false
 - Locale helpers: `src/i18n/ui.ts` (locales + barrel), `src/i18n/ru.ts` / `src/i18n/de.ts` (strings), `src/i18n/utils.ts`. Layout uses `Astro.currentLocale` via `resolveLocale`.
 - **Approved facts:** Angerhauser Str. 91, 47259 Duisburg Süd; Sunday 15:00; fonts Marck Script / Yeseva One / Cormorant Garamond in `public/fonts/` (no Google Fonts CDN).
 - **Do not invent** Impressum PII (name e.V., Vertretung, email, phone, VR) or finalize Datenschutz legal claims — placeholders only.
-- Hero: `HeroScrub.astro` (canvas WebP sequence + GSAP ScrollTrigger scrub) + React overlay `Hero.tsx`. Frames in `public/animation/` from `public/video/`.
+- Hero: `HeroScrub.astro` — ScrollTrigger **pin** (not CSS sticky) + canvas WebP scrub; early mobile `innerHeight` lock via inline script. + React overlay `Hero.tsx`. Frames in `public/animation/`.
 - Header is `fixed`; home is full-bleed (`body.is-home`); inner pages pad `main` with `--site-header-h`.
-- Reveal: CSS `view()` + blur/scale/opacity (user pattern). When Lenis smooths wheel or CSS SDA missing → GSAP ScrollTrigger scrub (`html.reveal-gsap`), same from/to, bidirectional.
+- Reveal: GSAP ScrollTrigger scrub (`html.reveal-gsap`) on all devices — blur/scale/opacity. CSS `view()` pattern in `global.css` = no-JS fallback only.
 - Embeds: 2-Click YouTube / external Maps only (`src/components/embeds/`).
 - Typecheck: `npm run check-types` → `astro check`.
 - Lint: Sonar-style limits (depth≤3, fn≤20, complexity, no-`any`).
