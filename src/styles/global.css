@@ -93,6 +93,14 @@
   --color-cta: #1f2a1d;
   --color-cta-hover: #2a3827;
   --color-line: color-mix(in srgb, var(--color-fg) 12%, transparent);
+  /* Header py-4 + logo h-10; md: py-5 + h-12 — JS may refine */
+  --site-header-h: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-h: 5.5rem;
+  }
 }
 
 html {
