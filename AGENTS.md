@@ -8,7 +8,7 @@ tanstackIntent:
     for: "Find, parse, and query tsconfig.json files — extends resolution, file matching, path alias resolution. Use when reading tsconfig.json, checking if a file belongs to a tsconfig, resolving TypeScript path aliases, or working with tsconfig extends chains."
 <!-- intent-skills:end -->
 
-# Agent guidance
+Agent guidance
 
 - Cursor project rules: `.cursor/rules/`
 - Cursor project skills: `.cursor/skills/`

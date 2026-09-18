@@ -13,7 +13,7 @@ alwaysApply: false
 - **Do not invent** Impressum PII (name e.V., Vertretung, email, phone, VR) or finalize Datenschutz legal claims — placeholders only.
 - Hero: `HeroScrub.astro` (canvas WebP sequence + GSAP ScrollTrigger scrub) + React overlay `Hero.tsx`. Frames in `public/animation/` from `public/video/`.
 - Header is `fixed`; home is full-bleed (`body.is-home`); inner pages pad `main` with `--site-header-h`.
-- Reveal: CSS `view()` on desktop pointer; IntersectionObserver fallback on touch (`html.reveal-io`).
+- Reveal: CSS `view()` + blur/scale/opacity (user pattern). When Lenis smooths wheel or CSS SDA missing → GSAP ScrollTrigger scrub (`html.reveal-gsap`), same from/to, bidirectional.
 - Embeds: 2-Click YouTube / external Maps only (`src/components/embeds/`).
 - Typecheck: `npm run check-types` → `astro check`.
 - Lint: Sonar-style limits (depth≤3, fn≤20, complexity, no-`any`).

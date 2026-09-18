@@ -78,17 +78,45 @@ const posterSrc = '/animation/0001.webp';
     const frames = await loadFrames(meta);
     if (frames.length === 0) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const pin = root.querySelector<HTMLElement>('[data-hero-scrub-pin]');
+    lockPinHeight(pin);
     resizeCanvas(el);
     drawCover(ctx, frames[0], el.width, el.height);
     if (reduced) return;
+    ScrollTrigger.config({ ignoreMobileResize: true });
     bindScrub(root, el, ctx, frames);
     ScrollTrigger.refresh();
-    window.addEventListener('resize', () => {
+    bindHeroResize(el, ctx, frames, pin);
+  }
+
+  /** Lock pin to load-time innerHeight — stops mobile URL-bar svh jump. */
+  function lockPinHeight(pin: HTMLElement | null): void {
+    if (!pin) return;
+    if (!window.matchMedia('(pointer: coarse)').matches) return;
+    pin.style.height = `${window.innerHeight}px`;
+  }
+
+  function bindHeroResize(
+    el: HTMLCanvasElement,
+    ctx: CanvasRenderingContext2D,
+    frames: HTMLImageElement[],
+    pin: HTMLElement | null,
+  ): void {
+    const redraw = () => {
       resizeCanvas(el);
       const i = Number(el.dataset.frame ?? 0);
       drawCover(ctx, frames[i] ?? frames[0], el.width, el.height);
-      ScrollTrigger.refresh();
-    });
+    };
+    window.addEventListener('resize', redraw, { passive: true });
+    window.addEventListener(
+      'orientationchange',
+      () => {
+        lockPinHeight(pin);
+        redraw();
+        ScrollTrigger.refresh();
+      },
+      { passive: true },
+    );
   }
 
   async function loadMeta(): Promise<FrameMeta> {

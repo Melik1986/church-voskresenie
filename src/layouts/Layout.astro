@@ -79,44 +79,68 @@ const heroPoster = '/animation/0001.webp';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
       gsap.registerPlugin(ScrollTrigger);
-      initReveal();
+      // Mobile URL-bar resize was refreshing pins → layout jump
+      ScrollTrigger.config({ ignoreMobileResize: true });
 
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced) {
+        bootScroll();
+      }
+
+      /** Lenis + reveal: CSS view() when real; else GSAP scrub (same blur/scale/opacity). */
+      function bootScroll(): void {
         const lenis = new Lenis({ autoRaf: false });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
           lenis.raf(time * 1000);
         });
         gsap.ticker.lagSmoothing(0);
+        initReveal(lenisSmoothOnThisDevice());
       }
 
-      /** CSS view() on desktop; IntersectionObserver on touch / no SDA. */
-      function initReveal(): void {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (canUseCssViewTimeline()) return;
-        document.documentElement.classList.add('reveal-io');
-        observeReveals();
+      /**
+       * Lenis docs: syncTouch default false → touch is native.
+       * Wheel path is smoothed — that can starve CSS view() timelines.
+       * Force GSAP scrub when Lenis is actually smoothing, or when CSS SDA missing.
+       */
+      function lenisSmoothOnThisDevice(): boolean {
+        return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       }
 
-      function canUseCssViewTimeline(): boolean {
-        const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        return fine && CSS.supports('animation-timeline', 'view()');
+      function initReveal(lenisSmoothing: boolean): void {
+        const cssOk = CSS.supports('animation-timeline', 'view()');
+        if (cssOk && !lenisSmoothing) return;
+        document.documentElement.classList.add('reveal-gsap');
+        bindGsapReveals();
       }
 
-      function observeReveals(): void {
-        const nodes = document.querySelectorAll('.reveal, .reveal-slow, .reveal-late');
-        if (nodes.length === 0) return;
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (!entry.isIntersecting) continue;
-              entry.target.classList.add('is-inview');
-              io.unobserve(entry.target);
-            }
+      function bindGsapReveals(): void {
+        // Early entry: finish while element is still in lower half of viewport
+        const ranges: Record<string, { start: string; end: string }> = {
+          reveal: { start: 'top bottom', end: 'top 72%' },
+          'reveal-slow': { start: 'top bottom+=48', end: 'top 80%' },
+          'reveal-late': { start: 'top bottom', end: 'top 68%' },
+        };
+        for (const [cls, range] of Object.entries(ranges)) {
+          document.querySelectorAll(`.${cls}`).forEach((node) => {
+            scrubReveal(node as HTMLElement, range.start, range.end);
+          });
+        }
+      }
+
+      function scrubReveal(el: HTMLElement, start: string, end: string): void {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 80, scale: 0.9, filter: 'blur(12px)' },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            ease: 'none',
+            scrollTrigger: { trigger: el, start, end, scrub: true },
           },
-          { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
         );
-        nodes.forEach((node) => io.observe(node));
       }
     </script>
   </body>
