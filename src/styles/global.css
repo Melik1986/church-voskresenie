@@ -125,6 +125,17 @@ body.is-home main {
   padding-top: 0;
 }
 
+/* Hero scrub track: vh on fine pointer; svh on touch (stable vs URL-bar) */
+.hero-scrub-track {
+  height: calc(var(--hero-track, 320) * 1vh);
+}
+
+@media (pointer: coarse) {
+  .hero-scrub-track {
+    height: calc(var(--hero-track, 320) * 1svh);
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;

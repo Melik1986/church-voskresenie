@@ -1,10 +1,10 @@
 ---
 /**
  * First-screen hero: ScrollTrigger-pinned viewport + canvas image-sequence scrub.
- * Section height (vh) = scroll room; Lenis sync lives in Layout.
+ * Section height = scroll room (vh desktop / svh coarse); Lenis sync in Layout.
  */
 interface Props {
-  /** Total section height in vh — more = slower scrub. */
+  /** Scroll-track multiplier in viewport units — more = slower scrub. */
   scrollVh?: number;
 }
 
@@ -15,8 +15,8 @@ const posterSrc = '/animation/0001.webp';
 
 <section
   data-hero-scrub
-  class="relative"
-  style={`height: ${scrollVh}vh`}
+  class="hero-scrub-track relative"
+  style={`--hero-track: ${scrollVh}`}
 >
   <div
     data-hero-scrub-pin
@@ -78,9 +78,27 @@ const posterSrc = '/animation/0001.webp';
   const section = document.querySelector<HTMLElement>('[data-hero-scrub]');
   const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
   const pin = section?.querySelector<HTMLElement>('[data-hero-scrub-pin]') ?? null;
+  freezeHeroIntro();
   if (section && canvas && pin) {
     lockPinHeight(pin);
     void boot(section, canvas, pin);
+  }
+
+  /** ST pin reparents/fixes the pin — would restart CSS fade-up; freeze after first run. */
+  function freezeHeroIntro(): void {
+    document.querySelectorAll<HTMLElement>('[data-hero-intro]').forEach((el) => {
+      el.addEventListener('animationend', () => freezeIntroEl(el), { once: true });
+    });
+  }
+
+  function freezeHeroIntroHard(): void {
+    document.querySelectorAll<HTMLElement>('[data-hero-intro]').forEach(freezeIntroEl);
+  }
+
+  function freezeIntroEl(el: HTMLElement): void {
+    el.classList.remove('animate-fade-up');
+    el.style.opacity = '1';
+    el.style.transform = 'none';
   }
 
   async function boot(
@@ -97,7 +115,8 @@ const posterSrc = '/animation/0001.webp';
     resizeCanvas(el);
     drawCover(ctx, frames[0], el.width, el.height);
     if (reduced) return;
-    bindScrub(root, el, ctx, frames, pinEl);
+    freezeHeroIntroHard();
+    bindScrub({ root, el, ctx, frames, pinEl });
     ScrollTrigger.refresh();
     bindHeroResize(el, ctx, frames, pinEl);
   }
@@ -115,20 +134,22 @@ const posterSrc = '/animation/0001.webp';
     frames: HTMLImageElement[],
     pinEl: HTMLElement,
   ): void {
-    const redraw = () => {
-      resizeCanvas(el);
-      const i = Number(el.dataset.frame ?? 0);
-      drawCover(ctx, frames[i] ?? frames[0], el.width, el.height);
+    const onOrient = () => {
+      lockPinHeight(pinEl);
+      redrawFrame(el, ctx, frames);
+      ScrollTrigger.refresh();
     };
-    window.addEventListener(
-      'orientationchange',
-      () => {
-        lockPinHeight(pinEl);
-        redraw();
-        ScrollTrigger.refresh();
-      },
-      { passive: true },
-    );
+    window.addEventListener('orientationchange', onOrient, { passive: true });
+  }
+
+  function redrawFrame(
+    el: HTMLCanvasElement,
+    ctx: CanvasRenderingContext2D,
+    frames: HTMLImageElement[],
+  ): void {
+    resizeCanvas(el);
+    const i = Number(el.dataset.frame ?? 0);
+    drawCover(ctx, frames[i] ?? frames[0], el.width, el.height);
   }
 
   async function loadMeta(): Promise<FrameMeta> {
@@ -158,34 +179,42 @@ const posterSrc = '/animation/0001.webp';
     }
   }
 
-  function bindScrub(
-    root: HTMLElement,
-    el: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-    frames: HTMLImageElement[],
-    pinEl: HTMLElement,
-  ): void {
+  type ScrubCtx = {
+    root: HTMLElement;
+    el: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    frames: HTMLImageElement[];
+    pinEl: HTMLElement;
+  };
+
+  function bindScrub(s: ScrubCtx): void {
     const playhead = { frame: 0 };
-    const last = frames.length - 1;
+    const last = s.frames.length - 1;
     gsap.to(playhead, {
       frame: last,
       snap: 'frame',
       ease: 'none',
-      onUpdate: () => {
-        const i = Math.round(playhead.frame);
-        el.dataset.frame = String(i);
-        drawCover(ctx, frames[i], el.width, el.height);
-      },
-      scrollTrigger: {
-        trigger: root,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        pin: pinEl,
-        pinSpacing: false,
-        anticipatePin: 1,
-      },
+      onUpdate: () => paintFrame(s, playhead.frame),
+      scrollTrigger: scrubTrigger(s.root, s.pinEl),
     });
+  }
+
+  function paintFrame(s: ScrubCtx, frame: number): void {
+    const i = Math.round(frame);
+    s.el.dataset.frame = String(i);
+    drawCover(s.ctx, s.frames[i], s.el.width, s.el.height);
+  }
+
+  function scrubTrigger(root: HTMLElement, pinEl: HTMLElement) {
+    return {
+      trigger: root,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: true,
+      pin: pinEl,
+      pinSpacing: false,
+      anticipatePin: 1,
+    };
   }
 
   function resizeCanvas(el: HTMLCanvasElement): void {
@@ -196,30 +225,29 @@ const posterSrc = '/animation/0001.webp';
     el.height = Math.round(h * dpr);
   }
 
+  type CoverBox = { dw: number; dh: number; dx: number; dy: number };
+
+  function coverBox(iw: number, ih: number, cw: number, ch: number): CoverBox {
+    const ir = iw / ih;
+    const cr = cw / ch;
+    if (ir > cr) {
+      const dh = ch;
+      const dw = ch * ir;
+      return { dw, dh, dx: (cw - dw) / 2, dy: 0 };
+    }
+    const dw = cw;
+    const dh = cw / ir;
+    return { dw, dh, dx: 0, dy: (ch - dh) / 2 };
+  }
+
   function drawCover(
     ctx: CanvasRenderingContext2D,
     img: HTMLImageElement,
     cw: number,
     ch: number,
   ): void {
-    const ir = img.naturalWidth / img.naturalHeight;
-    const cr = cw / ch;
-    let dw: number;
-    let dh: number;
-    let dx: number;
-    let dy: number;
-    if (ir > cr) {
-      dh = ch;
-      dw = ch * ir;
-      dx = (cw - dw) / 2;
-      dy = 0;
-    } else {
-      dw = cw;
-      dh = cw / ir;
-      dx = 0;
-      dy = (ch - dh) / 2;
-    }
+    const box = coverBox(img.naturalWidth, img.naturalHeight, cw, ch);
     ctx.clearRect(0, 0, cw, ch);
-    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.drawImage(img, box.dx, box.dy, box.dw, box.dh);
   }
 </script>

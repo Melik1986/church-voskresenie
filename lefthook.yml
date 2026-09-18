@@ -4,10 +4,10 @@ pre-commit:
     - name: pre-commit
       run: pre-commit run --show-diff-on-failure --color=always --files {staged_files}
     - name: lint
-      glob: "*.{js,ts,astro,mjs}"
+      glob: "*.{js,ts,tsx,astro,mjs}"
       run: npx eslint --max-warnings=0 {staged_files}
     - name: check-types
-      glob: "*.{js,ts,astro,mjs}"
+      glob: "*.{js,ts,tsx,astro,mjs}"
       run: npm run check-types
     - name: aikido-local-scanner
       glob: "*"

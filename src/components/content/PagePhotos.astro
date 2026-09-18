@@ -1,5 +1,6 @@
 ---
 import type { PageMedia } from '../../data/page-photos';
+import PhotoSection from './PhotoSection.astro';
 
 interface Props {
   media: PageMedia;
@@ -25,27 +26,4 @@ const { hero, sections = [] } = media;
   )
 }
 
-{
-  sections.map((section) => (
-    <section class="page-photos__section mt-10">
-      {section.label && (
-        <h2 class="font-heading text-3xl text-[var(--color-fg)] md:text-4xl">{section.label}</h2>
-      )}
-      <ul class:list={['mt-6 grid gap-4', section.photos.length > 1 ? 'sm:grid-cols-2' : '']}>
-        {section.photos.map((photo) => (
-          <li class="overflow-hidden">
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              width="800"
-              height="600"
-              class="h-auto w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-          </li>
-        ))}
-      </ul>
-    </section>
-  ))
-}
+{sections.map((section) => <PhotoSection section={section} />)}
