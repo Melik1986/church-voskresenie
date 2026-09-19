@@ -29,8 +29,7 @@ export type HaloReelItem = {
   subtitle?: string;
 };
 
-export interface HaloReelProps
-  extends Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
+export interface HaloReelProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   items: HaloReelItem[];
   /** Card width in px at the front of the ring. @default 130 */
   cardWidth?: number;
@@ -113,20 +112,13 @@ export function HaloReel({
   const radiusX = size.w * radiusXRatio;
   const radiusY = size.h * radiusYRatio;
   const slots = clamp(
-    Math.ceil(
-      TAU *
-        Math.max(radiusX / (cardWidth * spread), radiusY / (cardHeight * spread)),
-    ),
+    Math.ceil(TAU * Math.max(radiusX / (cardWidth * spread), radiusY / (cardHeight * spread))),
     count,
     Math.max(count, maxCards),
   );
   const step = slots ? TAU / slots : 0;
   const fit = size.w
-    ? clamp(
-        Math.min(size.w / (radiusX + cardWidth), size.h / (2 * radiusY + cardHeight)),
-        0.45,
-        1,
-      )
+    ? clamp(Math.min(size.w / (radiusX + cardWidth), size.h / (2 * radiusY + cardHeight)), 0.45, 1)
     : 1;
   const cardW = cardWidth * fit;
   const cardH = cardHeight * fit;
@@ -153,16 +145,7 @@ export function HaloReel({
       window.clearTimeout(timer);
       controls?.stop();
     };
-  }, [
-    autoPlay,
-    count,
-    holdDuration,
-    pauseOnHover,
-    reduceMotion,
-    rotation,
-    step,
-    stepDuration,
-  ]);
+  }, [autoPlay, count, holdDuration, pauseOnHover, reduceMotion, rotation, step, stepDuration]);
 
   const dragRef = React.useRef({ left: 0, top: 0, angle: 0 });
 
@@ -239,7 +222,7 @@ export function HaloReel({
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       className={cn(
-        'relative h-[100dvh] w-full touch-pan-y select-none overflow-hidden outline-none',
+        'relative h-[100dvh] w-full touch-pan-y overflow-hidden outline-none select-none',
         draggable && 'cursor-grab active:cursor-grabbing',
         'focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-inset',
         className,
@@ -342,7 +325,7 @@ function WheelCard({
           src={item.src}
           alt={decorative ? '' : (item.alt ?? '')}
           draggable={false}
-          className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
         />
       ) : (
         <div
@@ -353,10 +336,10 @@ function WheelCard({
           }}
         >
           {item.title ? (
-            <span className="text-2xl font-black leading-none">{item.title}</span>
+            <span className="text-2xl leading-none font-black">{item.title}</span>
           ) : null}
           {item.subtitle ? (
-            <span className="text-[0.6rem] uppercase tracking-[0.2em] opacity-70">
+            <span className="text-[0.6rem] tracking-[0.2em] uppercase opacity-70">
               {item.subtitle}
             </span>
           ) : null}

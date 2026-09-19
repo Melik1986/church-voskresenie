@@ -31,17 +31,9 @@ const heroPoster = '/animation/0001.webp';
     <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
-    {
-      isHome && (
-        <link
-          rel="preload"
-          href={heroPoster}
-          as="image"
-          type="image/webp"
-          fetchpriority="high"
-        />
-      )
-    }
+    {isHome && (
+      <link rel="preload" href={heroPoster} as="image" type="image/webp" fetchpriority="high" />
+    )}
     <SeoHead
       title={title}
       description={description}
@@ -58,10 +50,7 @@ const heroPoster = '/animation/0001.webp';
         const header = document.querySelector('[data-site-header]');
         if (!header) return;
         const sync = () => {
-          document.documentElement.style.setProperty(
-            '--site-header-h',
-            `${header.offsetHeight}px`,
-          );
+          document.documentElement.style.setProperty('--site-header-h', `${header.offsetHeight}px`);
         };
         sync();
         window.addEventListener('resize', sync, { passive: true });
@@ -119,12 +108,7 @@ const heroPoster = '/animation/0001.webp';
         }
       }
 
-      function scrubReveal(
-        el: HTMLElement,
-        start: string,
-        end: string,
-        fromRight = false,
-      ): void {
+      function scrubReveal(el: HTMLElement, start: string, end: string, fromRight = false): void {
         gsap.fromTo(el, revealFrom(fromRight), {
           ...revealTo(fromRight),
           ease: 'none',

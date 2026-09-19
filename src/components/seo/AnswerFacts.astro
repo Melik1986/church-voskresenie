@@ -14,13 +14,11 @@ const { title, items } = Astro.props;
     {title}
   </h2>
   <dl class="mt-8 space-y-6">
-    {
-      items.map((item, index) => (
-        <div class={index % 2 === 0 ? 'reveal' : 'reveal-late'}>
-          <dt class="font-display text-lg text-[var(--color-accent)]">{item.q}</dt>
-          <dd class="mt-2 text-[var(--color-muted)]">{item.a}</dd>
-        </div>
-      ))
-    }
+    {items.map((item, index) => (
+      <div class={index % 2 === 0 ? 'reveal' : 'reveal-late'}>
+        <dt class="font-display text-lg text-[var(--color-accent)]">{item.q}</dt>
+        <dd class="mt-2 text-[var(--color-muted)]">{item.a}</dd>
+      </div>
+    ))}
   </dl>
 </section>

@@ -92,7 +92,7 @@ function PrayerBody(props: { panelId: string; body: string }) {
   return (
     <div
       id={props.panelId}
-      className="mt-8 whitespace-pre-line text-[var(--color-fg)] leading-relaxed"
+      className="mt-8 leading-relaxed whitespace-pre-line text-[var(--color-fg)]"
     >
       {props.body}
     </div>

@@ -42,8 +42,4 @@ const ogLocaleAlt = locale === 'de' ? 'ru_RU' : 'de_DE';
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
-{
-  jsonLd && (
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  )
-}
+{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>}

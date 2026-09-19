@@ -32,9 +32,7 @@ const gallery = pageMedia('media', locale).gallery ?? [];
       <p>{t('media.where')}</p>
     </div>
   </section>
-  {
-    gallery.length > 0 && (
-      <MediaDepthGallery client:visible photos={gallery} label={t('nav.media')} />
-    )
-  }
+  {gallery.length > 0 && (
+    <MediaDepthGallery client:visible photos={gallery} label={t('nav.media')} />
+  )}
 </Layout>

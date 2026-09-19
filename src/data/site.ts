@@ -42,8 +42,7 @@ export const ORG = {
   nameRu: 'Церковь Воскресение',
   nameDe: 'Auferstehungsgemeinde',
   legalHintRu: 'Интернациональная поместная община в Дуйсбурге (не EKiR Versöhnungsgemeinde).',
-  legalHintDe:
-    'Internationale Ortsgemeinde in Duisburg (nicht die EKiR Versöhnungsgemeinde).',
+  legalHintDe: 'Internationale Ortsgemeinde in Duisburg (nicht die EKiR Versöhnungsgemeinde).',
 } as const;
 
 export const OG_IMAGE_PATH = '/og-default.svg';

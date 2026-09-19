@@ -81,11 +81,7 @@ function FacadeActions(props: FacadeProps) {
 function LoadButton(props: FacadeProps) {
   if (!props.canEmbed) return null;
   return (
-    <button
-      type="button"
-      className="btn-pill"
-      onClick={props.onLoad}
-    >
+    <button type="button" className="btn-pill" onClick={props.onLoad}>
       {props.loadLabel}
     </button>
   );
@@ -94,7 +90,7 @@ function LoadButton(props: FacadeProps) {
 function ChannelLink(props: FacadeProps) {
   return (
     <a
-      className="text-sm underline text-[var(--color-fg)]"
+      className="text-sm text-[var(--color-fg)] underline"
       href={props.channelUrl}
       target="_blank"
       rel="noopener noreferrer"

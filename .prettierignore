@@ -1,0 +1,19 @@
+# build / deps / generated
+dist
+node_modules
+.astro
+.vercel
+.skilldb
+.tools
+
+# church copy — format by hand, not Prettier
+src/content
+
+# vendor / binary-ish
+public/fonts
+public/animation
+package-lock.json
+
+# agent / local tooling
+.cursor
+.playwright-mcp

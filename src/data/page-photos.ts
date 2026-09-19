@@ -20,14 +20,7 @@ export type PageMedia = {
 };
 
 type PageKey =
-  | 'about'
-  | 'faith'
-  | 'mission'
-  | 'statute'
-  | 'prayer'
-  | 'services'
-  | 'contact'
-  | 'media';
+  'about' | 'faith' | 'mission' | 'statute' | 'prayer' | 'services' | 'contact' | 'media';
 
 const ROOT = '/photos';
 

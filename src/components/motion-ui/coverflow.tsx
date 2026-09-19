@@ -55,7 +55,11 @@ export function useCoverflowItem(itemIndex: number): CoverflowItemValues {
   const offset = useMotionValue(itemIndex - index);
 
   useEffect(() => {
-    animate(offset, itemIndex - index, { type: 'spring', stiffness: 260, damping: 28 });
+    animate(offset, itemIndex - index, {
+      type: 'spring',
+      stiffness: 260,
+      damping: 28,
+    });
   }, [index, itemIndex, offset]);
 
   const x = useTransform(offset, (o) => `${o * 58}%`);
@@ -84,12 +88,7 @@ type CoverflowItemProps = {
   itemIndex?: number;
 };
 
-export function CoverflowItem({
-  children,
-  label,
-  className,
-  itemIndex = 0,
-}: CoverflowItemProps) {
+export function CoverflowItem({ children, label, className, itemIndex = 0 }: CoverflowItemProps) {
   const { x, rotateY, scale, opacity, zIndex, geometry } = useCoverflowItem(itemIndex);
 
   return (
@@ -227,14 +226,17 @@ export function Coverflow({
   const regionId = useId();
 
   const geometry = useMemo<CoverflowGeometry>(
-    () => ({ cardWidth, rotation, neighbourScale, neighbourOpacity, perspective }),
+    () => ({
+      cardWidth,
+      rotation,
+      neighbourScale,
+      neighbourOpacity,
+      perspective,
+    }),
     [cardWidth, neighbourOpacity, neighbourScale, perspective, rotation],
   );
 
-  const setIndex = useCallback(
-    (next: number) => setIndexState(clampIndex(next, total)),
-    [total],
-  );
+  const setIndex = useCallback((next: number) => setIndexState(clampIndex(next, total)), [total]);
   const goPrev = useCallback(() => setIndex(index - 1), [index, setIndex]);
   const goNext = useCallback(() => setIndex(index + 1), [index, setIndex]);
 
@@ -288,13 +290,7 @@ export function Coverflow({
 }
 
 /** Ensures CoverflowItem receives itemIndex even if authored without it. */
-function CoverflowItemSlot({
-  itemIndex,
-  children,
-}: {
-  itemIndex: number;
-  children: ReactNode;
-}) {
+function CoverflowItemSlot({ itemIndex, children }: { itemIndex: number; children: ReactNode }) {
   if (
     children &&
     typeof children === 'object' &&

@@ -29,23 +29,14 @@ const gallery = media.gallery ?? [];
       decoding="async"
       aria-hidden="true"
     />
-    <h1
-      class="pointer-events-none absolute inset-0 flex items-center justify-center px-2 text-center font-heading text-4xl text-[var(--color-fg)] sm:text-5xl"
-    >
+    <h1 class="pointer-events-none absolute inset-0 flex items-center justify-center px-2 text-center font-heading text-4xl text-[var(--color-fg)] sm:text-5xl">
       {entry.data.title}
     </h1>
   </div>
   <ContentArticle flushTop media={{ sections: media.sections }}>
     <Content />
-    {
-      gallery.length > 0 && (
-        <AboutLifeCoverflow
-          slot="after-media"
-          client:visible
-          photos={gallery}
-          locale={locale}
-        />
-      )
-    }
+    {gallery.length > 0 && (
+      <AboutLifeCoverflow slot="after-media" client:visible photos={gallery} locale={locale} />
+    )}
   </ContentArticle>
 </Layout>

@@ -48,13 +48,21 @@ const SOURCE_MAP = {
   '/statute/': ['src/pages/statute.astro', 'src/content/pages/ru/statute.md'],
   '/de/statute/': ['src/pages/de/statute.astro', 'src/content/pages/de/statute.md'],
   '/prayer/': ['src/pages/prayer.astro', 'src/content/pages/ru/prayer.md', 'src/data/prayer.ts'],
-  '/de/prayer/': ['src/pages/de/prayer.astro', 'src/content/pages/de/prayer.md', 'src/data/prayer.ts'],
+  '/de/prayer/': [
+    'src/pages/de/prayer.astro',
+    'src/content/pages/de/prayer.md',
+    'src/data/prayer.ts',
+  ],
   '/learn/': ['src/pages/learn.astro', 'src/content/pages/ru/learn.md'],
   '/de/learn/': ['src/pages/de/learn.astro', 'src/content/pages/de/learn.md'],
   '/services/': ['src/pages/services.astro', 'src/content/pages/ru/services.md'],
   '/de/services/': ['src/pages/de/services.astro', 'src/content/pages/de/services.md'],
   '/contact/': ['src/pages/contact.astro', 'src/content/pages/ru/contact.md', 'src/data/site.ts'],
-  '/de/contact/': ['src/pages/de/contact.astro', 'src/content/pages/de/contact.md', 'src/data/site.ts'],
+  '/de/contact/': [
+    'src/pages/de/contact.astro',
+    'src/content/pages/de/contact.md',
+    'src/data/site.ts',
+  ],
   '/media/': ['src/pages/media.astro', 'src/i18n/ui.ts'],
   '/de/media/': ['src/pages/de/media.astro', 'src/i18n/ui.ts'],
 };

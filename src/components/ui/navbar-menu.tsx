@@ -59,7 +59,13 @@ export function Menu({ setActive, children, className }: MenuProps) {
 export function ProductItem({ title, description, href, src }: ProductItemProps) {
   return (
     <a href={href} className="flex space-x-2">
-      <img src={src} width={140} height={70} alt={title} className="shrink-0 rounded-md shadow-2xl" />
+      <img
+        src={src}
+        width={140}
+        height={70}
+        alt={title}
+        className="shrink-0 rounded-md shadow-2xl"
+      />
       <ProductCopy title={title} description={description} />
     </a>
   );
@@ -74,10 +80,7 @@ export function HoveredLink({
   return (
     <a
       {...rest}
-      className={cn(
-        'text-[var(--color-muted)] hover:text-[var(--color-fg)]',
-        className,
-      )}
+      className={cn('text-[var(--color-muted)] hover:text-[var(--color-fg)]', className)}
     >
       {children}
     </a>
@@ -112,7 +115,7 @@ function AnimatedPanel({ children }: { children: ReactNode }) {
 
 function DropdownPanel({ children }: { children: ReactNode }) {
   return (
-    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3">
+    <div className="absolute top-full left-1/2 z-50 -translate-x-1/2 pt-3">
       <motion.div
         layoutId="active"
         transition={transition}

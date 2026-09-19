@@ -9,16 +9,16 @@
 
 ## Стек
 
-| Слой | Выбор |
-|---|---|
-| Framework | Astro 7 static |
-| Hero | React 19.3.0 + `@astrojs/react` |
-| CSS | Tailwind 4 (`@tailwindcss/vite`) |
-| Motion | GSAP ScrollTrigger + Lenis |
-| Icons | `thesvg` / `@thesvg/react` |
-| Host | Vercel CLI |
-| Analytics | `@vercel/analytics` |
-| Quality | ESLint Sonar-style + `astro check` + Aikido |
+| Слой      | Выбор                                       |
+| --------- | ------------------------------------------- |
+| Framework | Astro 7 static                              |
+| Hero      | React 19.3.0 + `@astrojs/react`             |
+| CSS       | Tailwind 4 (`@tailwindcss/vite`)            |
+| Motion    | GSAP ScrollTrigger + Lenis                  |
+| Icons     | `thesvg` / `@thesvg/react`                  |
+| Host      | Vercel CLI                                  |
+| Analytics | `@vercel/analytics`                         |
+| Quality   | ESLint Sonar-style + `astro check` + Aikido |
 
 ## Типографика (local `public/fonts/`)
 
@@ -35,16 +35,16 @@
 
 ## IA
 
-| RU | DE | Содержание |
-|---|---|---|
-| `/` | `/de/` | Cinematic longread + `#prayer` |
-| `/about` | `/de/about` | О нас |
-| `/faith` | `/de/faith` | Исповедание + `#mission` + `#statute` |
-| `/services` | `/de/services` | Служения |
-| `/contact` | `/de/contact` | Адрес + карта (2-Click / external) |
-| `/media` | `/de/media` | YouTube 2-Click |
-| `/impressum` | `/de/impressum` | §5 DDG / §18 MStV (PII placeholders) |
-| `/datenschutz` | `/de/datenschutz` | Datenschutzerklärung skeleton |
+| RU             | DE                | Содержание                            |
+| -------------- | ----------------- | ------------------------------------- |
+| `/`            | `/de/`            | Cinematic longread + `#prayer`        |
+| `/about`       | `/de/about`       | О нас                                 |
+| `/faith`       | `/de/faith`       | Исповедание + `#mission` + `#statute` |
+| `/services`    | `/de/services`    | Служения                              |
+| `/contact`     | `/de/contact`     | Адрес + карта (2-Click / external)    |
+| `/media`       | `/de/media`       | YouTube 2-Click                       |
+| `/impressum`   | `/de/impressum`   | §5 DDG / §18 MStV (PII placeholders)  |
+| `/datenschutz` | `/de/datenschutz` | Datenschutzerklärung skeleton         |
 
 ## Privacy
 
@@ -63,4 +63,3 @@
 ## Deploy blocker (cloud agent)
 
 Vercel CLI in this environment is **not authenticated** (`vercel login` / `VERCEL_TOKEN` required). Wiring for `@vercel/analytics` + `vercel.json` is in-repo; run link/deploy from an authenticated machine.
-

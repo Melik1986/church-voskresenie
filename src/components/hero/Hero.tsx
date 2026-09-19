@@ -17,7 +17,7 @@ export default function Hero(props: HeroProps) {
 
 function HeroCopy(props: HeroProps) {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-32 md:pt-36">
+    <div className="mx-auto w-full max-w-6xl px-4 pt-32 pb-20 md:pt-36">
       <HeroTagline text={props.tagline} />
       <HeroTitle text={props.brand} />
       <HeroWelcome text={props.welcome} />
@@ -30,7 +30,7 @@ function HeroTagline({ text }: { text: string }) {
   return (
     <p
       data-hero-intro
-      className="animate-fade-up stagger-3 font-display text-sm uppercase tracking-[0.3em] text-[var(--color-accent)]"
+      className="animate-fade-up stagger-3 font-display text-sm tracking-[0.3em] text-[var(--color-accent)] uppercase"
     >
       {text}
     </p>
@@ -41,7 +41,7 @@ function HeroTitle({ text }: { text: string }) {
   return (
     <h1
       data-hero-intro
-      className="animate-fade-up stagger-4 mt-4 max-w-3xl font-heading text-5xl leading-[1.05] tracking-tight text-[var(--color-fg)] md:text-7xl"
+      className="animate-fade-up stagger-4 font-heading mt-4 max-w-3xl text-5xl leading-[1.05] tracking-tight text-[var(--color-fg)] md:text-7xl"
     >
       {text}
     </h1>

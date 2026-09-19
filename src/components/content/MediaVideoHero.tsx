@@ -48,9 +48,9 @@ function youtubeCard(props: Props): CardItem {
 }
 
 function extraCards(props: Props): CardItem[] {
-  return props.photos.slice(0, MAX_EXTRA).map((photo, i) =>
-    baseCard(props, `media-${i}`, photo.src),
-  );
+  return props.photos
+    .slice(0, MAX_EXTRA)
+    .map((photo, i) => baseCard(props, `media-${i}`, photo.src));
 }
 
 function baseCard(props: Props, id: string, image: string): CardItem {

@@ -10,20 +10,20 @@ const { media } = Astro.props;
 const { hero, sections = [] } = media;
 ---
 
-{
-  hero && (
-    <figure class="page-photos__hero mt-8 overflow-hidden">
-      <img
-        src={hero.src}
-        alt={hero.alt}
-        width="1200"
-        height="800"
-        class="h-auto w-full object-cover"
-        loading="eager"
-        decoding="async"
-      />
-    </figure>
-  )
-}
+{hero && (
+  <figure class="page-photos__hero mt-8 overflow-hidden">
+    <img
+      src={hero.src}
+      alt={hero.alt}
+      width="1200"
+      height="800"
+      class="h-auto w-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+  </figure>
+)}
 
-{sections.map((section) => <PhotoSection section={section} />)}
+{sections.map((section) => (
+  <PhotoSection section={section} />
+))}

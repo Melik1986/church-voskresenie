@@ -21,14 +21,12 @@ const gallery = media.gallery ?? [];
   <ContentArticle heading={entry.data.title}>
     <Content />
   </ContentArticle>
-  {
-    gallery.length > 0 && (
-      <ServicesHaloGallery
-        client:visible
-        photos={gallery}
-        label={t('nav.services')}
-        centerLabel={t('services.teaser')}
-      />
-    )
-  }
+  {gallery.length > 0 && (
+    <ServicesHaloGallery
+      client:visible
+      photos={gallery}
+      label={t('nav.services')}
+      centerLabel={t('services.teaser')}
+    />
+  )}
 </Layout>

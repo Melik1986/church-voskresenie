@@ -70,7 +70,10 @@ function eventNode(locale: Locale) {
   return {
     '@type': 'Event',
     '@id': `${SITE_URL}/#sunday-service`,
-    name: locale === 'de' ? 'Gottesdienst — Auferstehungsgemeinde' : 'Богослужение — Церковь Воскресение',
+    name:
+      locale === 'de'
+        ? 'Gottesdienst — Auferstehungsgemeinde'
+        : 'Богослужение — Церковь Воскресение',
     description: locale === 'de' ? SERVICE_TIME.labelDe : SERVICE_TIME.labelRu,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
@@ -100,7 +103,10 @@ function factsRu(): Fact[] {
       'На каких языках?',
       'Песни на русском и немецком; проповеди на русском или украинском с переводом на немецкий.',
     ),
-    fact('Есть ли служение для детей?', 'Да — воскресная школа для детей 6–10 лет во время проповеди.'),
+    fact(
+      'Есть ли служение для детей?',
+      'Да — воскресная школа для детей 6–10 лет во время проповеди.',
+    ),
     fact('Кто пасторы?', 'Пастор церкви: Алексей Бедаш. Старший пастор: Ernst Schmidt.'),
     fact('Что исповедует церковь?', 'См. исповедание веры и духовный устав на этом сайте.'),
   ];
@@ -114,9 +120,15 @@ function factsDe(): Fact[] {
       'In welchen Sprachen?',
       'Lieder auf Russisch und Deutsch; Predigten auf Russisch oder Ukrainisch mit Übersetzung ins Deutsche.',
     ),
-    fact('Gibt es etwas für Kinder?', 'Ja — Sonntagsschule für Kinder von 6–10 Jahren während der Predigt.'),
+    fact(
+      'Gibt es etwas für Kinder?',
+      'Ja — Sonntagsschule für Kinder von 6–10 Jahren während der Predigt.',
+    ),
     fact('Wer leitet die Gemeinde?', 'Pastor: Alexej Bedasch. Seniorpastor: Ernst Schmidt.'),
-    fact('Woran glaubt die Gemeinde?', 'Siehe Glaubensbekenntnis und Gemeindeordnung auf dieser Website.'),
+    fact(
+      'Woran glaubt die Gemeinde?',
+      'Siehe Glaubensbekenntnis und Gemeindeordnung auf dieser Website.',
+    ),
   ];
 }
 

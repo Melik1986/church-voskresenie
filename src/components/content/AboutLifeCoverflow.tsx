@@ -1,8 +1,4 @@
-import {
-  Coverflow,
-  CoverflowControls,
-  CoverflowItem,
-} from '@/components/motion-ui/coverflow';
+import { Coverflow, CoverflowControls, CoverflowItem } from '@/components/motion-ui/coverflow';
 import type { Photo } from '@/data/page-photos';
 import type { Locale } from '@/i18n/ui';
 

@@ -13,11 +13,7 @@ const { scrollVh = 320 } = Astro.props;
 const posterSrc = '/animation/0001.webp';
 ---
 
-<section
-  data-hero-scrub
-  class="hero-scrub-track relative"
-  style={`--hero-track: ${scrollVh}`}
->
+<section data-hero-scrub class="hero-scrub-track relative" style={`--hero-track: ${scrollVh}`}>
   <div
     data-hero-scrub-pin
     class="relative h-svh w-full overflow-hidden bg-[var(--color-bg)] bg-cover bg-center bg-no-repeat"
@@ -87,7 +83,9 @@ const posterSrc = '/animation/0001.webp';
   /** ST pin reparents/fixes the pin — would restart CSS fade-up; freeze after first run. */
   function freezeHeroIntro(): void {
     document.querySelectorAll<HTMLElement>('[data-hero-intro]').forEach((el) => {
-      el.addEventListener('animationend', () => freezeIntroEl(el), { once: true });
+      el.addEventListener('animationend', () => freezeIntroEl(el), {
+        once: true,
+      });
     });
   }
 
@@ -101,11 +99,7 @@ const posterSrc = '/animation/0001.webp';
     el.style.transform = 'none';
   }
 
-  async function boot(
-    root: HTMLElement,
-    el: HTMLCanvasElement,
-    pinEl: HTMLElement,
-  ): Promise<void> {
+  async function boot(root: HTMLElement, el: HTMLCanvasElement, pinEl: HTMLElement): Promise<void> {
     const ctx = el.getContext('2d');
     if (!ctx) return;
     const meta = await loadMeta();

@@ -1,4 +1,5 @@
 import eslint from '@eslint/js';
+import prettier from 'eslint-config-prettier';
 import astro from 'eslint-plugin-astro';
 import sonarjs from 'eslint-plugin-sonarjs';
 import tseslint from 'typescript-eslint';
@@ -44,4 +45,5 @@ export default [
       'no-useless-assignment': 'off',
     },
   },
+  prettier,
 ];

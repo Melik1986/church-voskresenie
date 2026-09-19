@@ -14,8 +14,14 @@ const contentLinks = [
   { href: getRelativeLocaleUrl(locale, 'learn'), label: t('nav.learn') },
 ];
 const legalLinks = [
-  { href: getRelativeLocaleUrl(locale, 'impressum'), label: t('nav.impressum') },
-  { href: getRelativeLocaleUrl(locale, 'datenschutz'), label: t('nav.datenschutz') },
+  {
+    href: getRelativeLocaleUrl(locale, 'impressum'),
+    label: t('nav.impressum'),
+  },
+  {
+    href: getRelativeLocaleUrl(locale, 'datenschutz'),
+    label: t('nav.datenschutz'),
+  },
 ];
 ---
 
@@ -23,9 +29,7 @@ const legalLinks = [
   data-footer-fade
   class="footer-fade mt-24 border-t border-[var(--color-line)] bg-[var(--color-bg-soft)]"
 >
-  <div
-    class="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 text-sm text-[var(--color-muted)]"
-  >
+  <div class="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 text-sm text-[var(--color-muted)]">
     <img
       src="/vine.svg"
       alt=""
@@ -49,12 +53,16 @@ const legalLinks = [
     </div>
     <nav class="relative z-10 flex flex-wrap gap-x-4 gap-y-2 md:pr-28" aria-label="Content">
       {contentLinks.map((item) => (
-        <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
+        <a class="hover:text-[var(--color-fg)]" href={item.href}>
+          {item.label}
+        </a>
       ))}
     </nav>
     <div class="relative z-10 flex gap-4 md:pr-28">
       {legalLinks.map((item) => (
-        <a class="hover:text-[var(--color-fg)]" href={item.href}>{item.label}</a>
+        <a class="hover:text-[var(--color-fg)]" href={item.href}>
+          {item.label}
+        </a>
       ))}
     </div>
   </div>

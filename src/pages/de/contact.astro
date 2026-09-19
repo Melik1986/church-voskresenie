@@ -6,13 +6,7 @@ import AnswerFacts from '../../components/seo/AnswerFacts.astro';
 import PageHero from '../../components/content/PageHero.astro';
 import { resolveLocale, useTranslations } from '../../i18n/utils';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import {
-  formatAddressLine,
-  MAPS_EXTERNAL_URL,
-  SERVICE_TIME,
-  SOCIAL,
-  VENUE,
-} from '../../data/site';
+import { formatAddressLine, MAPS_EXTERNAL_URL, SERVICE_TIME, SOCIAL, VENUE } from '../../data/site';
 import { buildAnswerFacts } from '../../data/jsonld';
 import { pageMedia } from '../../data/page-photos';
 import SocialIcon from '../../components/icons/SocialIcon.astro';
@@ -52,7 +46,10 @@ const media = pageMedia('contact', locale);
       <SocialIcon brand="instagram" href={SOCIAL.instagram} label="Instagram" />
       <SocialIcon brand="facebook" href={SOCIAL.facebook} label="Facebook" />
     </div>
-    <nav class="mt-10 flex flex-wrap gap-4 text-sm uppercase tracking-widest text-[var(--color-accent)]" aria-label="Related">
+    <nav
+      class="mt-10 flex flex-wrap gap-4 text-sm uppercase tracking-widest text-[var(--color-accent)]"
+      aria-label="Related"
+    >
       <a href={getRelativeLocaleUrl(locale, 'about')}>{t('nav.about')}</a>
       <a href={getRelativeLocaleUrl(locale, 'services')}>{t('nav.services')}</a>
       <a href={getRelativeLocaleUrl(locale, 'media')}>{t('nav.media')}</a>

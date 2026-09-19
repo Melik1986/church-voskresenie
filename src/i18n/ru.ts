@@ -33,11 +33,9 @@ export const ru = {
   'contact.teaser': 'Наш адрес',
   'contact.more': 'Как добраться',
   'maps.open': 'Открыть в Google Maps',
-  'maps.notice':
-    'Внешняя ссылка на Google Maps. Данные передаются Google только после перехода.',
+  'maps.notice': 'Внешняя ссылка на Google Maps. Данные передаются Google только после перехода.',
   'yt.load': 'Загрузить видео',
-  'yt.notice':
-    'При загрузке YouTube данные передаются Google. Нажмите, чтобы согласиться.',
+  'yt.notice': 'При загрузке YouTube данные передаются Google. Нажмите, чтобы согласиться.',
   'media.title': 'Проповеди',
   'media.lead': 'Смотрите проповеди на нашем YouTube-канале.',
   'media.how':

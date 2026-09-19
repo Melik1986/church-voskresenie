@@ -157,10 +157,20 @@ function parseColor(input: unknown, fallback: RGB): RGB {
     const pair = (i: number) => parseInt(hex.slice(i * 2, i * 2 + 2), 16);
     const single = (i: number) => parseInt(hex.charAt(i) + hex.charAt(i), 16);
     if (hex.length === 3 || hex.length === 4) {
-      return { r: single(0), g: single(1), b: single(2), a: hex.length === 4 ? single(3) / 255 : 1 };
+      return {
+        r: single(0),
+        g: single(1),
+        b: single(2),
+        a: hex.length === 4 ? single(3) / 255 : 1,
+      };
     }
     if (hex.length === 6 || hex.length === 8) {
-      return { r: pair(0), g: pair(1), b: pair(2), a: hex.length === 8 ? pair(3) / 255 : 1 };
+      return {
+        r: pair(0),
+        g: pair(1),
+        b: pair(2),
+        a: hex.length === 8 ? pair(3) / 255 : 1,
+      };
     }
     return fallback;
   }
@@ -175,7 +185,10 @@ function parseColor(input: unknown, fallback: RGB): RGB {
 }
 
 function toHex(color: RGB): string {
-  const part = (v: number) => Math.round(clamp(v, 0, 255)).toString(16).padStart(2, '0');
+  const part = (v: number) =>
+    Math.round(clamp(v, 0, 255))
+      .toString(16)
+      .padStart(2, '0');
   return `#${part(color.r)}${part(color.g)}${part(color.b)}`.toUpperCase();
 }
 
@@ -399,8 +412,7 @@ export default function DepthGallery({
   const scaleK = (perspective + gap) / perspective;
   const plateWidth = Math.max(cardWidth, 1) * scaleK;
   const plateHeight = Math.max(cardHeight, 1) * scaleK;
-  const wheelToSlot =
-    (WHEEL_MIN + (clamp(sensitivity, 0, 10) / 10) * WHEEL_RANGE) / WHEEL_SPAN;
+  const wheelToSlot = (WHEEL_MIN + (clamp(sensitivity, 0, 10) / 10) * WHEEL_RANGE) / WHEEL_SPAN;
 
   const frame = useRef<Frame | null>(null);
   frame.current = {

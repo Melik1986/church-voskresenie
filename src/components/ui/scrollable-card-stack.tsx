@@ -269,7 +269,13 @@ export default function ScrollableCardStack({
               transition={
                 shouldReduceMotion
                   ? { duration: 0 }
-                  : { damping: 20, duration: 0.25, mass: 0.5, stiffness: 250, type: 'spring' as const }
+                  : {
+                      damping: 20,
+                      duration: 0.25,
+                      mass: 0.5,
+                      stiffness: 250,
+                      type: 'spring' as const,
+                    }
               }
               whileHover={
                 shouldReduceMotion || !isActive
@@ -290,7 +296,7 @@ export default function ScrollableCardStack({
                 className={cn(
                   'flex w-full flex-col rounded-xl bg-[var(--color-bg)] transition-all duration-200',
                   isHovered && 'shadow-xl',
-                  isScrolling && isActive && 'ring-2 ring-[var(--color-accent)] ring-opacity-50',
+                  isScrolling && isActive && 'ring-opacity-50 ring-2 ring-[var(--color-accent)]',
                 )}
                 style={{ height: `${resolvedHeight}px` }}
               >
@@ -310,7 +316,12 @@ export default function ScrollableCardStack({
                         draggable={false}
                         height={10}
                         src={item.image}
-                        style={{ filter: 'blur(32px)', pointerEvents: 'none', scale: '1.2', zIndex: 1 }}
+                        style={{
+                          filter: 'blur(32px)',
+                          pointerEvents: 'none',
+                          scale: '1.2',
+                          zIndex: 1,
+                        }}
                         width={10}
                       />
                       <img
@@ -320,7 +331,11 @@ export default function ScrollableCardStack({
                         draggable={false}
                         height={resolvedHeight}
                         src={item.image}
-                        style={{ pointerEvents: 'none', userSelect: 'none', zIndex: 2 }}
+                        style={{
+                          pointerEvents: 'none',
+                          userSelect: 'none',
+                          zIndex: 2,
+                        }}
                         width={800}
                       />
                     </>
@@ -341,10 +356,12 @@ export default function ScrollableCardStack({
                     src={item.avatar}
                     width={20}
                   />
-                  <span className="text-sm font-medium leading-none text-[var(--color-fg)]">
+                  <span className="text-sm leading-none font-medium text-[var(--color-fg)]">
                     {item.name}
                   </span>
-                  <span className="text-sm font-normal text-[var(--color-muted)]">{item.handle}</span>
+                  <span className="text-sm font-normal text-[var(--color-muted)]">
+                    {item.handle}
+                  </span>
                 </a>
               </div>
             </motion.div>
@@ -361,7 +378,7 @@ export default function ScrollableCardStack({
               aria-label={`Go to card ${i + 1} of ${items.length}`}
               aria-selected={i === currentIndex}
               className={cn(
-                'h-2 w-2 cursor-pointer rounded-full transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] focus:ring-offset-1',
+                'h-2 w-2 cursor-pointer rounded-full transition-all duration-200 focus:ring-1 focus:ring-[var(--color-accent)] focus:ring-offset-1 focus:outline-none',
                 i === currentIndex
                   ? 'scale-125 bg-[var(--color-accent)]'
                   : 'bg-[var(--color-line)] hover:bg-[var(--color-muted)]',
@@ -369,7 +386,12 @@ export default function ScrollableCardStack({
               key={`scrollable-indicator-${item.id}`}
               onClick={() => jumpTo(i)}
               role="tab"
-              transition={{ damping: 20, mass: 0.5, stiffness: 250, type: 'spring' as const }}
+              transition={{
+                damping: 20,
+                mass: 0.5,
+                stiffness: 250,
+                type: 'spring' as const,
+              }}
               type="button"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
