@@ -18,7 +18,12 @@ const learnLinks = [
   { href: getRelativeLocaleUrl(locale, 'statute'), label: t('nav.statute') },
   { href: getRelativeLocaleUrl(locale, 'prayer'), label: t('nav.prayer') },
 ];
-const mobileLinks = [...primary.slice(0, 2), ...learnLinks, ...primary.slice(2)];
+const mobileLinks = [
+  { href: home, label: t('nav.home') },
+  ...primary.slice(0, 2),
+  ...learnLinks,
+  ...primary.slice(2),
+];
 const other = locale === 'ru' ? 'de' : 'ru';
 const switchHref =
   locale === 'ru'

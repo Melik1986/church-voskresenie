@@ -14,8 +14,24 @@ const { teaser, moreLabel, href, scheduleLabel, mapsOpen, mapsNotice } = Astro.p
 ---
 
 <section id="contact" class="section-pad mx-auto max-w-3xl px-4">
-  <h2 class="reveal font-heading text-4xl">{teaser}</h2>
-  <p class="reveal-late mt-4 text-[var(--color-muted)]">{scheduleLabel}</p>
+  <div
+    class="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-between md:gap-10"
+  >
+    <div class="w-full min-w-0 text-center md:flex-1 md:text-left">
+      <h2 class="reveal font-heading text-4xl">{teaser}</h2>
+      <p class="reveal-late mt-4 text-[var(--color-muted)]">{scheduleLabel}</p>
+    </div>
+    <img
+      src="/fisch.svg"
+      alt=""
+      width="158"
+      height="109"
+      class="reveal-right h-auto w-32 shrink-0 object-contain sm:w-36 md:w-40 lg:w-44"
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+    />
+  </div>
   <div class="reveal-slow mt-8">
     <TwoClickMap
       client:visible

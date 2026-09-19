@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface Props {
   notice: string;
@@ -6,6 +7,7 @@ interface Props {
   videoId?: string;
   channelUrl: string;
   channelLabel: string;
+  className?: string;
 }
 
 const STORAGE_KEY = 'consent-youtube';
@@ -14,7 +16,7 @@ const STORAGE_KEY = 'consent-youtube';
 export default function TwoClickYouTube(props: Props) {
   const [loaded, setLoaded] = useState(readConsent);
   if (loaded && props.videoId) {
-    return <YoutubeFrame videoId={props.videoId} />;
+    return <YoutubeFrame videoId={props.videoId} className={props.className} />;
   }
   return (
     <Facade
@@ -33,11 +35,11 @@ function readConsent(): boolean {
   return sessionStorage.getItem(STORAGE_KEY) === '1';
 }
 
-function YoutubeFrame({ videoId }: { videoId: string }) {
+function YoutubeFrame({ videoId, className }: { videoId: string; className?: string }) {
   const src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   return (
     <iframe
-      className="aspect-video w-full border-0"
+      className={cn('h-full w-full border-0', className)}
       src={src}
       title="YouTube"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -55,7 +57,12 @@ interface FacadeProps extends Props {
 
 function Facade(props: FacadeProps) {
   return (
-    <div className="surface-card flex aspect-video flex-col items-center justify-center gap-4 p-6 text-center">
+    <div
+      className={cn(
+        'surface-card flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center',
+        props.className,
+      )}
+    >
       <p className="max-w-md text-sm text-[var(--color-muted)]">{props.notice}</p>
       <FacadeActions {...props} />
     </div>

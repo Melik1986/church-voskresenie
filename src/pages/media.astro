@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TwoClickYouTube from '../components/embeds/TwoClickYouTube';
+import MediaVideoHero from '../components/content/MediaVideoHero.tsx';
 import MediaDepthGallery from '../components/content/MediaDepthGallery.tsx';
 import { resolveLocale, useTranslations } from '../i18n/utils';
-import { SOCIAL } from '../data/site';
+import { SOCIAL, orgName } from '../data/site';
 import { pageMedia } from '../data/page-photos';
 
 const locale = resolveLocale(Astro.currentLocale);
@@ -12,21 +12,24 @@ const gallery = pageMedia('media', locale).gallery ?? [];
 ---
 
 <Layout title={t('seo.mediaTitle')} description={t('seo.mediaDesc')}>
-  <section class="mx-auto max-w-3xl px-4 pt-16 pb-0">
+  <section class="mx-auto max-w-3xl px-4 pt-16 pb-4" aria-label={t('nav.media')}>
+    <MediaVideoHero
+      client:load
+      photos={gallery}
+      brand={orgName(locale)}
+      channelUrl={SOCIAL.youtube}
+      notice={t('yt.notice')}
+      loadLabel={t('yt.load')}
+      channelLabel="YouTube"
+      handle="@auferstehungsgemeinde_ua"
+    />
+  </section>
+  <section class="mx-auto max-w-3xl px-4 pb-0 pt-8">
     <h1 class="font-heading text-5xl">{t('media.title')}</h1>
     <p class="mt-4 text-[var(--color-muted)]">{t('media.lead')}</p>
-    <div class="mt-8 space-y-4 text-[var(--color-muted)]">
+    <div class="mt-8 mb-8 space-y-4 text-[var(--color-muted)]">
       <p>{t('media.how')}</p>
       <p>{t('media.where')}</p>
-    </div>
-    <div class="mt-10 mb-8">
-      <TwoClickYouTube
-        client:visible
-        notice={t('yt.notice')}
-        loadLabel={t('yt.load')}
-        channelUrl={SOCIAL.youtube}
-        channelLabel="YouTube"
-      />
     </div>
   </section>
   {
