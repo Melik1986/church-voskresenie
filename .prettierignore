@@ -10,6 +10,7 @@ node_modules
 src/content
 
 # vendor / binary-ish
+vendor
 public/fonts
 public/animation
 package-lock.json

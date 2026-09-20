@@ -51,15 +51,15 @@ function orgNode(locale: Locale) {
 }
 
 function placeNode(locale: Locale) {
-  const rented =
+  const description =
     locale === 'de'
-      ? 'Gemietetes Gottesdienstgebäude der Auferstehungsgemeinde.'
-      : 'Арендуемое здание для богослужений церкви «Воскресение».';
+      ? 'Gottesdienstort der Auferstehungsgemeinde in Duisburg.'
+      : 'Место богослужений церкви «Воскресение» в Дуйсбурге.';
   return {
     '@type': 'Church',
     '@id': `${SITE_URL}/#place`,
     name: venueName(locale),
-    description: rented,
+    description,
     address: postalAddress(),
     url: `${SITE_URL}${locale === 'de' ? '/de' : ''}/contact/`,
     hasMap: MAPS_EXTERNAL_URL,

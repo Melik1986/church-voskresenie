@@ -2,8 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import MediaVideoHero from '../../components/content/MediaVideoHero.tsx';
 import MediaDepthGallery from '../../components/content/MediaDepthGallery.tsx';
+import SocialIcon from '../../components/icons/SocialIcon.astro';
 import { resolveLocale, useTranslations } from '../../i18n/utils';
-import { SOCIAL, orgName } from '../../data/site';
+import { SOCIAL, YOUTUBE_HANDLE, orgName } from '../../data/site';
 import { pageMedia } from '../../data/page-photos';
 
 const locale = resolveLocale(Astro.currentLocale);
@@ -15,21 +16,36 @@ const gallery = pageMedia('media', locale).gallery ?? [];
   <section class="mx-auto max-w-3xl px-4 pt-16 pb-4" aria-label={t('nav.media')}>
     <MediaVideoHero
       client:load
-      photos={gallery}
       brand={orgName(locale)}
       channelUrl={SOCIAL.youtube}
-      notice={t('yt.notice')}
+      notice={t('yt.channelNotice')}
       loadLabel={t('yt.load')}
-      channelLabel="YouTube"
-      handle="@auferstehungsgemeinde_ua"
+      channelLabel={t('yt.openVideo')}
+      handle={YOUTUBE_HANDLE}
     />
+    <div class="mt-10 flex gap-4">
+      <SocialIcon brand="youtube" href={SOCIAL.youtube} label="YouTube" />
+      <SocialIcon brand="instagram" href={SOCIAL.instagram} label="Instagram" />
+      <SocialIcon brand="facebook" href={SOCIAL.facebook} label="Facebook" />
+    </div>
   </section>
   <section class="mx-auto max-w-3xl px-4 pb-0 pt-8">
     <h1 class="font-heading text-5xl">{t('media.title')}</h1>
     <p class="mt-4 text-[var(--color-muted)]">{t('media.lead')}</p>
     <div class="mt-8 mb-8 space-y-4 text-[var(--color-muted)]">
       <p>{t('media.how')}</p>
-      <p>{t('media.where')}</p>
+      <p>
+        {t('media.channel')}{' '}
+        <a
+          class="text-[var(--color-accent)] underline"
+          href={SOCIAL.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {YOUTUBE_HANDLE}
+        </a>
+        . {t('media.where')}
+      </p>
     </div>
   </section>
   {gallery.length > 0 && (

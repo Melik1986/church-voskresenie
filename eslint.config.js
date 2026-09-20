@@ -9,6 +9,7 @@ export default [
     ignores: [
       'dist/**',
       'node_modules/**',
+      'vendor/**',
       '.astro/**',
       '.vercel/**',
       '.cursor/**',

@@ -14,8 +14,6 @@ export const ADDRESS = {
 export const VENUE = {
   nameRu: 'Evangelische Kirche Huckingen',
   nameDe: 'Evangelische Kirche Huckingen',
-  noteRu: 'Община арендует здание по этому адресу.',
-  noteDe: 'Die Gemeinde nutzt dieses Gebäude zur Miete.',
 } as const;
 
 export const SERVICE_TIME = {
@@ -28,8 +26,10 @@ export const SERVICE_TIME = {
   timezone: 'Europe/Berlin',
 } as const;
 
+export const YOUTUBE_HANDLE = '@ResurrectionChurch-DUISBURG';
+
 export const SOCIAL = {
-  youtube: 'https://www.youtube.com/@auferstehungsgemeinde_ua',
+  youtube: `https://www.youtube.com/${YOUTUBE_HANDLE}`,
   instagram: 'https://www.instagram.com/auferstehungsgemeinde_ua/',
   facebook: 'https://www.facebook.com/cerkov.voskresenie.dujsburg.hristiane',
 } as const;

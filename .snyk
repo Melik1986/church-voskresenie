@@ -1,0 +1,26 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+# Upstream packages below have no fixed npm release yet.
+ignore:
+  SNYK-JS-HTTPCACHESEMANTICS-19964068:
+    - '*':
+        reason: >-
+          No upstream fix. Local patch applied (CVE-2026-93748 max-stale / security-zeroed
+          entries). Reachability: Astro build-time remote image TTL only.
+  SNYK-JS-HTTPCACHESEMANTICS-19964064:
+    - '*':
+        reason: >-
+          No upstream fix. Local patch applied (CVE-2026-93750 Vary:* normalization).
+          Reachability: Astro build-time remote image TTL only.
+  # uri-js: overridden to vendor/uri-js@4.4.2 (security-patched). Keep ignores until
+  # upstream publishes a real fix and Snyk marks it Fixed.
+  SNYK-JS-URIJS-19963961:
+    - '*':
+        reason: >-
+          No upstream fix. Forced vendor/uri-js@4.4.2 with CVE-2026-93751 pctDecChars patch
+          via npm overrides (ajv ← eslint / @astrojs/vercel).
+  SNYK-JS-URIJS-19963963:
+    - '*':
+        reason: >-
+          No upstream fix. Forced vendor/uri-js@4.4.2 with CVE-2026-93690 removeDotSegments
+          patch via npm overrides (ajv ← eslint / @astrojs/vercel).

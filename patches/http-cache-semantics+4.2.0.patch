@@ -1,0 +1,91 @@
+diff --git a/node_modules/http-cache-semantics/index.js b/node_modules/http-cache-semantics/index.js
+index f01e9a1..8f6b718 100644
+--- a/node_modules/http-cache-semantics/index.js
++++ b/node_modules/http-cache-semantics/index.js
+@@ -423,6 +423,12 @@ module.exports = class CachePolicy {
+         // the stored response is either:
+         // fresh, or allowed to be served stale
+         if (this.stale()) {
++            // Security-zeroed maxAge (Set-Cookie / proxy-revalidate / Vary:* / no-cache)
++            // must never be revived via client max-stale (CVE-2026-93748).
++            if (this._securityReuseProhibited()) {
++                return this._evaluateRequestMissResult(req);
++            }
++
+             // If a value is present, then the client is willing to accept a response that has
+             // exceeded its freshness lifetime by no more than the specified number of seconds
+             const allowsStaleWithoutRevalidation = 'max-stale' in requestCC &&
+@@ -479,26 +485,57 @@ module.exports = class CachePolicy {
+      * @param {HttpRequest} req - incoming HTTP request
+      * @returns {boolean} `true` if the vary headers match.
+      */
++    _varyFields() {
++        if (!this._resHeaders.vary) return [];
++        return this._resHeaders.vary
++            .trim()
++            .toLowerCase()
++            .split(/\s*,\s*/)
++            .filter(Boolean);
++    }
++
+     _varyMatches(req) {
+         if (!this._resHeaders.vary) {
+             return true;
+         }
+ 
+-        // A Vary header field-value of "*" always fails to match
+-        if (this._resHeaders.vary === '*') {
++        const fields = this._varyFields();
++
++        // A Vary field-value of "*" (any list member) always fails to match (CVE-2026-93750).
++        if (fields.includes('*')) {
+             return false;
+         }
+ 
+-        const fields = this._resHeaders.vary
+-            .trim()
+-            .toLowerCase()
+-            .split(/\s*,\s*/);
+         for (const name of fields) {
+-            if (req.headers[name] !== this._reqHeaders[name]) return false;
++            // Prototype field names must not match vacuously via inheritance.
++            if (Object.prototype.hasOwnProperty(name)) {
++                return false;
++            }
++            const reqOwn = Object.prototype.hasOwnProperty.call(req.headers, name);
++            const cachedOwn = Object.prototype.hasOwnProperty.call(this._reqHeaders, name);
++            const reqVal = reqOwn ? req.headers[name] : undefined;
++            const cachedVal = cachedOwn ? this._reqHeaders[name] : undefined;
++            if (reqVal !== cachedVal) return false;
+         }
+         return true;
+     }
+ 
++    /** True when maxAge() was zeroed for a security / non-reuse reason. */
++    _securityReuseProhibited() {
++        if (this._rescc['no-cache']) return true;
++        if (this._varyFields().includes('*')) return true;
++        if (
++            this._isShared &&
++            this._resHeaders['set-cookie'] &&
++            !this._rescc.public &&
++            !this._rescc.immutable
++        ) {
++            return true;
++        }
++        if (this._isShared && this._rescc['proxy-revalidate']) return true;
++        return false;
++    }
++
+     /**
+      * Creates a copy of the given headers without any hop-by-hop headers.
+      * @param {Record<string, string>} inHeaders - old headers from the cached response
+@@ -612,7 +649,7 @@ module.exports = class CachePolicy {
+             return 0;
+         }
+ 
+-        if (this._resHeaders.vary === '*') {
++        if (this._varyFields().includes('*')) {
+             return 0;
+         }
+ 

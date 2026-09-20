@@ -40,12 +40,16 @@ export const de: Record<UiKey, string> = {
   'yt.load': 'Video laden',
   'yt.notice':
     'Beim Laden von YouTube werden Daten an Google übermittelt. Klicken Sie zur Zustimmung.',
+  'yt.channelNotice':
+    'Predigten auf unserem YouTube-Kanal. Daten an Google erst nach dem Wechsel zu YouTube.',
+  'yt.openChannel': 'YouTube-Kanal öffnen',
+  'yt.openVideo': 'Auf YouTube öffnen',
   'media.title': 'Predigten',
   'media.lead': 'Predigten auf unserem YouTube-Kanal.',
   'media.how':
-    'Auf dem Kanal erscheinen Predigt- und Gottesdienstaufzeichnungen. Einzelne Videos auf der Website folgen später — öffnen Sie vorerst den YouTube-Kanal.',
-  'media.where':
-    'Kanal: @auferstehungsgemeinde_ua. Videos laden erst nach Ihrer Zustimmung (2-Klick).',
+    'Auf dem Kanal erscheinen Predigt- und Gottesdienstaufzeichnungen. Wählen Sie eine Karte und öffnen Sie die Predigt auf YouTube.',
+  'media.where': 'Wechsel zu YouTube erst nach Ihrem Klick (2-Klick).',
+  'media.channel': 'Kanal:',
   'facts.title': 'Kurzantworten',
   'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
   'seo.homeTitle': 'Auferstehungsgemeinde — Duisburg Süd',
@@ -61,7 +65,7 @@ export const de: Record<UiKey, string> = {
   'seo.contactTitle': 'Kontakt — Auferstehungsgemeinde',
   'seo.mediaTitle': 'Predigten — Auferstehungsgemeinde',
   'seo.mediaDesc':
-    'Predigten der Auferstehungsgemeinde Duisburg auf dem YouTube-Kanal @auferstehungsgemeinde_ua.',
+    'Predigten der Auferstehungsgemeinde Duisburg auf dem YouTube-Kanal @ResurrectionChurch-DUISBURG.',
   'seo.impressumTitle': 'Impressum',
   'seo.datenschutzTitle': 'Datenschutzerklärung',
 };

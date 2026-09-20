@@ -36,12 +36,16 @@ export const ru = {
   'maps.notice': 'Внешняя ссылка на Google Maps. Данные передаются Google только после перехода.',
   'yt.load': 'Загрузить видео',
   'yt.notice': 'При загрузке YouTube данные передаются Google. Нажмите, чтобы согласиться.',
+  'yt.channelNotice':
+    'Проповеди на нашем YouTube-канале. Данные Google передаются только после перехода на YouTube.',
+  'yt.openChannel': 'Открыть канал YouTube',
+  'yt.openVideo': 'Открыть на YouTube',
   'media.title': 'Проповеди',
   'media.lead': 'Смотрите проповеди на нашем YouTube-канале.',
   'media.how':
-    'На канале публикуются записи проповедей и служений общины. Отдельные видео на сайте появятся позже — пока открывайте канал YouTube.',
-  'media.where':
-    'Канал: @auferstehungsgemeinde_ua. Видео загружается только после вашего согласия (2-Click).',
+    'На канале публикуются записи проповедей и служений общины. Выберите карточку и откройте проповедь на YouTube.',
+  'media.where': 'Переход на YouTube только после вашего клика (2-Click).',
+  'media.channel': 'Канал:',
   'facts.title': 'Краткие ответы',
   'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
   'seo.homeTitle': 'Церковь Воскресение — Duisburg Süd',
@@ -57,7 +61,7 @@ export const ru = {
   'seo.contactTitle': 'Контакты — Церковь Воскресение',
   'seo.mediaTitle': 'Проповеди — Церковь Воскресение',
   'seo.mediaDesc':
-    'Проповеди церкви «Воскресение» в Дуйсбурге на YouTube-канале @auferstehungsgemeinde_ua.',
+    'Проповеди церкви «Воскресение» в Дуйсбурге на YouTube-канале @ResurrectionChurch-DUISBURG.',
   'seo.impressumTitle': 'Impressum',
   'seo.datenschutzTitle': 'Datenschutzerklärung',
 } as const;

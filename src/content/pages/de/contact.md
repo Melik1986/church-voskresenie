@@ -13,8 +13,6 @@ Evangelische Kirche Huckingen
 Angerhauser Straße 91  
 47259 Duisburg Süd
 
-Die Gemeinde nutzt dieses Gebäude zur Miete.
-
 ### Anfahrt
 
 Öffnen Sie die Adresse in Google Maps über den Link auf dieser Seite. Sie können uns über die sozialen Netzwerke erreichen.

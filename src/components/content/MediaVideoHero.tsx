@@ -1,9 +1,8 @@
 import ScrollableCardStack, { type CardItem } from '@/components/ui/scrollable-card-stack';
 import TwoClickYouTube from '@/components/embeds/TwoClickYouTube';
-import type { Photo } from '@/data/page-photos';
+import { MEDIA_VIDEOS, youtubePosterUrl, youtubeWatchUrl } from '@/data/youtube-videos';
 
 type Props = {
-  photos: Photo[];
   brand: string;
   channelUrl: string;
   notice: string;
@@ -13,9 +12,8 @@ type Props = {
 };
 
 const AVATAR = '/logo.svg';
-const MAX_EXTRA = 4;
 
-/** Fluid hero carousel — width follows parent (mobile → max-w-3xl desktop). */
+/** Fluid hero carousel — five curated YouTube videos + posters. */
 export default function MediaVideoHero(props: Props) {
   return (
     <div className="mx-auto w-full">
@@ -30,36 +28,32 @@ export default function MediaVideoHero(props: Props) {
 }
 
 function buildItems(props: Props): CardItem[] {
-  return [youtubeCard(props), ...extraCards(props)];
+  return MEDIA_VIDEOS.map((video) => videoCard(props, video.id));
 }
 
-function youtubeCard(props: Props): CardItem {
-  return {
-    ...baseCard(props, 'youtube', props.photos[0]?.src ?? '/photos/services.png'),
-    media: (
-      <TwoClickYouTube
-        notice={props.notice}
-        loadLabel={props.loadLabel}
-        channelUrl={props.channelUrl}
-        channelLabel={props.channelLabel}
-      />
-    ),
-  };
-}
-
-function extraCards(props: Props): CardItem[] {
-  return props.photos
-    .slice(0, MAX_EXTRA)
-    .map((photo, i) => baseCard(props, `media-${i}`, photo.src));
-}
-
-function baseCard(props: Props, id: string, image: string): CardItem {
+function videoCard(props: Props, id: string): CardItem {
+  const watchUrl = youtubeWatchUrl(id);
+  const poster = youtubePosterUrl(id);
   return {
     id,
     name: props.brand,
     handle: props.handle,
-    href: props.channelUrl,
+    href: watchUrl,
     avatar: AVATAR,
-    image,
+    image: poster,
+    media: youtubeMedia(props, watchUrl, poster),
   };
+}
+
+function youtubeMedia(props: Props, videoUrl: string, poster: string) {
+  return (
+    <TwoClickYouTube
+      notice={props.notice}
+      loadLabel={props.loadLabel}
+      channelUrl={props.channelUrl}
+      channelLabel={props.channelLabel}
+      videoUrl={videoUrl}
+      poster={poster}
+    />
+  );
 }

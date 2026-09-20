@@ -6,7 +6,7 @@ import AnswerFacts from '../../components/seo/AnswerFacts.astro';
 import PageHero from '../../components/content/PageHero.astro';
 import { resolveLocale, useTranslations } from '../../i18n/utils';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { formatAddressLine, MAPS_EXTERNAL_URL, SERVICE_TIME, SOCIAL, VENUE } from '../../data/site';
+import { formatAddressLine, MAPS_EXTERNAL_URL, SERVICE_TIME, SOCIAL } from '../../data/site';
 import { buildAnswerFacts } from '../../data/jsonld';
 import { pageMedia } from '../../data/page-photos';
 import SocialIcon from '../../components/icons/SocialIcon.astro';
@@ -29,9 +29,6 @@ const media = pageMedia('contact', locale);
       <Content />
     </article>
     <p class="mt-4 text-lg text-[var(--color-muted)]">{schedule}</p>
-    <p class="mt-2 text-sm text-[var(--color-muted)]">
-      {locale === 'de' ? VENUE.noteDe : VENUE.noteRu}
-    </p>
     <div class="mt-10">
       <TwoClickMap
         client:visible

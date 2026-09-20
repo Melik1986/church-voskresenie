@@ -41,7 +41,7 @@ function HeroTitle({ text }: { text: string }) {
   return (
     <h1
       data-hero-intro
-      className="animate-fade-up stagger-4 font-heading mt-4 max-w-3xl text-5xl leading-[1.05] tracking-tight text-[var(--color-fg)] md:text-7xl"
+      className="animate-fade-up stagger-4 font-heading mt-4 w-full max-w-full min-w-0 text-4xl leading-[1.05] tracking-tight break-words text-[var(--color-fg)] sm:text-5xl md:max-w-3xl md:text-7xl"
     >
       {text}
     </h1>
