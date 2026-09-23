@@ -4,12 +4,12 @@
 
 Статический RU/DE сайт на Astro 7 → [www.cerkov.live](https://www.cerkov.live).
 
-| | |
-| --- | --- |
-| **Стек** | Astro 7 · React 19 · Tailwind 4 · GSAP + Lenis · Motion |
-| **Вывод** | `output: 'static'` |
-| **Хост** | Vercel (`@astrojs/vercel`, Web Analytics) |
-| **Локали** | `ru` (без префикса) · `de` (`/de/…`) |
+|            |                                                         |
+| ---------- | ------------------------------------------------------- |
+| **Стек**   | Astro 7 · React 19 · Tailwind 4 · GSAP + Lenis · Motion |
+| **Вывод**  | `output: 'static'`                                      |
+| **Хост**   | Vercel (`@astrojs/vercel`, Web Analytics)               |
+| **Локали** | `ru` (без префикса) · `de` (`/de/…`)                    |
 
 ---
 
@@ -30,15 +30,15 @@ Dev-сервер: обычно `http://localhost:4321`.
 
 ## Scripts
 
-| Команда | Назначение |
-| --- | --- |
-| `npm run dev` | Dev-сервер Astro |
-| `npm run build` | Сборка → `dist/` |
-| `npm run preview` | Превью production-сборки |
-| `npm run lint` | ESLint (`--max-warnings=0`, Sonar-style) |
-| `npm run check-types` | `astro check` |
-| `npm run format` | Prettier (write) |
-| `npm run format:check` | Prettier (check) |
+| Команда                | Назначение                               |
+| ---------------------- | ---------------------------------------- |
+| `npm run dev`          | Dev-сервер Astro                         |
+| `npm run build`        | Сборка → `dist/`                         |
+| `npm run preview`      | Превью production-сборки                 |
+| `npm run lint`         | ESLint (`--max-warnings=0`, Sonar-style) |
+| `npm run check-types`  | `astro check`                            |
+| `npm run format`       | Prettier (write)                         |
+| `npm run format:check` | Prettier (check)                         |
 
 `postinstall` → `patch-package`. `prepare` → lefthook.
 
@@ -67,19 +67,19 @@ Alias: `@/` → `src/`.
 
 ## Маршруты (IA)
 
-| RU | DE |
-| --- | --- |
-| `/` | `/de/` |
-| `/about/` | `/de/about/` |
-| `/faith/` | `/de/faith/` |
-| `/mission/` | `/de/mission/` |
-| `/statute/` | `/de/statute/` |
-| `/prayer/` | `/de/prayer/` |
-| `/learn/` | `/de/learn/` |
-| `/services/` | `/de/services/` |
-| `/contact/` | `/de/contact/` |
-| `/media/` | `/de/media/` |
-| `/impressum/` | `/de/impressum/` |
+| RU              | DE                 |
+| --------------- | ------------------ |
+| `/`             | `/de/`             |
+| `/about/`       | `/de/about/`       |
+| `/faith/`       | `/de/faith/`       |
+| `/mission/`     | `/de/mission/`     |
+| `/statute/`     | `/de/statute/`     |
+| `/prayer/`      | `/de/prayer/`      |
+| `/learn/`       | `/de/learn/`       |
+| `/services/`    | `/de/services/`    |
+| `/contact/`     | `/de/contact/`     |
+| `/media/`       | `/de/media/`       |
+| `/impressum/`   | `/de/impressum/`   |
 | `/datenschutz/` | `/de/datenschutz/` |
 
 Редиректы со старых URL — в `vercel.json`. Sitemap фильтрует impressum/datenschutz.
@@ -131,12 +131,12 @@ npm run build
 
 ## Документация
 
-| Файл | Содержание |
-| --- | --- |
-| [docs/TZ.md](docs/TZ.md) | Техническое задание |
-| [AGENTS.md](AGENTS.md) | Подсказки для агентов / Intent |
-| `.cursor/rules/` | Правила проекта (Astro, stack) |
-| `.cursor/skills/` | Skills (astro-stack, create-component, …) |
+| Файл                     | Содержание                                |
+| ------------------------ | ----------------------------------------- |
+| [docs/TZ.md](docs/TZ.md) | Техническое задание                       |
+| [AGENTS.md](AGENTS.md)   | Подсказки для агентов / Intent            |
+| `.cursor/rules/`         | Правила проекта (Astro, stack)            |
+| `.cursor/skills/`        | Skills (astro-stack, create-component, …) |
 
 Сырой legacy-контент: `.cursor/Contest/` (если есть в рабочей копии).
 

@@ -4,6 +4,8 @@ import { orgName } from './site';
 export type Photo = {
   src: string;
   alt: string;
+  /** Optional desktop (≥ lg / 1024px) source for PageHero */
+  srcLg?: string;
   /** Visible name under the image */
   caption?: string;
   /** Role / title under the name */
@@ -35,17 +37,29 @@ export function pageMedia(page: PageKey, locale: Locale): PageMedia {
 
 function heroFor(page: Exclude<PageKey, 'about' | 'services' | 'media'>, brand: string): PageMedia {
   const map = {
-    faith: 'faith.png',
-    mission: 'mission.png',
-    statute: 'statute.png',
-    prayer: 'prayer.png',
-    contact: 'address.png',
+    faith: 'faith',
+    mission: 'mission',
+    statute: 'statute',
+    prayer: 'prayer',
+    contact: 'address',
   } as const;
-  return singleHero(`${ROOT}/${map[page]}`, brand);
+  const file = map[page];
+  const srcLg = heroSrcLg(page);
+  return {
+    hero: { src: `${ROOT}/${file}.png`, alt: brand, ...(srcLg ? { srcLg } : {}) },
+  };
 }
 
-function singleHero(src: string, alt: string): PageMedia {
-  return { hero: { src, alt } };
+/** Desktop (≥ lg) heroes — filename may differ from mobile (e.g. statut-lg). */
+function heroSrcLg(page: string): string | undefined {
+  const lgMap: Record<string, string> = {
+    faith: 'faith-lg',
+    mission: 'mission-lg',
+    statute: 'statut-lg',
+    contact: 'address-lg',
+  };
+  const file = lgMap[page];
+  return file ? `${ROOT}/${file}.png` : undefined;
 }
 
 function aboutMedia(brand: string, locale: Locale): PageMedia {

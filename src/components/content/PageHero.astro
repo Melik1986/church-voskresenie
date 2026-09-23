@@ -26,17 +26,35 @@ const fitClass =
     : fit === 'mobile'
       ? 'object-cover object-center lg:object-contain'
       : 'object-cover object-center';
+
+const imgClass = ['h-full w-full', fitClass];
 ---
 
 <section class:list={['page-hero w-full overflow-hidden bg-[var(--color-bg-soft)]', band]}>
-  <img
-    src={photo.src}
-    alt={photo.alt}
-    width="1200"
-    height="800"
-    class:list={['h-full w-full', fitClass]}
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-  />
+  {photo.srcLg ? (
+    <picture class="contents">
+      <source media="(min-width: 1024px)" srcset={photo.srcLg} />
+      <img
+        src={photo.src}
+        alt={photo.alt}
+        width="1200"
+        height="800"
+        class:list={imgClass}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+  ) : (
+    <img
+      src={photo.src}
+      alt={photo.alt}
+      width="1200"
+      height="800"
+      class:list={imgClass}
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  )}
 </section>
