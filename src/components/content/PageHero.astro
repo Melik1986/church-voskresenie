@@ -9,10 +9,11 @@ import type { Photo } from '../../data/page-photos';
  * - cover — landscape fills band (default)
  * - contain — full frame, letterbox on soft bg
  * - mobile — cover on phone/tablet, contain on lg+ (assets shot for narrow viewports)
+ * - wide — cover until 1440px, then contain (address / contact)
  */
 interface Props {
   photo: Photo;
-  fit?: 'cover' | 'contain' | 'mobile';
+  fit?: 'cover' | 'contain' | 'mobile' | 'wide';
 }
 
 const { photo, fit = 'cover' } = Astro.props;
@@ -25,7 +26,9 @@ const fitClass =
     ? 'object-contain'
     : fit === 'mobile'
       ? 'object-cover object-center lg:object-contain'
-      : 'object-cover object-center';
+      : fit === 'wide'
+        ? 'object-cover object-center min-[1024px]:object-contain'
+        : 'object-cover object-center';
 
 const imgClass = ['h-full w-full', fitClass];
 ---

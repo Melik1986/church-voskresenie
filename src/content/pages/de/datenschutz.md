@@ -6,13 +6,13 @@ section: legal
 order: 2
 ---
 
-# Datenschutzerklärung
+## Datenschutzerklärung
 
 **Hinweis:** Dies ist ein Struktur-Gerüst. Endgültige Formulierungen müssen von der Gemeinde / einem Rechtsbeistand freigegeben werden. Keine erfundenen Rechtsbehauptungen.
 
 ## 1. Verantwortlicher
 
-Siehe Angaben im [Impressum](/de/impressum).  
+Siehe Angaben im [Impressum](/de/impressum).
 **[PLACEHOLDER: Kontaktdaten Datenschutz]**
 
 ## 2. Hosting

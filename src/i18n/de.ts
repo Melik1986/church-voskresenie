@@ -17,7 +17,7 @@ export const de: Record<UiKey, string> = {
   'nav.datenschutz': 'Datenschutz',
   'brand.name': 'Auferstehungsgemeinde',
   'brand.tagline': 'Gemeinde in Duisburg',
-  'hero.cta': 'Sonntag 15:00',
+  'hero.cta': 'Sonntag 15:30',
   'hero.welcome':
     'Wir heißen Sie willkommen auf der Internetseite der Auferstehungsgemeinde in Duisburg.',
   'scripture.ref': 'Johannes Evangelium 3:16',
@@ -54,7 +54,7 @@ export const de: Record<UiKey, string> = {
   'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
   'seo.homeTitle': 'Auferstehungsgemeinde — Duisburg Süd',
   'seo.homeDesc':
-    'Internationale Auferstehungsgemeinde in Duisburg. Gottesdienst jeden Sonntag um 15:00 Uhr, Angerhauser Str. 91.',
+    'Internationale Auferstehungsgemeinde in Duisburg. Gottesdienst jeden Sonntag um 15:30 Uhr, Angerhauser Str. 91.',
   'seo.aboutTitle': 'Über uns — Auferstehungsgemeinde',
   'seo.faithTitle': 'Glaubensbekenntnis — Auferstehungsgemeinde',
   'seo.missionTitle': 'Unsere Mission — Auferstehungsgemeinde',

@@ -15,7 +15,7 @@ const media = pageMedia('prayer', locale);
 ---
 
 <Layout title={t('seo.prayerTitle')} description={entry.data.description}>
-  {media.hero ? <PageHero photo={media.hero} /> : null}
+  {media.hero ? <PageHero photo={media.hero} fit="wide" /> : null}
   <ContentArticle heading={entry.data.title}>
     <Content />
   </ContentArticle>

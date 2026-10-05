@@ -6,7 +6,7 @@ section: legal
 order: 2
 ---
 
-# Datenschutzerklärung
+## Datenschutzerklärung
 
 Полный юридический текст — на немецком: [/de/datenschutz](/de/datenschutz).
 

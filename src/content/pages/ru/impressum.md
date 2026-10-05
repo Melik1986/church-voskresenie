@@ -6,7 +6,7 @@ section: legal
 order: 1
 ---
 
-# Impressum
+## Impressum
 
 Юридически значимый текст — на немецком языке (source of truth).
 
@@ -16,7 +16,7 @@ order: 1
 
 ## Anschrift
 
-Angerhauser Str. 91  
+Angerhauser Str. 91
 47259 Duisburg
 
 ## Vertretungsberechtigte Person
@@ -25,12 +25,12 @@ Angerhauser Str. 91
 
 ## Kontakt
 
-E-Mail: **[PLACEHOLDER: E-Mail]**  
+E-Mail: **[PLACEHOLDER: E-Mail]**
 Telefon: **[PLACEHOLDER: Telefon]**
 
 ## Registereintrag (falls vorhanden)
 
-Registergericht: **[PLACEHOLDER]**  
+Registergericht: **[PLACEHOLDER]**
 Registernummer: **[PLACEHOLDER: VR …]**
 
 ## Verantwortlicher i. S. d. § 18 Abs. 2 MStV

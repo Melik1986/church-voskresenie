@@ -15,7 +15,7 @@ export const ru = {
   'nav.datenschutz': 'Datenschutz',
   'brand.name': 'Воскресение',
   'brand.tagline': 'Церковь в Дуйсбурге',
-  'hero.cta': 'Воскресенье 15:00',
+  'hero.cta': 'Воскресенье 15:30',
   'hero.welcome':
     'Рады приветствовать вас на официальном сайте церкви «Воскресение» города Дуйсбурга.',
   'scripture.ref': 'Евангелие от Иоанна 3:16',
@@ -50,7 +50,7 @@ export const ru = {
   'footer.rights': 'Auferstehungsgemeinde Duisburg Süd',
   'seo.homeTitle': 'Церковь Воскресение — Duisburg Süd',
   'seo.homeDesc':
-    'Интернациональная церковь «Воскресение» в Дуйсбурге. Богослужение каждое воскресенье в 15:00, Angerhauser Str. 91.',
+    'Интернациональная церковь «Воскресение» в Дуйсбурге. Богослужение каждое воскресенье в 15:30, Angerhauser Str. 91.',
   'seo.aboutTitle': 'О нас — Церковь Воскресение',
   'seo.faithTitle': 'Исповедание веры — Церковь Воскресение',
   'seo.missionTitle': 'Наша миссия — Церковь Воскресение',

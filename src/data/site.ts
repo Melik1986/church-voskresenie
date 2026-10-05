@@ -19,10 +19,10 @@ export const VENUE = {
 export const SERVICE_TIME = {
   /** ISO weekday: 7 = Sunday */
   weekday: 7,
-  time: '15:00',
+  time: '15:30',
   endTime: '18:00',
-  labelRu: 'Каждое воскресенье в 15:00',
-  labelDe: 'Jeden Sonntag um 15:00 Uhr',
+  labelRu: 'Каждое воскресенье в 15:30',
+  labelDe: 'Jeden Sonntag um 15:30 Uhr',
   timezone: 'Europe/Berlin',
 } as const;
 

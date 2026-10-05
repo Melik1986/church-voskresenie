@@ -1,16 +1,16 @@
 ---
 title: Контакты
-description: "Контакты церкви «Воскресение»: Evangelische Kirche Huckingen, Angerhauser Str. 91, воскресенье 15:00."
+description: "Контакты церкви «Воскресение»: Evangelische Kirche Huckingen, Angerhauser Str. 91, воскресенье 15:30."
 locale: ru
 section: contact
 order: 1
 ---
-Приглашаем вас посетить богослужения церкви «Воскресение», которые проходят **каждое воскресенье в 15:00**.
+Приглашаем вас посетить богослужения церкви «Воскресение», которые проходят **каждое воскресенье в 15:30**.
 
-### Наш адрес
+## Наш адрес
 
-Evangelische Kirche Huckingen  
-Angerhauser Straße 91  
+Evangelische Kirche Huckingen
+Angerhauser Straße 91
 47259 Duisburg Süd
 
 ### Как добраться

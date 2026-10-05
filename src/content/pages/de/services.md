@@ -5,7 +5,7 @@ locale: de
 section: services
 order: 1
 ---
-### Wortverkündigung
+## Wortverkündigung
 
 Also kommt der Glaube aus der Predigt, das Predigen aber durch das Wort Christi. (Römer 10:17)
 

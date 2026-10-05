@@ -1,16 +1,16 @@
 ---
 title: Kontakt
-description: "Kontakt Auferstehungsgemeinde: Evangelische Kirche Huckingen, Angerhauser Str. 91, Sonntag 15:00 Uhr."
+description: "Kontakt Auferstehungsgemeinde: Evangelische Kirche Huckingen, Angerhauser Str. 91, Sonntag 15:30 Uhr."
 locale: de
 section: contact
 order: 1
 ---
-Wir laden Sie ein, die Gottesdienste der Auferstehungsgemeinde zu besuchen. Sie finden **jeden Sonntag um 15:00 Uhr** statt.
+Wir laden Sie ein, die Gottesdienste der Auferstehungsgemeinde zu besuchen. Sie finden **jeden Sonntag um 15:30 Uhr** statt.
 
-### Unsere Adresse
+## Unsere Adresse
 
-Evangelische Kirche Huckingen  
-Angerhauser Straße 91  
+Evangelische Kirche Huckingen
+Angerhauser Straße 91
 47259 Duisburg Süd
 
 ### Anfahrt
