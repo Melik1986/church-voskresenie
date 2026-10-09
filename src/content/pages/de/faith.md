@@ -29,6 +29,4 @@ Amen
 
 9. Wir glauben an die Auferstehung aller Menschen. Einige für das ewige Leben. Andere für die ewige Verdammnis. (Apostelgeschichte 24:15, Johannes 3:16, 5:24, Matthäus 10:28, Johannes 5:29, Offenbarung 20:11-15)
 
-## Daran glauben wir
-
 **Wir betrachten die Heilige Schrift – die Bibel – als die wichtigste Grundlage für die geistlichen, moralischen und praktischen Bereiche des Lebens.**

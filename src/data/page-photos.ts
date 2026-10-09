@@ -31,7 +31,7 @@ export function pageMedia(page: PageKey, locale: Locale): PageMedia {
   const brand = orgName(locale);
   if (page === 'about') return aboutMedia(brand, locale);
   if (page === 'services') return servicesMedia(locale);
-  if (page === 'media') return { gallery: mediaGalleryPhotos(locale) };
+  if (page === 'media') return {};
   return heroFor(page, brand);
 }
 
@@ -124,28 +124,6 @@ function servicesMedia(locale: Locale): PageMedia {
     hero: { src: `${ROOT}/services.png`, alt: brand },
     gallery: [...worshipSection(worship).photos, ...kidsSection(kids).photos],
   };
-}
-
-/** Depth gallery under the YouTube card on /media. */
-function mediaGalleryPhotos(locale: Locale): Photo[] {
-  const label = locale === 'de' ? 'Gemeindeleben' : 'Жизнь общины';
-  return numberedPhotos(
-    [
-      'service',
-      'service-1',
-      'service-2',
-      'service-3',
-      'services',
-      'services-1',
-      'services-2',
-      'services-3',
-      'services-4',
-      'children',
-      'children-1',
-      'children-2',
-    ],
-    label,
-  );
 }
 
 function worshipSection(worship: string): PhotoSection {

@@ -19,6 +19,8 @@ order: 1
 
 **(Matthäus 28,19-20)**
 
+<img src="/dove.svg" alt="" width="118" height="125" data-ornament loading="lazy" decoding="async" aria-hidden="true" />
+
 **DAS EVANGELIUM ZU VERBREITEN**
 
 „Wie Du mich in die Welt gesandt hast, so habe ich sie in die Welt gesandt. Ich bete nicht nur für sie, sondern auch für diejenigen, die durch ihr Wort an mich glauben ...“

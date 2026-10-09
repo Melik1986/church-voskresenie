@@ -44,7 +44,6 @@ const facts = buildAnswerFacts(locale);
     moreLabel={t('services.more')}
     href={getRelativeLocaleUrl(locale, 'services')}
   />
-  <AnswerFacts title={t('facts.title')} items={facts} />
   <PrayerSteps
     client:visible
     title={t('prayer.title')}
@@ -72,4 +71,5 @@ const facts = buildAnswerFacts(locale);
     mapsOpen={t('maps.open')}
     mapsNotice={t('maps.notice')}
   />
+  <AnswerFacts title={t('facts.title')} items={facts} />
 </Layout>

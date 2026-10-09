@@ -5,11 +5,9 @@ import MediaDepthGallery from '../components/content/MediaDepthGallery.tsx';
 import SocialIcon from '../components/icons/SocialIcon.astro';
 import { resolveLocale, useTranslations } from '../i18n/utils';
 import { SOCIAL, YOUTUBE_HANDLE, orgName } from '../data/site';
-import { pageMedia } from '../data/page-photos';
 
 const locale = resolveLocale(Astro.currentLocale);
 const t = useTranslations(locale);
-const gallery = pageMedia('media', locale).gallery ?? [];
 ---
 
 <Layout title={t('seo.mediaTitle')} description={t('seo.mediaDesc')}>
@@ -48,7 +46,5 @@ const gallery = pageMedia('media', locale).gallery ?? [];
       </p>
     </div>
   </section>
-  {gallery.length > 0 && (
-    <MediaDepthGallery client:visible photos={gallery} label={t('nav.media')} />
-  )}
+  <MediaDepthGallery client:visible label={t('nav.media')} />
 </Layout>
