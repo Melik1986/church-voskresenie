@@ -42,7 +42,15 @@
   },
   "overrides": {
     "path-to-regexp": "6.3.0",
-    "uri-js": "file:vendor/uri-js"
+    "uri-js": "file:vendor/uri-js",
+    "sharp": "0.35.5",
+    "smol-toml": "1.9.1",
+    "undici": "8.12.2",
+    "devalue": "5.9.4",
+    "zod": "4.6.7",
+    "@vercel/cli-config": {
+      "zod": "4.6.7"
+    }
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

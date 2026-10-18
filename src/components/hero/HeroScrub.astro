@@ -25,7 +25,7 @@ const posterSrc = '/animation/0001.webp';
       alt=""
       width="1920"
       height="1080"
-      class="absolute inset-0 h-full w-full object-cover"
+      class="absolute inset-0 h-full w-full object-cover object-center"
       fetchpriority="high"
       decoding="async"
       aria-hidden="true"
@@ -220,15 +220,23 @@ const posterSrc = '/animation/0001.webp';
   }
 
   type CoverBox = { dw: number; dh: number; dx: number; dy: number };
+  type CoverSize = { iw: number; ih: number; cw: number; ch: number };
 
-  function coverBox(iw: number, ih: number, cw: number, ch: number): CoverBox {
+  /** object-fit: cover, center — 16:9 on portrait crops L/R around the cross. */
+  function coverBox({ iw, ih, cw, ch }: CoverSize): CoverBox {
     const ir = iw / ih;
     const cr = cw / ch;
-    if (ir > cr) {
-      const dh = ch;
-      const dw = ch * ir;
-      return { dw, dh, dx: (cw - dw) / 2, dy: 0 };
-    }
+    if (ir > cr) return wideCover(cw, ch, ir);
+    return tallCover(cw, ch, ir);
+  }
+
+  function wideCover(cw: number, ch: number, ir: number): CoverBox {
+    const dh = ch;
+    const dw = ch * ir;
+    return { dw, dh, dx: (cw - dw) / 2, dy: 0 };
+  }
+
+  function tallCover(cw: number, ch: number, ir: number): CoverBox {
     const dw = cw;
     const dh = cw / ir;
     return { dw, dh, dx: 0, dy: (ch - dh) / 2 };
@@ -240,7 +248,7 @@ const posterSrc = '/animation/0001.webp';
     cw: number,
     ch: number,
   ): void {
-    const box = coverBox(img.naturalWidth, img.naturalHeight, cw, ch);
+    const box = coverBox({ iw: img.naturalWidth, ih: img.naturalHeight, cw, ch });
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, box.dx, box.dy, box.dw, box.dh);
   }

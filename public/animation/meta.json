@@ -1,9 +1,14 @@
 {
-  "count": 109,
+  "count": 96,
   "pad": 4,
   "ext": "webp",
   "width": 1920,
   "height": 1080,
   "fps": 12,
-  "source": "/video/hero.mp4"
+  "source": "/video/hero.mp4",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "durationSec": 8,
+  "fit": "cover-center",
+  "note": "16:9 sequence; canvas uses center-cover so mobile portrait crops left/right around the centered cross."
 }
