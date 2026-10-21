@@ -2,6 +2,9 @@
   "mcpServers": {
     "Astro docs": {
       "url": "https://mcp.docs.astro.build/mcp"
+    },
+    "motionsites": {
+      "url": "https://xgdzyqfalbibzelpdpvr.supabase.co/functions/v1/mcp"
     }
   }
 }
