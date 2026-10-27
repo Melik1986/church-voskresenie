@@ -48,6 +48,14 @@
     "undici": "8.12.2",
     "devalue": "5.9.4",
     "zod": "4.6.7",
+    "vite": "8.3.3",
+    "picomatch": "4.0.7",
+    "anymatch": {
+      "picomatch": "4.0.7"
+    },
+    "micromatch": {
+      "picomatch": "4.0.7"
+    },
     "@vercel/cli-config": {
       "zod": "4.6.7"
     }
