@@ -22,13 +22,9 @@ const showCaption = Boolean(photo.caption || photo.role);
     />
     {showCaption && (
       <figcaption class="mt-3 text-center md:text-left">
-        {photo.caption && (
-          <p class="font-display text-lg text-[var(--color-fg)]">{photo.caption}</p>
-        )}
+        {photo.caption && <p class="font-display text-lg text-(--color-fg)">{photo.caption}</p>}
         {photo.role && (
-          <p class="mt-1 text-sm uppercase tracking-widest text-[var(--color-muted)]">
-            {photo.role}
-          </p>
+          <p class="mt-1 text-sm uppercase tracking-widest text-(--color-muted)">{photo.role}</p>
         )}
       </figcaption>
     )}

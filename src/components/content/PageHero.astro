@@ -30,11 +30,13 @@ const fitClass =
         ? 'object-cover object-center min-[1024px]:object-contain'
         : 'object-cover object-center';
 
-const imgClass = ['h-full w-full', fitClass];
+const imgClass = ['h-full w-full cursor-pointer', fitClass];
 ---
 
-<section class:list={['page-hero w-full overflow-hidden bg-[var(--color-bg-soft)]', band]}>
-  {photo.srcLg ? (
+<section class:list={['page-hero w-full overflow-hidden bg-(--color-bg-soft)', band]}>
+  {photo.videoSrc ? (
+    <video src={photo.videoSrc} autoplay loop playsinline class:list={imgClass} id="hero-video" />
+  ) : photo.srcLg ? (
     <picture class="contents">
       <source media="(min-width: 1024px)" srcset={photo.srcLg} />
       <img
@@ -61,3 +63,18 @@ const imgClass = ['h-full w-full', fitClass];
     />
   )}
 </section>
+
+{photo.videoSrc && <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('hero-video') as HTMLVideoElement;
+    if (video) {
+      video.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }
+  });
+</script>}

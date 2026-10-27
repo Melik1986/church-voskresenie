@@ -6,6 +6,8 @@ export type Photo = {
   alt: string;
   /** Optional desktop (≥ lg / 1024px) source for PageHero */
   srcLg?: string;
+  /** Optional video source to replace image in PageHero */
+  videoSrc?: string;
   /** Visible name under the image */
   caption?: string;
   /** Role / title under the name */
@@ -64,7 +66,7 @@ function heroSrcLg(page: string): string | undefined {
 
 function aboutMedia(brand: string, locale: Locale): PageMedia {
   return {
-    hero: { src: `${ROOT}/about.webp`, alt: brand },
+    hero: { src: `${ROOT}/about-1.jpg`, alt: brand },
     sections: [{ photos: aboutPastors(locale) }],
     gallery: aboutLifePhotos(locale),
   };
@@ -73,19 +75,31 @@ function aboutMedia(brand: string, locale: Locale): PageMedia {
 /** Gemeindeleben photos under the pastor block (coverflow). */
 function aboutLifePhotos(locale: Locale): Photo[] {
   const label = locale === 'de' ? 'Gemeindeleben' : 'Жизнь общины';
+  return [...aboutSectionPhotos(label), ...servicesSectionPhotos(label)];
+}
+
+function aboutSectionPhotos(label: string): Photo[] {
+  return [
+    { src: `${ROOT}/about.jpg`, alt: label },
+    { src: `${ROOT}/about-1.jpg`, alt: `${label} 1` },
+    { src: `${ROOT}/about-2.jpg`, alt: `${label} 2` },
+    { src: `${ROOT}/about-3.jpg`, alt: `${label} 3` },
+    { src: `${ROOT}/about-4.jpg`, alt: `${label} 4` },
+    { src: `${ROOT}/about-5.jpg`, alt: `${label} 5` },
+  ];
+}
+
+function servicesSectionPhotos(label: string): Photo[] {
   return numberedPhotos(
     [
       'services',
+      'service',
       'service-1',
       'service-2',
       'service-3',
       'services-1',
       'services-2',
-      'services-3',
       'services-4',
-      'children',
-      'children-1',
-      'children-2',
     ],
     label,
   );
@@ -119,36 +133,22 @@ function pastorCard(file: string, name: string, role: string): Photo {
 function servicesMedia(locale: Locale): PageMedia {
   const brand = orgName(locale);
   const kids = locale === 'de' ? 'Sonntagsschule' : 'Детская воскресная школа';
-  const worship = locale === 'de' ? 'Gottesdienst' : 'Богослужение';
   return {
-    hero: { src: `${ROOT}/services.png`, alt: brand },
-    gallery: [...worshipSection(worship).photos, ...kidsSection(kids).photos],
-  };
-}
-
-function worshipSection(worship: string): PhotoSection {
-  return {
-    label: worship,
-    photos: numberedPhotos(
-      [
-        'service',
-        'service-1',
-        'service-2',
-        'service-3',
-        'services-1',
-        'services-2',
-        'services-3',
-        'services-4',
-      ],
-      worship,
-    ),
+    hero: { src: `${ROOT}/services.png`, alt: brand, videoSrc: '/video/video-service.mp4' },
+    gallery: kidsSection(kids).photos,
   };
 }
 
 function kidsSection(kids: string): PhotoSection {
   return {
     label: kids,
-    photos: numberedPhotos(['children', 'children-1', 'children-2'], kids),
+    photos: [
+      ...numberedPhotos(['children', 'children-1', 'children-2'], kids),
+      { src: `${ROOT}/children-3.jpg`, alt: kids },
+      { src: `${ROOT}/children-4.jpg`, alt: kids },
+      { src: `${ROOT}/children-5.jpg`, alt: kids },
+      { src: `${ROOT}/children-6.jpg`, alt: kids },
+    ],
   };
 }
 

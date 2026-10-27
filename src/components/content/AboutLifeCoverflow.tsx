@@ -5,10 +5,10 @@ import type { Locale } from '@/i18n/ui';
 type Props = { photos: Photo[]; locale: Locale };
 
 /** Coverflow of Gemeindeleben photos — sits below the pastor grid on about. */
-export default function AboutLifeCoverflow({ photos, locale }: Props) {
+export default function AboutLifeCoverflow({ photos, locale }: Readonly<Props>) {
   const L = uiLabels(locale);
   return (
-    <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[var(--color-bg-soft)] py-12">
+    <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-(--color-bg-soft) py-12">
       <Coverflow
         items={photos.map((p, i) => lifeSlide(p, i, photos.length))}
         rotation={22}
@@ -25,21 +25,21 @@ export default function AboutLifeCoverflow({ photos, locale }: Props) {
 function lifeSlide(photo: Photo, index: number, total: number) {
   return (
     <CoverflowItem key={photo.src} label={`${photo.alt} (${index + 1}/${total})`}>
-      <figure className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-bg)] shadow-xl">
+      <figure className="overflow-hidden rounded-xl border border-(--color-line) bg-(--color-bg) shadow-xl">
         <img
           src={photo.src}
           alt={photo.alt}
           width={600}
           height={750}
           draggable={false}
-          className="aspect-[4/5] w-full object-cover"
+          className="aspect-4/5 w-full object-cover"
         />
       </figure>
     </CoverflowItem>
   );
 }
 
-function LifeControls({ labels: L }: { labels: ReturnType<typeof uiLabels> }) {
+function LifeControls({ labels: L }: Readonly<{ labels: ReturnType<typeof uiLabels> }>) {
   return (
     <CoverflowControls
       prevLabel={L.prev}
