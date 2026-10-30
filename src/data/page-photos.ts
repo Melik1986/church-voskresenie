@@ -143,7 +143,6 @@ function kidsSection(kids: string): PhotoSection {
       { src: `${ROOT}/children-3.jpg`, alt: kids },
       { src: `${ROOT}/children-4.jpg`, alt: kids },
       { src: `${ROOT}/children-5.jpg`, alt: kids },
-      { src: `${ROOT}/children-6.jpg`, alt: kids },
     ],
   };
 }
