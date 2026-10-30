@@ -2,7 +2,8 @@ import type { CSSProperties } from 'react';
 
 export type ImageValue = string | { src?: string } | null | undefined;
 
-export type ItemInput = ImageValue | { image?: ImageValue; offsetY?: number; href?: string };
+export type ItemInput =
+  ImageValue | { image?: ImageValue; offsetY?: number; href?: string; caption?: string };
 
 export interface MoodSettings {
   strength: number;
@@ -51,6 +52,7 @@ export interface Plate {
   offsetY: number;
   mood: Mood;
   href?: string;
+  caption?: string;
 }
 
 export interface Frame {

@@ -28,7 +28,7 @@ export default function DepthGallery({
   smoothing = DEFAULTS.smoothing,
   style,
   className,
-}: DepthGalleryProps) {
+}: Readonly<DepthGalleryProps>) {
   const atmosphere = { ...DEFAULT_MOOD, ...mood };
   const response = { ...DEFAULT_PARALLAX, ...parallax };
   const items = (Array.isArray(images) ? images : []) as ItemInput[];
@@ -134,19 +134,73 @@ export default function DepthGallery({
             }}
           >
             {plate.src ? (
-              <img
-                src={plate.src}
-                alt=""
-                draggable={false}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'block',
-                  objectFit: 'cover',
-                  objectPosition: `50% ${50 - (plate.offsetY / 250) * 50}%`,
-                  pointerEvents: 'none',
-                }}
-              />
+              <>
+                <img
+                  src={plate.src}
+                  alt=""
+                  draggable={false}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'block',
+                    objectFit: 'cover',
+                    objectPosition: `50% ${50 - (plate.offsetY / 250) * 50}%`,
+                    pointerEvents: 'none',
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      borderRadius: '9999px',
+                      backgroundColor: 'rgba(31, 42, 29, 0.9)',
+                      padding: '8px 16px',
+                      fontSize: '14px',
+                      color: '#faf8f5',
+                      backdropFilter: 'blur(4px)',
+                    }}
+                  >
+                    <svg
+                      style={{ width: '20px', height: '20px' }}
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                    </svg>
+                    <span>Instagram Reels</span>
+                  </div>
+                  {plate.caption ? (
+                    <p
+                      style={{
+                        marginTop: '12px',
+                        fontSize: '20px',
+                        color: '#faf8f5',
+                        textAlign: 'center',
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)',
+                        fontWeight: 600,
+                        maxWidth: '90%',
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                      }}
+                    >
+                      {plate.caption}
+                    </p>
+                  ) : null}
+                </div>
+              </>
             ) : null}
           </div>
         ))}

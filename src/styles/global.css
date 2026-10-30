@@ -90,6 +90,7 @@
   --color-muted: #4b5b47;
   --color-accent: #336443;
   --color-sage: #85ab8b;
+  --color-cappuccino: #8b7355;
   --color-cta: #1f2a1d;
   --color-cta-hover: #2a3827;
   --color-line: color-mix(in srgb, var(--color-fg) 12%, transparent);

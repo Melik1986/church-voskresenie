@@ -59,11 +59,11 @@ const switchHref =
       <details class="relative lg:hidden">
         <summary class="btn-ghost cursor-pointer list-none">{t('nav.menu')}</summary>
         <nav
-          class="surface-card absolute right-0 mt-2 flex w-64 flex-col gap-2 p-4 text-sm text-[var(--color-muted)] shadow-lg"
+          class="surface-card absolute right-0 mt-2 flex w-64 flex-col gap-2 p-4 text-sm text-(--color-muted) shadow-lg"
           aria-label="Mobile"
         >
           {mobileLinks.map((item) => (
-            <a class="hover:text-[var(--color-fg)]" href={item.href}>
+            <a class="hover:text-(--color-fg)" href={item.href}>
               {item.label}
             </a>
           ))}

@@ -17,7 +17,7 @@ Herr, ich bereue alle meine Sünden und bitte Dich um Vergebung. Ich nehme im Gl
 
 Amen.
 
-## Wie lebt man nach der Bekehrung?
+## Schritte nach der Bekehrung
 
 Wir empfehlen:
 

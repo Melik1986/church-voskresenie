@@ -90,7 +90,7 @@ export function HaloReel({
   className,
   style,
   ...props
-}: HaloReelProps) {
+}: Readonly<HaloReelProps>) {
   const stageRef = React.useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const count = items.length;
@@ -222,9 +222,9 @@ export function HaloReel({
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       className={cn(
-        'relative h-[100dvh] w-full touch-pan-y overflow-hidden outline-none select-none',
+        'relative h-dvh w-full touch-pan-y overflow-hidden outline-none select-none',
         draggable && 'cursor-grab active:cursor-grabbing',
-        'focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-inset',
+        'focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:ring-inset',
         className,
       )}
       style={style}
@@ -278,7 +278,7 @@ function WheelCard({
   height,
   decorative,
   onHoverChange,
-}: {
+}: Readonly<{
   item: HaloReelItem;
   index: number;
   step: number;
@@ -291,7 +291,7 @@ function WheelCard({
   height: number;
   decorative: boolean;
   onHoverChange: (hovered: boolean) => void;
-}) {
+}>) {
   const cos = useTransform(rotation, (r) => Math.cos(index * step + r));
   const sin = useTransform(rotation, (r) => Math.sin(index * step + r));
   const x = useTransform(cos, (c) => c * radiusX);
@@ -329,7 +329,7 @@ function WheelCard({
         />
       ) : (
         <div
-          className="flex h-full w-full flex-col items-center justify-center gap-1 bg-[var(--color-bg-soft)] p-3 text-center text-[var(--color-fg)]"
+          className="flex h-full w-full flex-col items-center justify-center gap-1 bg-(--color-bg-soft) p-3 text-center text-(--color-fg)"
           style={{
             backgroundColor: item.bgColor,
             color: item.textColor,

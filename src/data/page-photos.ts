@@ -91,16 +91,7 @@ function aboutSectionPhotos(label: string): Photo[] {
 
 function servicesSectionPhotos(label: string): Photo[] {
   return numberedPhotos(
-    [
-      'services',
-      'service',
-      'service-1',
-      'service-2',
-      'service-3',
-      'services-1',
-      'services-2',
-      'services-4',
-    ],
+    ['service', 'service-1', 'service-2', 'service-3', 'service-4', 'service-5', 'service-6'],
     label,
   );
 }
@@ -134,7 +125,12 @@ function servicesMedia(locale: Locale): PageMedia {
   const brand = orgName(locale);
   const kids = locale === 'de' ? 'Sonntagsschule' : 'Детская воскресная школа';
   return {
-    hero: { src: `${ROOT}/services.png`, alt: brand, videoSrc: '/video/video-service.mp4' },
+    hero: {
+      src: `${ROOT}/services.png`,
+      alt: brand,
+      // Hosted on Vercel Blob — keep out of Git (152MB)
+      videoSrc: 'https://m0fe49gzreljinjk.public.blob.vercel-storage.com/video/video-service.mp4',
+    },
     gallery: kidsSection(kids).photos,
   };
 }
@@ -154,7 +150,7 @@ function kidsSection(kids: string): PhotoSection {
 
 function numberedPhotos(files: string[], label: string): Photo[] {
   return files.map((file, i) => ({
-    src: `${ROOT}/${file}.png`,
+    src: `${ROOT}/${file}.jpg`,
     alt: i === 0 ? label : `${label} ${i}`,
   }));
 }

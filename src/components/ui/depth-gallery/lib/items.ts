@@ -32,6 +32,14 @@ export function hrefOf(item: ItemInput): string | undefined {
   return undefined;
 }
 
+export function captionOf(item: ItemInput): string | undefined {
+  if (item && typeof item === 'object' && 'caption' in item) {
+    const caption = (item as { caption?: string }).caption;
+    return typeof caption === 'string' && caption ? caption : undefined;
+  }
+  return undefined;
+}
+
 export function collectSources(images: ItemInput[]): string[] {
   const list: string[] = [];
   images.forEach((item) => {
@@ -56,6 +64,7 @@ function plateFromItem(item: ItemInput, tints: Record<string, string>): Plate {
     offsetY: offsetOf(item),
     mood: moodFromTint(tint),
     href: hrefOf(item),
+    caption: captionOf(item),
   };
 }
 

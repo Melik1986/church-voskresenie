@@ -6,7 +6,7 @@ type Props = { label: string };
 /** Full-bleed depth gallery — Instagram reel posters → open reel on click. */
 export default function MediaDepthGallery({ label }: Props) {
   return (
-    <section className="h-[min(70svh,640px)] w-full" aria-label={label}>
+    <section className="relative h-[min(70svh,640px)] w-full" aria-label={label}>
       <DepthGallery
         images={toImages()}
         background="#f5f3ef"
@@ -24,5 +24,6 @@ function toImages() {
     image: { src: item.poster },
     href: item.href,
     offsetY: 0,
+    caption: item.caption,
   }));
 }

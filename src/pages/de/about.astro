@@ -17,19 +17,19 @@ const gallery = media.gallery ?? [];
 ---
 
 <Layout title={t('seo.aboutTitle')} description={entry.data.description}>
-  {media.hero ? <PageHero photo={media.hero} /> : null}
+  {media.hero ? <PageHero photo={media.hero} fit="contain" /> : null}
   <div class="relative mx-auto mt-10 flex w-fit items-center justify-center">
     <img
       src="/vine-group.svg"
       alt=""
       width="300"
       height="331"
-      class="h-auto w-36 sm:w-40 md:w-44 lg:w-48"
+      class="h-auto w-56.5 lg:w-72"
       loading="lazy"
       decoding="async"
       aria-hidden="true"
     />
-    <h1 class="pointer-events-none absolute inset-0 flex items-center justify-center px-2 text-center font-heading text-4xl text-[var(--color-fg)] sm:text-5xl">
+    <h1 class="pointer-events-none absolute inset-0 flex items-center justify-center px-2 text-center font-heading text-4xl text-(--color-fg) sm:text-5xl">
       {entry.data.title}
     </h1>
   </div>

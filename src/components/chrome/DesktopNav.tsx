@@ -10,7 +10,7 @@ export interface DesktopNavProps {
 }
 
 /** Desktop hover navbar: primary links stay visible, the rest drop down. */
-export default function DesktopNav({ primary, learnLabel, learnLinks }: DesktopNavProps) {
+export default function DesktopNav({ primary, learnLabel, learnLinks }: Readonly<DesktopNavProps>) {
   const [active, setActive] = useState<string | null>(null);
   const close = () => setActive(null);
   return (
@@ -22,7 +22,7 @@ export default function DesktopNav({ primary, learnLabel, learnLinks }: DesktopN
   );
 }
 
-function NavLinks({ links, onEnter }: { links: NavLink[]; onEnter: () => void }) {
+function NavLinks({ links, onEnter }: Readonly<{ links: NavLink[]; onEnter: () => void }>) {
   return (
     <>
       {links.map((link) => (
@@ -31,7 +31,7 @@ function NavLinks({ links, onEnter }: { links: NavLink[]; onEnter: () => void })
           href={link.href}
           onMouseEnter={onEnter}
           onFocus={onEnter}
-          className="text-sm tracking-wide text-[var(--color-muted)] transition-opacity hover:text-[var(--color-fg)] hover:opacity-70"
+          className="text-sm tracking-wide text-(--color-muted) transition-opacity hover:text-(--color-fg) hover:opacity-70"
         >
           {link.label}
         </a>
@@ -40,12 +40,14 @@ function NavLinks({ links, onEnter }: { links: NavLink[]; onEnter: () => void })
   );
 }
 
-function LearnMenu(props: {
-  active: string | null;
-  setActive: (item: string) => void;
-  label: string;
-  links: NavLink[];
-}) {
+function LearnMenu(
+  props: Readonly<{
+    active: string | null;
+    setActive: (item: string) => void;
+    label: string;
+    links: NavLink[];
+  }>,
+) {
   return (
     <MenuItem setActive={props.setActive} active={props.active} item={props.label}>
       <div className="flex flex-col space-y-3 text-sm">

@@ -51,7 +51,7 @@ export default function ScrollableCardStack({
   perspective = 1000,
   transitionDuration = 180,
   className,
-}: ScrollableCardStackProps) {
+}: Readonly<ScrollableCardStackProps>) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -244,7 +244,7 @@ export default function ScrollableCardStack({
                     }
               }
               aria-hidden={!isActive}
-              className="absolute top-1/2 left-1/2 w-full overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-bg)] shadow-lg"
+              className="absolute top-1/2 left-1/2 w-full overflow-hidden rounded-2xl border border-(--color-line) bg-(--color-bg) shadow-lg"
               data-active={isActive}
               initial={false}
               key={`scrollable-card-${item.id}`}
@@ -294,18 +294,18 @@ export default function ScrollableCardStack({
             >
               <div
                 className={cn(
-                  'flex w-full flex-col rounded-xl bg-[var(--color-bg)] transition-all duration-200',
+                  'flex w-full flex-col rounded-xl bg-(--color-bg) transition-all duration-200',
                   isHovered && 'shadow-xl',
-                  isScrolling && isActive && 'ring-opacity-50 ring-2 ring-[var(--color-accent)]',
+                  isScrolling && isActive && 'ring-opacity-50 ring-2 ring-(--color-accent)',
                 )}
                 style={{ height: `${resolvedHeight}px` }}
               >
                 {isScrolling && isActive ? (
-                  <div className="absolute -top-1 left-1/2 h-1 w-8 -translate-x-1/2 rounded-full bg-[var(--color-accent)] opacity-75" />
+                  <div className="absolute -top-1 left-1/2 h-1 w-8 -translate-x-1/2 rounded-full bg-(--color-accent) opacity-75" />
                 ) : null}
                 <div className="relative w-full flex-1 overflow-hidden">
                   {item.media && isActive ? (
-                    <div className="absolute inset-0 z-[2]">{item.media}</div>
+                    <div className="absolute inset-0 z-2">{item.media}</div>
                   ) : (
                     <>
                       <img
@@ -343,7 +343,7 @@ export default function ScrollableCardStack({
                 </div>
                 <a
                   aria-label={item.name}
-                  className="flex items-center justify-center gap-1 bg-[color-mix(in_srgb,var(--color-bg)_95%,transparent)] p-3 text-[var(--color-fg)] no-underline backdrop-blur-sm"
+                  className="flex items-center justify-center gap-1 bg-[color-mix(in_srgb,var(--color-bg)_95%,transparent)] p-3 text-(--color-fg) no-underline backdrop-blur-sm"
                   href={item.href}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -356,12 +356,10 @@ export default function ScrollableCardStack({
                     src={item.avatar}
                     width={20}
                   />
-                  <span className="text-sm leading-none font-medium text-[var(--color-fg)]">
+                  <span className="text-sm leading-none font-medium text-(--color-fg)">
                     {item.name}
                   </span>
-                  <span className="text-sm font-normal text-[var(--color-muted)]">
-                    {item.handle}
-                  </span>
+                  <span className="text-sm font-normal text-(--color-muted)">{item.handle}</span>
                 </a>
               </div>
             </motion.div>
@@ -378,10 +376,10 @@ export default function ScrollableCardStack({
               aria-label={`Go to card ${i + 1} of ${items.length}`}
               aria-selected={i === currentIndex}
               className={cn(
-                'h-2 w-2 cursor-pointer rounded-full transition-all duration-200 focus:ring-1 focus:ring-[var(--color-accent)] focus:ring-offset-1 focus:outline-none',
+                'h-2 w-2 cursor-pointer rounded-full transition-all duration-200 focus:ring-1 focus:ring-(--color-accent) focus:ring-offset-1 focus:outline-none',
                 i === currentIndex
-                  ? 'scale-125 bg-[var(--color-accent)]'
-                  : 'bg-[var(--color-line)] hover:bg-[var(--color-muted)]',
+                  ? 'scale-125 bg-(--color-accent)'
+                  : 'bg-(--color-line) hover:bg-(--color-muted)',
               )}
               key={`scrollable-indicator-${item.id}`}
               onClick={() => jumpTo(i)}

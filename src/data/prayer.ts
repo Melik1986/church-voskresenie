@@ -34,7 +34,7 @@ Herr, ich bereue alle meine Sünden und bitte Dich um Vergebung. Ich nehme im Gl
 
 Amen.
 
-Wie lebt man nach der Bekehrung? Wir empfehlen:
+Schritte nach der Bekehrung
 
 1. Beginnen Sie regelmäßig zu beten.
 2. Beginnen Sie die Bibel zu lesen und zu erforschen.

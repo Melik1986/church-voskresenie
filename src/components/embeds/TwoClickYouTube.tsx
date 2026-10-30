@@ -17,7 +17,7 @@ interface Props {
 const STORAGE_KEY = 'consent-youtube';
 
 /** 2-Click YouTube facade — no Google until the user acts. */
-export default function TwoClickYouTube(props: Props) {
+export default function TwoClickYouTube(props: Readonly<Props>) {
   const [loaded, setLoaded] = useState(readConsent);
   if (loaded && props.videoId) {
     return <YoutubeFrame videoId={props.videoId} className={props.className} />;
@@ -39,7 +39,7 @@ function readConsent(): boolean {
   return sessionStorage.getItem(STORAGE_KEY) === '1';
 }
 
-function YoutubeFrame({ videoId, className }: { videoId: string; className?: string }) {
+function YoutubeFrame({ videoId, className }: Readonly<{ videoId: string; className?: string }>) {
   const src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   return (
     <iframe
@@ -59,24 +59,24 @@ interface FacadeProps extends Props {
   onLoad: () => void;
 }
 
-function Facade(props: FacadeProps) {
+function Facade(props: Readonly<FacadeProps>) {
   return (
     <div className={cn('relative h-full w-full overflow-hidden', props.className)}>
       {props.poster ? <Poster src={props.poster} /> : null}
       <div
         className={cn(
-          'relative z-[1] flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center',
+          'relative z-1 flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center',
           props.poster ? 'bg-[color-mix(in_srgb,var(--color-bg)_72%,transparent)]' : 'surface-card',
         )}
       >
-        <p className="max-w-md text-sm text-[var(--color-muted)]">{props.notice}</p>
+        <p className="max-w-md text-sm text-(--color-muted)">{props.notice}</p>
         <FacadeActions {...props} />
       </div>
     </div>
   );
 }
 
-function Poster({ src }: { src: string }) {
+function Poster({ src }: Readonly<{ src: string }>) {
   return (
     <img
       src={src}
@@ -89,7 +89,7 @@ function Poster({ src }: { src: string }) {
   );
 }
 
-function FacadeActions(props: FacadeProps) {
+function FacadeActions(props: Readonly<FacadeProps>) {
   return (
     <>
       <LoadButton {...props} />
@@ -98,7 +98,7 @@ function FacadeActions(props: FacadeProps) {
   );
 }
 
-function LoadButton(props: FacadeProps) {
+function LoadButton(props: Readonly<FacadeProps>) {
   if (!props.canEmbed) return null;
   return (
     <button type="button" className="btn-pill" onClick={props.onLoad}>
@@ -107,12 +107,12 @@ function LoadButton(props: FacadeProps) {
   );
 }
 
-function OutboundLink(props: FacadeProps) {
+function OutboundLink(props: Readonly<FacadeProps>) {
   const href = props.videoUrl ?? props.channelUrl;
   const isPrimary = !props.canEmbed;
   return (
     <a
-      className={isPrimary ? 'btn-pill' : 'text-sm text-[var(--color-fg)] underline'}
+      className={isPrimary ? 'btn-pill' : 'text-sm text-(--color-fg) underline'}
       href={href}
       target="_blank"
       rel="noopener noreferrer"

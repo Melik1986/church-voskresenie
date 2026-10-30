@@ -32,7 +32,7 @@ type ProductItemProps = {
 };
 
 /** Aceternity hover dropdown item. */
-export function MenuItem({ setActive, active, item, children }: MenuItemProps) {
+export function MenuItem({ setActive, active, item, children }: Readonly<MenuItemProps>) {
   const open = active === item;
   return (
     <div className="relative" onMouseEnter={() => setActive(item)} onFocus={() => setActive(item)}>
@@ -43,7 +43,7 @@ export function MenuItem({ setActive, active, item, children }: MenuItemProps) {
 }
 
 /** Horizontal hover menu shell. */
-export function Menu({ setActive, children, className }: MenuProps) {
+export function Menu({ setActive, children, className }: Readonly<MenuProps>) {
   return (
     <nav
       aria-label="Main"
@@ -56,7 +56,7 @@ export function Menu({ setActive, children, className }: MenuProps) {
 }
 
 /** Optional image card used by the Aceternity demo. */
-export function ProductItem({ title, description, href, src }: ProductItemProps) {
+export function ProductItem({ title, description, href, src }: Readonly<ProductItemProps>) {
   return (
     <a href={href} className="flex space-x-2">
       <img
@@ -76,32 +76,29 @@ export function HoveredLink({
   children,
   className,
   ...rest
-}: AnchorHTMLAttributes<HTMLAnchorElement>) {
+}: Readonly<AnchorHTMLAttributes<HTMLAnchorElement>>) {
   return (
-    <a
-      {...rest}
-      className={cn('text-[var(--color-muted)] hover:text-[var(--color-fg)]', className)}
-    >
+    <a {...rest} className={cn('text-(--color-muted) hover:text-(--color-fg)', className)}>
       {children}
     </a>
   );
 }
 
-function Trigger({ label, open }: { label: string; open: boolean }) {
+function Trigger({ label, open }: Readonly<{ label: string; open: boolean }>) {
   return (
     <motion.button
       type="button"
       aria-expanded={open}
       aria-haspopup="menu"
       transition={{ duration: 0.3 }}
-      className="cursor-pointer text-sm tracking-wide text-[var(--color-muted)] transition-opacity hover:text-[var(--color-fg)] hover:opacity-70"
+      className="cursor-pointer text-sm tracking-wide text-(--color-muted) transition-opacity hover:text-(--color-fg) hover:opacity-70"
     >
       {label}
     </motion.button>
   );
 }
 
-function AnimatedPanel({ children }: { children: ReactNode }) {
+function AnimatedPanel({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.85, y: 10 }}
@@ -113,13 +110,13 @@ function AnimatedPanel({ children }: { children: ReactNode }) {
   );
 }
 
-function DropdownPanel({ children }: { children: ReactNode }) {
+function DropdownPanel({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <div className="absolute top-full left-1/2 z-50 -translate-x-1/2 pt-3">
       <motion.div
         layoutId="active"
         transition={transition}
-        className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white/95 shadow-xl backdrop-blur-sm"
+        className="overflow-hidden rounded-2xl border border-(--color-line) bg-white/95 shadow-xl backdrop-blur-sm"
       >
         <motion.div layout className="h-full w-max p-4">
           {children}
@@ -129,11 +126,11 @@ function DropdownPanel({ children }: { children: ReactNode }) {
   );
 }
 
-function ProductCopy({ title, description }: { title: string; description: string }) {
+function ProductCopy({ title, description }: Readonly<{ title: string; description: string }>) {
   return (
     <div>
-      <h4 className="mb-1 text-xl font-bold text-[var(--color-fg)]">{title}</h4>
-      <p className="max-w-[10rem] text-sm text-[var(--color-muted)]">{description}</p>
+      <h4 className="mb-1 text-xl font-bold text-(--color-fg)">{title}</h4>
+      <p className="max-w-40 text-sm text-(--color-muted)">{description}</p>
     </div>
   );
 }

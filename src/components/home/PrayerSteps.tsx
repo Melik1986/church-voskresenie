@@ -9,7 +9,7 @@ interface Props {
 }
 
 /** Accessible prayer accordion — content from migrated Contest dump. */
-export default function PrayerSteps(props: Props) {
+export default function PrayerSteps(props: Readonly<Props>) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   return (
@@ -26,7 +26,7 @@ interface RowProps extends Props {
   onToggle: () => void;
 }
 
-function PrayerRow(props: RowProps) {
+function PrayerRow(props: Readonly<RowProps>) {
   return (
     <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
       <PrayerCopy {...props} />
@@ -35,11 +35,11 @@ function PrayerRow(props: RowProps) {
   );
 }
 
-function PrayerCopy(props: RowProps) {
+function PrayerCopy(props: Readonly<RowProps>) {
   return (
     <div className="w-full min-w-0 text-center md:flex-1 md:text-left">
       <h2 className="reveal font-heading text-4xl">{props.title}</h2>
-      <p className="reveal-late mt-4 text-[var(--color-muted)]">{props.lead}</p>
+      <p className="reveal-late mt-4 text-(--color-muted)">{props.lead}</p>
       <PrayerToggle
         open={props.open}
         panelId={props.panelId}
@@ -74,7 +74,7 @@ interface ToggleProps {
   onToggle: () => void;
 }
 
-function PrayerToggle(props: ToggleProps) {
+function PrayerToggle(props: Readonly<ToggleProps>) {
   return (
     <button
       type="button"
@@ -88,12 +88,9 @@ function PrayerToggle(props: ToggleProps) {
   );
 }
 
-function PrayerBody(props: { panelId: string; body: string }) {
+function PrayerBody(props: Readonly<{ panelId: string; body: string }>) {
   return (
-    <div
-      id={props.panelId}
-      className="mt-8 leading-relaxed whitespace-pre-line text-[var(--color-fg)]"
-    >
+    <div id={props.panelId} className="mt-8 leading-relaxed whitespace-pre-line text-(--color-fg)">
       {props.body}
     </div>
   );

@@ -29,3 +29,6 @@ lefthook-local.yml
 .playwright-mcp/
 # Local toolchain binaries (static ffmpeg etc.)
 .tools/
+.env*
+# Oversized media — Vercel Blob (public URL in page-photos)
+public/video/video-service.mp4
